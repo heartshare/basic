@@ -262,7 +262,7 @@ class Item extends YActiveRecord
      * @return CActiveRecord[]
      * @author Lujie.Zhou(gao_lujie@live.cn, qq:821293064).
      */
-    public function getItemsByCategory($category, $limit = -1)
+    public function getItemsByCategory($category, $limit = -1)//获取需要的东西的名字，如精品男装，然后limit初始化为-1.
     {
         $categoryIds = $category->getDescendantIds();
         $cri = new CDbCriteria();

@@ -7,11 +7,13 @@ Yii::app()->plugin->render('Hook_Login');
 ?>
 
 <div class="warp_contant">
+
     <div class="float">
         <div class="float_button">
-            <a href="">联系<br/>在线客xxx服</a>
+            <a href="#">联系<br/>在线客服</a>
         </div>
-    </div>
+    </div><!--首页右边的浮动框，通过css来进行定位。通过a标签来实现链接-->
+
     <div class="warp_tab contaniner_24">
         <div class="warp_tab_con">
             <div class="warp_tab_t">
@@ -26,7 +28,7 @@ Yii::app()->plugin->render('Hook_Login');
                     $i = 1;
                     ?>
                 </ul>
-            </div>
+            </div><!--首页精品男装女装的导航栏-->
             <?php foreach ($hotItems as $hotItemList) { ?>
                 <div class="warp_tab_c" id="pop_<?php echo $i; ?>" <?php if($i!=1) echo "style='display: none;'"?>>
                     <?php $i++;
@@ -60,7 +62,7 @@ Yii::app()->plugin->render('Hook_Login');
                     <?php } ?>
                 </div>
             <?php } ?>
-        </div>
+        </div><!--首页精品男装和精品女装处-->
         <div class="warp_news">
             <div class="news_tit"><?php echo CHtml::link('更多>>', Yii::app()->createUrl('cms/news/index', array())); ?></div>
             <div class="news_c">
@@ -100,8 +102,9 @@ Yii::app()->plugin->render('Hook_Login');
                     } ?>
                 </ul>
             </div>
-        </div>
-    </div>
+        </div><!--首页NEW最新动态的轮播效果-->
+    </div><!--首页里精品男装精品女装部分，和NEW最新动态部分-->
+
     <div class="warp_product">
         <?php $isFrist = true;
         $num = 0;
@@ -181,7 +184,7 @@ Yii::app()->plugin->render('Hook_Login');
             $isFrist = false;
         } ?>
     </div>
-</div>
+</div><!--首页显示的内容-->
 <script type="text/javascript">
     //保证导航栏背景与图片轮播背景一起显示
 //    $("#mainbody").removeClass();
