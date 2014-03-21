@@ -123,7 +123,7 @@ class Ad extends CActiveRecord
      */
     public function getHolderJs($width = '150', $height = '150', $text = 'No Picture')
     {
-        return 'holder.js/' . $width . 'x' . $height . '/text:' . $text;
+        return 'holder.js/' . $width . 'x' . $height . '/text:' . $text;//返回holder.js/150x150/text:No Picture
     }
 
     /**

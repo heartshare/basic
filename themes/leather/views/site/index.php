@@ -30,49 +30,49 @@ Yii::app()->plugin->render('Hook_Login');
                 </ul>
             </div><!--首页精品男装女装的导航栏-->
             <?php foreach ($hotItems as $hotItemList) { ?>
-                <div class="warp_tab_c" id="pop_<?php echo $i; ?>" <?php if($i!=1) echo "style='display: none;'"?>>
+                <div class="warp_tab_c" id="pop_<?php echo $i; ?>" <?php if($i!=1) echo "style='display: none;'"?><!--id部分通过pop后面加上参数加以分辨是精品男装还是精品女装，后面那句则将不是当前要求显示页面给隐藏了-->
                     <?php $i++;
                     foreach ($hotItemList as $hotItem) {
-                        $itemUrl = Yii::app()->createUrl('item/view', array('id' => $hotItem->item_id));
+                        $itemUrl = Yii::app()->createUrl('item/view', array('id' => $hotItem->item_id));//用来给图片附上链接，itemUrl。
                         ?>
                         <div class="warp_tab_list">
                             <div class="tab_img"><a href="<?php echo $itemUrl; ?>">
                                     <?php
                                     $picUrl=$hotItem->getMainPic();
-                                    if(!empty($picUrl)){
-                                        $picUrl=$imageHelper->thumb('220','220',$picUrl);
-                                        $picUrl=yii::app()->baseUrl. $picUrl;
-                                        echo CHtml::image($picUrl, $hotItem->title, array('width' => 220, 'height' => '220'));
+                                    if(!empty($picUrl)){//判断是否有图片，没有的话要使用holdJs来占位。
+                                        $picUrl=$imageHelper->thumb('220','220',$picUrl);//通告imageHelper这个类能获取到的图片的路径是upload开头的
+                                        $picUrl=yii::app()->baseUrl. $picUrl;//在$picUrl前面加上basic的前缀。
+                                        echo CHtml::image($picUrl, $hotItem->title, array('width' => 220, 'height' => '220'));//通过CHtml::image来获取图片，第一个参数是图片路径的意思，第二个是名字。第三个是规定大小
                                     }else {
                                         $picUrl=$hotItem->getHolderJs('220','220');
                                        ?> <img alt="<?php echo $hotItem->title; ?>" src="<?php echo $picUrl; ?>"
                                          width="220" height="220"></a><?php
                                     }
                                     ?>
-                                </a></div>
+                                </a>
+                            </div>
                             <div class="tab_name">
                                 <?php echo CHtml::link($hotItem->title, $itemUrl); ?>
-                            </div>
+                            </div><!--显示标题-->
                             <div class="tab_price">
-                                <div class="tab_price_n"><?php echo $hotItem->currency . $hotItem->price ?></div>
+                                <div class="tab_price_n"><?php echo $hotItem->currency . $hotItem->price ?></div><!--$hotItem->currency表示￥-->
                                 <div class="tab_price_p"><?php echo $hotItem->currency . $hotItem->price ?></div>
                                 <div class="tab_price_v"><?php echo CHtml::link('详情点击', $itemUrl); ?></div>
                             </div>
-                        </div>
+                        </div><!--能显示张图片，然后通过foreach循环显示所有图片-->
                     <?php } ?>
                 </div>
-            <?php } ?>
+            <?php } ?><!--用foreach语句循环显示精品男装下面的四个图片-->
         </div><!--首页精品男装和精品女装处-->
         <div class="warp_news">
             <div class="news_tit"><?php echo CHtml::link('更多>>', Yii::app()->createUrl('cms/news/index', array())); ?></div>
             <div class="news_c">
                 <div class="news_img">
                     <script>
-                        var box = new PPTBox();
+                        var box = new PPTBox();//PPTBox也是一个js插件。
                         box.width = 180; //宽度
                         box.height = 178;//高度
                         box.autoplayer = 5;//自动播放间隔时间
-                        //box.add({"url":"图片地址","title":"悬浮标题","href":"链接地址"})
                         <?php
                         $num=0;
                               foreach($posts as $post){
@@ -88,11 +88,10 @@ Yii::app()->plugin->render('Hook_Login');
                                             $num++;
                                   }
                                }
-                            //else echo 'box.add({"url": "image/tu2.jpg", "href": "", "title": "no data"});';
                 ?>
                         box.show();
                     </script>
-                </div>
+                </div><!--图片部分-->
                 <ul class="news_list">
                     <?php
                     $class = 'current';
@@ -100,8 +99,8 @@ Yii::app()->plugin->render('Hook_Login');
                         echo '<li class="' . $class . '"><a href="' . Yii::app()->createUrl('cms/news/view', array('id' => $post->id)) . '">' . $post->title . '</a></li>';
                         $class = '';
                     } ?>
-                </ul>
-            </div>
+                </ul><!--列表部分-->
+            </div><!--图片和列表的部分-->
         </div><!--首页NEW最新动态的轮播效果-->
     </div><!--首页里精品男装精品女装部分，和NEW最新动态部分-->
 
@@ -109,7 +108,8 @@ Yii::app()->plugin->render('Hook_Login');
         <?php $isFrist = true;
         $num = 0;
         foreach ($newItems as $category_name => $items) {
-            if ($isFrist) { ?>
+            if ($isFrist) {
+    ?>
                 <div class="product_new contaniner_24">
                     <div class="product_new_tit"><label><?php echo $category_name; ?></label><a href="<?php echo Yii::app()->baseUrl.'/'.Menu::model()->getUrl($category_name).'&sort=newd';?>">更多新品>></a></div>
                     <div class="product_c">
@@ -183,7 +183,7 @@ Yii::app()->plugin->render('Hook_Login');
             $num++;
             $isFrist = false;
         } ?>
-    </div>
+    </div><!--首页下面的布艺饰品等东西。-->
 </div><!--首页显示的内容-->
 <script type="text/javascript">
     //保证导航栏背景与图片轮播背景一起显示
