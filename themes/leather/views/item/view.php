@@ -37,17 +37,19 @@ $imageHelper=new ImageHelper();
             <?php foreach ($this->breadcrumbs as $breadcrumb) {
             echo '<a href="' . $breadcrumb['url'] . '">' . $breadcrumb['name'] . '</a>';
             } ?>
-        </div>
+        </div><!--上面的小的导航栏-->
         <div class="deal_pic clearfix">
             <div>
                 <ul id="idNum" class="hdnum">
-                    <?php foreach ($item->itemImgs as $itemImg) {
-                    if(!empty($itemImg->pic)){
-                    $picUrl=$imageHelper->thumb('70','70',$itemImg->pic);
-                    $picUrl=yii::app()->baseUrl. $picUrl;
-                    }else $picUrl=$item->getHolderJs('70','70');
-                    echo '<li><img src="' .$picUrl . '" width="70" height="70"></li>';
-                    } ?>
+                    <?php
+                        foreach ($item->itemImgs as $itemImg) {
+                            if(!empty($itemImg->pic)){
+                                $picUrl=$imageHelper->thumb('70','70',$itemImg->pic);
+                                $picUrl=yii::app()->baseUrl. $picUrl;
+                            }else $picUrl=$item->getHolderJs('70','70');
+                            echo '<li><img src="' .$picUrl . '" width="70" height="70"></li>';
+                        }
+                    ?>
                 </ul>
             </div>
             <div style="width: 450px; height: 450px; overflow: hidden; position: relative;" id=idTransformView >
@@ -87,7 +89,7 @@ $imageHelper=new ImageHelper();
             <div class="deal_size" data-sku-key='<?php echo json_encode(array_keys($skus)); ?>'
                  data-sku-value='<?php echo json_encode($skus); ?>' data-sku-id="<?php if(isset($skuId))echo implode(',',$skuId);else echo $item->item_id; ?>">
                 <?php
-            $propImgs = CHtml::listData($item->propImgs, 'item_prop_value', 'pic');
+                $propImgs = CHtml::listData($item->propImgs, 'item_prop_value', 'pic');
                 $itemProps = $propValues = array();
                 foreach ($item->category->itemProps as $itemProp) {
                 $itemProps[$itemProp->item_prop_id] = $itemProp;
@@ -184,7 +186,7 @@ $imageHelper=new ImageHelper();
 
 
         </form>
-    </div><!-- /.modal-content -->
+    </div><!--图片和sku部分 -->
 </div><!-- /.modal-dialog -->
 
 
