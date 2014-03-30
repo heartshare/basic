@@ -19,7 +19,7 @@
 
 .box{
     border: 1px solid #ececec;
-    margin-bottom: 10px;
+    margin: 10px 0;
     padding: 0;
 }
 .box-title{
@@ -38,7 +38,7 @@
 }
 .box-title a{
     text-decoration: none;
-    color: #B7D6E7;
+    color: #0069D6;
 }
 .box-title a:hover{
     color: #0099FF
@@ -158,9 +158,13 @@ span[class="required"]{
 #comments-list li{
     margin: 40px 10px 0px;
     padding-bottom: 20px;
-    border-bottom: 1px solid gray;
+
     height:auto;
+
 }
 #comments-list{
     padding-bottom: 20px;
+}
+#copy{
+    display:none;
 }

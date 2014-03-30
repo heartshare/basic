@@ -127,7 +127,7 @@ div.form .errorMessage
 div.form .errorSummary p
 {
 	margin: 0;
-	padding: 5px;
+	padding: 1px;
 }
 
 div.form .errorSummary ul
@@ -154,4 +154,46 @@ div.wide.form .buttons, div.wide.form .hint, div.wide.form .errorMessage
 {
 	clear: left;
 	padding-left: 110px;
+}
+#profile-form input{
+    display:block;
+    border-radius: 5px;
+
+}
+#profile-form input[name="yt0"]{
+    width: 100px;
+    background:#5CB85C;
+    color: white;
+    font-size: 15px;
+    margin: 0px 135px;
+}
+#changepassword-form input[name="yt0"]{
+    width: 100px;
+    background:#5CB85C;
+    color: white;
+    font-size: 15px;
+    margin: 0px 15px;
+
+}
+#profile-form input[name="yt0"]:hover,#changepassword-form input[name="yt0"]:hover {
+    background: #006600;
+}
+#changepassword-form input{
+    border-radius: 5px;
+}
+#content .box .box-content {
+    position: relative;
+}
+#content .box .box-content  .summary{
+ position: absolute;
+ bottom: -20px;
+ right: 10px;
+
+}
+#content .box .box-content  table{
+    margin:-20px auto 50px;
+}
+#content .box .box-content #item{
+    margin: 10px 20px;
+    display: block;
 }

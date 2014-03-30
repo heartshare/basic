@@ -77,7 +77,7 @@ Yii::app()->clientScript->registerCoreScript('jquery');
             <div style="width:600px">
 
                 <p class="note">带<span class="required">*</span>必须填写！</p>
-                <form role="form" class="form-horizontal"id="addr-form">
+<!--                <form role="form" class="form-horizontal"id="addr-form">-->
                     <div class="form-group">
                         <label for="AddressResult_contact_name" class="col-xs-2 control-label">联系人：<span class="required">*</span></label>
                         <div class="col-xs-10">
@@ -168,16 +168,16 @@ Yii::app()->clientScript->registerCoreScript('jquery');
                          <input   name="AddressResult[phone]" class="form-control"
                                                                            id="AddressResult_phone" type="text"/></div>
                           </div>
-                    <div class="form-group" >
-                        <label for="AddressResult_memo" class="col-xs-2 control-label">备注</label>
-                        <div class=" col-xs-10">
-                        <textarea rows="6" cols="50" name="AddressResult[memo]" class="form-control"
-                                                                             id="AddressResult_memo"></textarea></div>
-                         </div>
+<!--                    <div class="form-group" >-->
+<!--                        <label for="AddressResult_memo" class="col-xs-2 control-label">备注</label>-->
+<!--                        <div class=" col-xs-10">-->
+<!--                        <textarea rows="6" cols="50" name="AddressResult[memo]" class="form-control"-->
+<!--                                                                             id="AddressResult_memo"></textarea></div>-->
+<!--                         </div>-->
 
 
                 </div>
-         </form>
+<!--         </form>-->
         </div>
     </div>
 
@@ -196,7 +196,7 @@ Yii::app()->clientScript->registerCoreScript('jquery');
         </div>
     </div>
 
-
+    <?php $imageHelper=new ImageHelper(); ?>
     <div class="box">
         <div class="box-title container_24">商品列表</div>
         <div class="box-content cart container_24">
@@ -210,12 +210,21 @@ Yii::app()->clientScript->registerCoreScript('jquery');
                     <th class="col-xs-1">小计</th>
                 </tr>
                 <?php
+                $cart = Yii::app()->cart;
                 if (isset($item)) {
                     $item->getId();
+                    if($keys==null)
+                    {
+                        echo CHtml::hiddenField('sku_id', $item->sku->sku_id);
+                        echo CHtml::hiddenField('item_id', $item->sku->item_id);
+                        echo CHtml::hiddenField('quantity', $item->getQuantity());
+                    }
                     ?>
                     <tr><?php
+                            $picUrl=$imageHelper->thumb('70','70',$item->getMainPic());
+                            $picUrl=yii::app()->baseUrl. $picUrl;
                         ?>
-                        <td><?php echo CHtml::image($item->getMainPic(), $item->title, array('width' => '80px', 'height' => '80px')); ?></td>
+                        <td><?php echo CHtml::image($picUrl, $item->title, array('width' => '80px', 'height' => '80px')); ?></td>
                         <td><?php echo $item->title; ?></td>
                         <td><?php echo  empty($item->sku) ? '' : implode(';', json_decode($item->sku->props_name, true)); ?></td>
                         <td><?php echo $item->getPrice(); ?></td>
@@ -225,7 +234,7 @@ Yii::app()->clientScript->registerCoreScript('jquery');
                     </tr>
                 <?php
                 } else {
-                    $cart = Yii::app()->cart;
+
                     $items = $cart->getPositions();
                     if (empty($items)) {
                         ?>

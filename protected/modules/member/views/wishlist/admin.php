@@ -7,13 +7,13 @@ $this->breadcrumbs = array(
 ?>
 
 <div class="box">
-    <div class="box-title">My collect</div>
+    <div class="box-title">我的收藏夹</div>
     <div class="box-content">
         <?php
 $url=Yii::app()->baseUrl.'/item/';
 $this->widget('zii.widgets.grid.CGridView', array(
     'id' => 'wishlist-grid',
-    'dataProvider' => $model->search(),
+    'dataProvider' => $model->MyCollectSearch(),
 //    'filter' => $model,
     'columns' => array(
         array(

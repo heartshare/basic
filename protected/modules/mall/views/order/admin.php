@@ -21,6 +21,7 @@ $this->breadcrumbs = array(
     'id' => 'order-grid',
     'dataProvider' => $model->search(),
     'filter' => $model,
+    'enableHistory' => 'true',
     'columns' => array(
 
         'order_id',
@@ -56,11 +57,15 @@ $this->breadcrumbs = array(
         ),
         array(
             'name' => 'create_time',
-            'value'=>'date("Y-m-d H:i;s",$data->create_time+8*3600)'
+            'value'=>'date("Y-m-d H:i:s",$data->create_time)'
         ),
-
         array(
             'name' => 'receiver_name',
+        ),
+        array(
+            'name'=>'ship_status',
+            'value' => 'Tbfunction::showShipStatus($data->ship_status)',
+            'filter' => Tbfunction::ReturnShipStatus(),
         ),
         array(
             'class' => 'bootstrap.widgets.TbButtonColumn',
@@ -68,17 +73,19 @@ $this->breadcrumbs = array(
             'buttons' => array(
                 'deliver' => array(
                     'label' => '发货',
-                    'icon' => 'plane',
-                   'url'=>'Yii::app()->createUrl("mall/order/deliver", array("id"=>$data->order_id))',
+//                    'icon' => 'plane',
+                    'url'=>'Yii::app()->createUrl("mall/order/deliver", array("id"=>$data->order_id))',
                     'options'=>array(
-                        'class'=>'plane',
+                        'class'=>'btn btn-info btn-lg',
                         'data-target'=> '#myModal',
                         'data-toggle' => 'modal',
-//                        'ajax'=>array(
-//                            'type'=>'POST',
-//                            'url'=>"js:$(this).attr('href')",
-//                            'success'=>'function(data) { $("#myModal .modal-body p").html(data); $("#myModal").modal(); }'
-//                        ),
+                        'ajax'=>array(
+                            'type'=>'POST',
+                            'url'=>"js:$(this).attr('href')",
+                            'success'=>'function(data) { $("#myModal .modal-body").html(data); $("#myModal").modal(); }',
+                            'error' => 'function(XHR) {$("#myModal .modal-body").html("未知错误"); $("#myModal").modal();}',
+                            'data'=>array('fid'=>'js:this.value','YII_CSRF_TOKEN'=>Yii::app()->request->csrfToken),
+                        ),
                     ),
                 ),
             ),
@@ -91,25 +98,21 @@ $this->breadcrumbs = array(
 ?>
 
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">Deliver</h4>
-            </div>
-            <div class="modal-body">
-                loading...
-            </div>
-            <div class="modal-footer">
-
-            </div>
+<div class="modal hide fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Deliver</h4>
+        </div>
+        <div class="modal-body">
+            loading
+        </div>
+        <div class="modal-footer">
+<!--            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+<!--            <button type="button" class="btn btn-primary">deliver</button>-->
         </div>
     </div>
 </div>
-
-
-
 <script>
     $("#myModal").on("hidden", function() {
         $(this).removeData("modal");

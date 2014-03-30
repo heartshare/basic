@@ -68,7 +68,8 @@ th{
 .tabs-nav{
     position:absolute;
     left:20px;
-    z-index:50
+    z-index:50;
+
 }
 .tabs-nav li{
     display:inline;
@@ -80,7 +81,8 @@ th{
     line-height:21px;
     text-align:center;
     background:url(../image/tabview_bg.gif) no-repeat 0 6px;
-    cursor:pointer
+    cursor:pointer;
+
 }
 .tabs-nav .current a {
     font-weight: 700;
@@ -97,11 +99,11 @@ th{
 .tabs-panels{
     clear:both;
     position:relative;
-    top:29px;
+    top:26px;
     overflow:hidden;
     margin-bottom:40px;
     padding:10px 20px;
-    border:1px solid #111111;
+    border:1px solid #AEC7E5;
 }
 .tabs-panels .order-info{
     display:block
@@ -193,7 +195,7 @@ th{
 }
 .clearfix{
     clear:both;
-    line-height:0
+
 }
 .item{
     text-align:center;
@@ -291,3 +293,11 @@ th{
     border:1px solid #ddd;
     border-top:0
 }
+.tabs-panels dd,.tabs-panels dt{
+    padding: 10px 2px;
+}
+.order-hd th{
+    background: #E8F2FF;
+    color: black;
+}
+
