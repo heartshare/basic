@@ -14,171 +14,98 @@ $this->breadcrumbs = array(
     <div class="box-title" style="text-align: left"><a href="/basic/site/index">首页</a>>><a href="/basic/post/index">新闻列表</a></div>
 
     <div class="box-content" >
-        <!-- <?php $this->widget('zii.widgets.CListView', array(
-                     'dataProvider'=>$dataProvider,
-                     'itemView'=>'_view',
-                     'template'=>"{items}\n{pager}",
-                 )); ?>
-                 -->
-
         <div class="pull-left" style="height:1900px;width:75%;background:white;">
 
-            <!--列表-->
+           <?php if($posts !== null){
+               foreach($posts as $post){?>
 
             <div class="news-outside">   <!--第一个新闻-->
                 <div class="col-xs-3 news-img" >  <!--图片部分-->
-                    <img width="150" height="150" alt="css" class="attachment-thumbnail wp-post-image" src="http://www.icultivator.com/wp-content/uploads/2014/03/css-150x150.png"></div>
-                <div class="col-xs-9 nes-list">
-                    <div class="col-xs-12">   <!--新闻标题-->
-                        <h4><a href="/basic/themes/leather/views/post/firstNews.html" class="news-link">关于浮动（float）的最优清除方案推荐  </a>  </h4>
-                    </div>
-                    <div class="col-xs-12 news-summary">    <!--摘要-->
-                        <p>对于日新月异的WEB开发技术和浏览器更新频率来说，清除浮动已然是一个被人嚼碎了的话题。说是这些年过去了，有关float的地方，还依然少不了清除浮动的标签和css代码。W3C整天研究html5，就不能抽出点时间来把这种烦人的小细节修正一下吗？抱怨归抱怨，饭还得吃，钱还得挣，清除浮动就不能停止。 为了清除浮动增加无语义代码已经是最稳定和简单的方式，但总叫开发者心里感到不舒服，毕竟这么多年来早已习惯了结 …  <a href="/basic/themes/leather/views/post/firstNews.html " class="news-link">阅读全文 >></a>
-                        </p>
-                        <p>发表于: 2014-03-09, 已经有30人看过, 标签：CSS, float, 浮动</p>
-                    </div>
-                </div>
-            </div>    <!--第一个新闻结束-->
-
-            <div class="news-outside">   <!--第2个新闻-->
-                <div class="col-xs-3 news-img" >  <!--图片部分-->
-                    <img width="150" height="150" alt="ps" class="attachment-thumbnail wp-post-image" src="http://www.icultivator.com/wp-content/uploads/2014/02/ps-150x150.png"></div>
-                <div class="col-xs-9 nes-list">
-                    <div class="col-xs-12">   <!--新闻标题-->
-                        <h4><a href="/basic/themes/leather/views/post/secondNews.html " class="news-link">如何用PhotoShop制作网站的favicon.ico  </a>  </h4>
-                    </div>
-                    <div class="col-xs-12 news-summary">    <!--摘要-->
-                        <p>所谓favicon，即Favorites Icon的缩写，顾名思义，便是其可以让浏览器的收藏夹中除显示相应的标题外，还以图标的方式区别不同的网站。当然，这不仅仅是Favicon的全部，根据浏览器的不同，Favicon显示也有所区别：在大多数主流浏览器如FireFox和Internet Explorer (5.5及以上版本)中，favicon不仅在收藏夹中显示，还会同时出现在地址栏上，这时用户可以拖....
-                            <a href=" /basic/themes/leather/views/post/secondNews.html" class="news-link">阅读全文 >></a>
-                        </p>
-                        <p>发表于: 2014-03-09, 已经有30人看过, 标签：CSS, float, 浮动</p>
-                    </div>
-                </div>
-            </div>    <!--第2个新闻结束-->
-
-
-            <div class="news-outside">   <!--第3个新闻-->
-                <div class="col-xs-3 news-img" >  <!--图片部分-->
-                    <img width="150" height="150" alt="c39402b68500fa89eab29a5a2d7144bd" class="attachment-thumbnail wp-post-image" src="http://www.icultivator.com/wp-content/uploads/2014/02/c39402b68500fa89eab29a5a2d7144bd-150x150.png"></div>
-                <div class="col-xs-9 nes-list">
-                    <div class="col-xs-12">   <!--新闻标题-->
-                        <h4><a href="/basic/themes/leather/views/post/thirdNews.html " class="news-link">Web 开发者必备的 14 个 JavaScript 音频库   </a>  </h4>
-                    </div>
-                    <div class="col-xs-12 news-summary">    <!--摘要-->
-                        <p>网页设计可能是现在最有趣的领域之一了。这块的东西对所有的人，不管是知识储备里有料没料的，都敞开大门，机会多多。 其最大的特点就是随着时间的推移，实践的深入，你可以慢慢学习着成为一个大鸟。 涉足这个领域，Google将会是你最好的导师，同时她也将毫无偏颇的对你的水平进行评价。设计并不全是铁定的要为应用程序的创建或者编程语言的一些逻辑应用进行大量的编码工作。她更像是创造力同逻辑代码的结合，从而可以使您 …
-                            <a href="/basic/themes/leather/views/post/thirdNews.html " class="news-link">阅读全文 >></a>
-                        </p>
-                        <p>发表于: 2014-03-09, 已经有30人看过, 标签：CSS, float, 浮动</p>
-                    </div>
-                </div>
-            </div>    <!--第3个新闻结束-->
-
-            <div class="news-outside">   <!--第4个新闻-->
-                <div class="col-xs-3 news-img" >  <!--图片部分-->
-                    <img width="150" height="150" alt="jquery" class="attachment-thumbnail wp-post-image" src="http://www.icultivator.com/wp-content/uploads/2014/02/jquery-150x150.png">
+                    <img width="150" height="150"  class="attachment-thumbnail wp-post-image" src=<?php echo $post->pic_url;?> >
                 </div>
                 <div class="col-xs-9 nes-list">
                     <div class="col-xs-12">   <!--新闻标题-->
-                        <h4><a href=" /basic/themes/leather/views/post/forthNews.html" class="news-link">jquery ajax回调函数中调用$(this)的问题   </a>  </h4>
+                        <h4><a href="<?php echo Yii::app()->createUrl('post/view', array('id' => $post->id))?>" class="news-link"><?php echo $post->title;?></a>  </h4>
                     </div>
                     <div class="col-xs-12 news-summary">    <!--摘要-->
-                        <p>今天在用jquery的ajax的回调函数时出现了问题，就是在回调函数中不能使用$(this)。这个问题一直弄了很久，怎么也解决不了，后来是在调用函数前先把$(this)存入变量，然后再在回调函数中使用就没问题了，在这作一下笔记。 $(document).ready(function(){ $(“.del”).click(function () { obj=$(this).parent();//回调 …
-                            <a href="/basic/themes/leather/views/post/forthNews.html " class="news-link">阅读全文 >></a>
+                        <p><?php echo $post->summary;?><a href="<?php echo Yii::app()->createUrl('post/view', array('id' => $post->id))?>" class="news-link">阅读全文 >></a>
                         </p>
-                        <p>发表于: 2014-03-09, 已经有30人看过, 标签：CSS, float, 浮动</p>
+                        <p>发表于:<?php echo date('Y-m-d H:i:s',$post->update_time);?>, 标签：<?php echo $post->tags;?></p>
                     </div>
                 </div>
-            </div>    <!--第4新闻结束-->
-            <div class="news-outside">   <!--第5个新闻-->
-                <div class="col-xs-3 news-img" >  <!--图片部分-->
-                    <img width="150" height="150" alt="css" class="attachment-thumbnail wp-post-image" src="http://www.icultivator.com/wp-content/uploads/2014/03/css-150x150.png"></div>
-                <div class="col-xs-9 nes-list">
-                    <div class="col-xs-12">   <!--新闻标题-->
-                        <h4><a href="/basic/themes/leather/views/post/firstNews.html " class="news-link">关于浮动（float）的最优清除方案推荐  </a>  </h4>
-                    </div>
-                    <div class="col-xs-12 news-summary">    <!--摘要-->
-                        <p>对于日新月异的WEB开发技术和浏览器更新频率来说，清除浮动已然是一个被人嚼碎了的话题。说是这些年过去了，有关float的地方，还依然少不了清除浮动的标签和css代码。W3C整天研究html5，就不能抽出点时间来把这种烦人的小细节修正一下吗？抱怨归抱怨，饭还得吃，钱还得挣，清除浮动就不能停止。 为了清除浮动增加无语义代码已经是最稳定和简单的方式，但总叫开发者心里感到不舒服，毕竟这么多年来早已习惯了结 …  <a href=" /basic/themes/leather/views/post/firstNews.html" class="news-link">阅读全文 >></a>
-                        </p>
-                        <p>发表于: 2014-03-09, 已经有30人看过, 标签：CSS, float, 浮动</p>
-                    </div>
                 </div>
-            </div>    <!--第5个新闻结束-->
+            <!--第一个新闻结束-->
 
-            <div class="news-outside">   <!--第6个新闻-->
-                <div class="col-xs-3 news-img" >  <!--图片部分-->
-                    <img width="150" height="150" alt="ps" class="attachment-thumbnail wp-post-image" src="http://www.icultivator.com/wp-content/uploads/2014/02/ps-150x150.png"></div>
-                <div class="col-xs-9 nes-list">
-                    <div class="col-xs-12">   <!--新闻标题-->
-                        <h4><a href=" /basic/themes/leather/views/post/secondNews.html" class="news-link">如何用PhotoShop制作网站的favicon.ico  </a>  </h4>
-                    </div>
-                    <div class="col-xs-12 news-summary">    <!--摘要-->
-                        <p>所谓favicon，即Favorites Icon的缩写，顾名思义，便是其可以让浏览器的收藏夹中除显示相应的标题外，还以图标的方式区别不同的网站。当然，这不仅仅是Favicon的全部，根据浏览器的不同，Favicon显示也有所区别：在大多数主流浏览器如FireFox和Internet Explorer (5.5及以上版本)中，favicon不仅在收藏夹中显示，还会同时出现在地址栏上，这时用户可以拖....
-                            <a href="/basic/themes/leather/views/post/secondNews.html " class="news-link">阅读全文 >></a>
-                        </p>
-                        <p>发表于: 2014-03-09, 已经有30人看过, 标签：CSS, float, 浮动</p>
-                    </div>
-                </div>
-            </div>    <!--第6个新闻结束-->
+            <?php }}?>
 
+            <div class="page_p"><!--分页-->
+                <?php if ($pager->pageCount > 1 ) {
+                    if ($pager->currentPage == 0 ) {
+                        echo '<span class="end"><a href="javascript:void(0)" class="page_p"><img alt="" src=""/>首页</a></a></span>';
+                        echo '<span class="end"><a href="javascript:void(0)" class="page_p"><img alt="" src=""/>上一页</a></a></span>';
+                    } else {
+                        echo '<span><a href="' . Yii::app()->createUrl('post/index', array_merge($_GET, array('page' => 0))) . '" class="page_p"><img alt="" src=""/>首页</a></a></span>';
+                        echo '<span><a href="' . Yii::app()->createUrl('post/index', array_merge($_GET, array('page' => $pager->currentPage))) . '" class="page_p"><img alt="" src=""/>上一页</a></a></span>';
+                    }
+                    for ($i = $pager->currentPage-5; $i < $pager->currentPage+6; $i++) {
+                        if($i < 0)
+                            continue;
+                        if($i >= $pager->pageCount)
+                            break;
+                        $class = $i == $pager->currentPage ? 'current' : '';
+                        echo '<span class="' . $class . '"><a href="' . Yii::app()->createUrl('post/index', array_merge($_GET, array('page' => $i+1))) . '">' . ($i+1) . '</a></span>';
+                    }
+                    if ($pager->currentPage == $pager->pageCount - 1 ) {
+                        echo '<span class="end"><a href="javascript:void(0)" class="page_n"><img alt="" src=""/>下一页</a></a></span>';
+                        echo '<span class="end"><a href="javascript:void(0)" class="page_n"><img alt="" src=""/>末页</a></a></span>';
+                    } else {
 
-            <div class="news-outside">   <!--第7个新闻-->
-                <div class="col-xs-3 news-img" >  <!--图片部分-->
-                    <img width="150" height="150" alt="c39402b68500fa89eab29a5a2d7144bd" class="attachment-thumbnail wp-post-image" src="http://www.icultivator.com/wp-content/uploads/2014/02/c39402b68500fa89eab29a5a2d7144bd-150x150.png"></div>
-                <div class="col-xs-9 nes-list">
-                    <div class="col-xs-12">   <!--新闻标题-->
-                        <h4><a href=" /basic/themes/leather/views/post/thirdNews.html" class="news-link">Web 开发者必备的 14 个 JavaScript 音频库   </a>  </h4>
-                    </div>
-                    <div class="col-xs-12 news-summary">    <!--摘要-->
-                        <p>网页设计可能是现在最有趣的领域之一了。这块的东西对所有的人，不管是知识储备里有料没料的，都敞开大门，机会多多。 其最大的特点就是随着时间的推移，实践的深入，你可以慢慢学习着成为一个大鸟。 涉足这个领域，Google将会是你最好的导师，同时她也将毫无偏颇的对你的水平进行评价。设计并不全是铁定的要为应用程序的创建或者编程语言的一些逻辑应用进行大量的编码工作。她更像是创造力同逻辑代码的结合，从而可以使您 …
-                            <a href="/basic/themes/leather/views/post/thirdNews.html " class="news-link">阅读全文 >></a>
-                        </p>
-                        <p>发表于: 2014-03-09, 已经有30人看过, 标签：CSS, float, 浮动</p>
-                    </div>
-                </div>
-            </div>    <!--第7个新闻结束-->
+                        echo '<span><a href="' . Yii::app()->createUrl('post/index', array_merge($_GET, array('page' => $pager->currentPage + 2))) . '" class="page_n"><img alt="" src=""/>下一页</a></a></span>';
 
-            <div class="news-outside">   <!--第8个新闻-->
-                <div class="col-xs-3 news-img" >  <!--图片部分-->
-                    <img width="150" height="150" alt="jquery" class="attachment-thumbnail wp-post-image" src="http://www.icultivator.com/wp-content/uploads/2014/02/jquery-150x150.png">
-                </div>
-                <div class="col-xs-9 nes-list">
-                    <div class="col-xs-12">   <!--新闻标题-->
-                        <h4><a href=" /basic/themes/leather/views/post/forthNews.html" class="news-link">jquery ajax回调函数中调用$(this)的问题   </a>  </h4>
-                    </div>
-                    <div class="col-xs-12 news-summary">    <!--摘要-->
-                        <p>今天在用jquery的ajax的回调函数时出现了问题，就是在回调函数中不能使用$(this)。这个问题一直弄了很久，怎么也解决不了，后来是在调用函数前先把$(this)存入变量，然后再在回调函数中使用就没问题了，在这作一下笔记。 $(document).ready(function(){ $(“.del”).click(function () { obj=$(this).parent();//回调 …
-                            <a href="/basic/themes/leather/views/post/forthNews.html " class="news-link">阅读全文 >></a>
-                        </p>
-                        <p>发表于: 2014-03-09, 已经有30人看过, 标签：CSS, float, 浮动</p>
-                    </div>
-                </div>
-            </div>    <!--第8新闻结束-->
-
-
-            <div> <!--分页-->
-                <ul class="pagination pull-right" id="news-pag">
-                    <li><a href="#">&laquo;</a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#">&raquo;</a></li>
-                </ul>
+                        echo '<span><a href="' . Yii::app()->createUrl('post/index', array_merge($_GET, array('page' => $pager->pageCount))) . '" class="page_n"><img alt="" src=""/>末页</a></a></span>';
+                    }
+                }
+                ?>
 
             </div>
+
+<!--            <div> <!--分页-->
+<!--                <ul class="pagination pull-right" id="news-pag">-->
+<!--                    <li><a href="#">&laquo;</a></li>-->
+<!--                    <li><a href="#">1</a></li>-->
+<!--                    <li><a href="#">2</a></li>-->
+<!--                    <li><a href="#">3</a></li>-->
+<!--                    <li><a href="#">4</a></li>-->
+<!--                    <li><a href="#">5</a></li>-->
+<!--                    <li><a href="#">&raquo;</a></li>-->
+<!--                </ul>-->
+<!---->
+<!--            </div>-->
         </div>   <!--新闻列表-->
-        <div  style="height:1840px;border-left:2px solid #ececec;padding:10px;width:24%;" class="pull-right">
-             <div style="text-align:center"> <h4><b>热点追踪</b></h4>
-             </div>
-               <ul class=" pull-center" id="news-hot">
-                                  <li><a class="news-link "href="/basic/themes/leather/views/post/firstNews.html">关于浮动（float）的最优清除方案推荐 </a></li>
-                                  <li><a class="news-link" href="/basic/themes/leather/views/post/secondNews.html">如何用PhotoShop制作网站的favicon.ico </a></li>
-                                  <li><a class="news-link " href="/basic/themes/leather/views/post/thirdNews.html">	Web 开发者必备的 14 个 JavaScript 音频库</a></li>
-                                  <li><a class="news-link  "href="/basic/themes/leather/views/post/forthNews.html">	jquery ajax回调函数中调用$(this)的问题</a></li>
-                                  <li><a class="news-link  "href="">......</a></li>
-                                  <li><a  class="news-link " href="#">.....</a></li>
-                                  <li><a class="news-link " href="#">.....</a></li>
-                              </ul>
+
+
+
+    <div  style="height:1840px;border-left:2px solid #ececec;padding:10px;width:24%;" class="pull-right">
+        <div style="text-align:center"> <h4><b>热点追踪</b></h4>
         </div>
-</div>
+        <ul class=" pull-center" id="news-hot">
+            <?php
+            $num=0;
+              foreach($posts as $post){
+                  if($num==5){//限制显示热点新闻条数为5条
+                      break;
+                  }
+               if($posts !== null)
+               {
+                   ?>
+            <li><a class="news-link "href="<?php echo Yii::app()->createUrl('post/view', array('id' => $post->id))?>"><?php echo $post->title;?></a></li>
+            <?php $num++;}}?>
+<!--            <li><a class="news-link" href="/basic/themes/leather/views/post/secondNews.html">如何用PhotoShop制作网站的favicon.ico </a></li>-->
+<!--            <li><a class="news-link " href="/basic/themes/leather/views/post/thirdNews.html">	Web 开发者必备的 14 个 JavaScript 音频库</a></li>-->
+<!--            <li><a class="news-link  "href="/basic/themes/leather/views/post/forthNews.html">	jquery ajax回调函数中调用$(this)的问题</a></li>-->
+<!--            <li><a class="news-link  "href="">......</a></li>-->
+<!--            <li><a  class="news-link " href="#">.....</a></li>-->
+<!--            <li><a class="news-link " href="#">.....</a></li>-->
+        </ul>
+    </div>
+     </div>
