@@ -1,5 +1,5 @@
 <div class="box">
-    <div class="box-title"><?php echo UserModule::t("personal data"); ?></div>
+    <div class="box-title"><?php echo UserModule::t("个人信息"); ?></div>
     <div class="box-content">
         <?php if (Yii::app()->user->hasFlash('profileMessage')): ?>
             <div class="success">
@@ -46,7 +46,7 @@
             ?>
             <div class="row">
                 <?php echo $form->labelEx($model, 'username'); ?>
-                <?php echo $form->textField($model, 'username', array('size' => 20, 'maxlength' => 20)); ?>
+                <?php echo $form->textField($model, 'username', array('size' => 60, 'maxlength' => 60)); ?>
                 <?php echo $form->error($model, 'username'); ?>
             </div>
 

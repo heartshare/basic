@@ -80,7 +80,7 @@
     <?php echo $content; ?>
 </div>
 
-<div class="footer">
+<div class="footer clearfix">
     <div class="foot_c">
         <div class="foot_new">
             <ul>
