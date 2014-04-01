@@ -45,7 +45,7 @@ Yii::app()->clientScript->registerCoreScript('jquery');
 <?php if (Yii::app()->user->id) { ?>
     <div class="box address-panel">
         <div class="box-title container_24"><span
-                style="float:right"><?php echo CHtml::link('管理收货地址', array('/member/delivery_address/admin')) ?></span>收货地址
+                style="float:right"><?php echo CHtml::link('管理收货地址', array('/member/delivery_address/admin'),array('target'=>'_blank')) ?></span>收货地址
         </div>
         <div class="box-content">
             <?php
