@@ -208,7 +208,7 @@ $imageHelper=new ImageHelper();
                 <button class="close pull-right" aria-hidden="true" data-dismiss="modal" type="button"></button>
                 </br>
             </div>
-            <div width="100%" id="look-collect"> 你可以<a href="/basic/member/wishlist/admin"><font color="#3388BB">查看收藏夹</font></a></div>
+            <div width="100%" id="look-collect"> 你可以<a href="/basic/member/wishlist/admin"><font color="#3388BB" src="//member/wishlist/admin">查看收藏夹</font></a></div>
             <hr />
             <div class="col-xs-6 pull-left" align="left">收藏此商品的人还喜欢</div>
             <div class="col-xs-6 pull-right" align="right" style="visibility: hidden"><a><font color="#3388BB">换一组</font></a></div>
