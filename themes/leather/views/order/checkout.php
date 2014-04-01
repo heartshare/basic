@@ -62,8 +62,13 @@ Yii::app()->clientScript->registerCoreScript('jquery');
                         $address->s->name . '&nbsp;' . $address->c->name . '&nbsp;' . $address->d->name . '&nbsp;' . $address->address . '&nbsp;(' . $address->contact_name . '&nbsp;收)&nbsp;' . $address->mobile_phone);
                     echo '</li>';
                 }
-            }
+            } else {
+
             ?>
+            <div>
+                <?php echo CHtml::link('请添加收货地址', array('/member/delivery_address/create')) ?>
+            </div>
+            <?php } ?>
         </div>
     </div>
 
@@ -275,7 +280,10 @@ Yii::app()->clientScript->registerCoreScript('jquery');
             </div>
         </div>
 
-            <button class="btn btn-danger pull-right" style="line-height:20px;margin-right:150px;margin-bottom:30px;" href="">确认订单</button>
+            <div></iv><button class="btn btn-danger pull-right" style="line-height:20px;margin-right:150px;margin-bottom:30px;" href=""
+                <?php if(!$AddressResult) {
+                    echo "disabled=true";
+                }?>>确认订单</button></div>
 
 
 
