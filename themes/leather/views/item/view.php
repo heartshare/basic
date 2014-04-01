@@ -72,7 +72,7 @@ $imageHelper=new ImageHelper();
                 <span class="cor_red bold font30"><?php echo $item->currency . $item->price ?></span>
                 <span class="cor_gray">市场价：<strong><?php echo $item->currency . $item->price ?></strong></span>
             </div>
-            <div class="deal_sold">已售出 <span class="cor_red bold">30</span>&nbsp;件</div>
+            <div class="deal_sold">月销售量 <span class="cor_red bold"><?php echo $item->deal_count;?></span>&nbsp;件</div>
             <?php
             $skus = array();
             foreach ($item->skus as $sku) {
