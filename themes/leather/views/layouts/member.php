@@ -7,7 +7,7 @@
             <div class="box-title">我的账户</div>
             <div class="box-content">
                 <ul style="text-align:center">
-                    <li><?php echo CHtml::link('个人信息', array('/user/profile/edit')) ?></li>
+                    <li><?php echo CHtml::link('个人信息', array('/user/profile')) ?></li>
                     <li><?php echo CHtml::link('收货地址', array('/member/delivery_address/admin')) ?></li>
                     <li><?php echo CHtml::link('修改密码', array('/user/profile/changepassword')) ?></li>
                 </ul>

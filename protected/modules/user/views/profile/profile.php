@@ -56,4 +56,6 @@ $this->menu = array(
     <dt><?php echo CHtml::encode($model->getAttributeLabel('status')); ?></dt>
     <dd><?php echo CHtml::encode(User::itemAlias("UserStatus", $model->status)); ?></dd>
 
+    <dd><?php echo CHtml::link('编辑个人信息', array('/user/profile/edit')) ?></dd>
+
 </dl>
