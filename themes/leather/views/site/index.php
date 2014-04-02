@@ -78,6 +78,14 @@ Yii::app()->plugin->render('Hook_Login');
                                     break;
                                   }
                                   if(!empty($post->pic_url)){
+                                   $status = intval($post->status);
+                                       if(Yii::app()->user->isGuest)
+                                       {
+                                            if($status < 2 )
+                                            {
+                                                continue;
+                                            }
+                                       }
                                      $imageHelper=new ImageHelper();
                                             $picUrl=$imageHelper->thumb('180','178',$post->pic_url);
                                             $picUrl=Yii::app()->baseUrl. $picUrl;
@@ -95,6 +103,14 @@ Yii::app()->plugin->render('Hook_Login');
                     <?php
                     $class = 'current';
                     foreach ($posts as $post) {
+                        $status = intval($post->status);
+                        if(Yii::app()->user->isGuest)
+                        {
+                            if($status < 2 )
+                            {
+                                continue;
+                            }
+                        }
                         echo '<li class="' . $class . '"><a href="' . Yii::app()->createUrl('post/view', array('id' => $post->id)) . '">' . $post->title . '</a></li>';
                         $class = '';
                     } ?>

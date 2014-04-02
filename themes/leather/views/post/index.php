@@ -18,7 +18,16 @@ $this->breadcrumbs = array(
 
            <?php if($posts !== null){
                foreach($posts as $post){?>
-
+                <?php
+                   $status = intval($post->status);
+                   if(Yii::app()->user->isGuest)
+                   {
+                       if($status < 2 )
+                       {
+                           continue;
+                       }
+                   }
+                   ?>
             <div class="news-outside">   <!--第一个新闻-->
                 <div class="col-xs-3 news-img" >  <!--图片部分-->
                     <img width="150" height="150"  class="attachment-thumbnail wp-post-image" src=<?php echo $post->pic_url;?> >
@@ -97,6 +106,16 @@ $this->breadcrumbs = array(
                   }
                if($posts !== null)
                {
+                   ?>
+                   <?php
+                   $status = intval($post->status);
+                   if(Yii::app()->user->isGuest)
+                   {
+                       if($status < 2 )
+                       {
+                           continue;
+                       }
+                   }
                    ?>
             <li><a class="news-link "href="<?php echo Yii::app()->createUrl('post/view', array('id' => $post->id))?>"><?php echo $post->title;?></a></li>
             <?php $num++;}}?>

@@ -37,7 +37,7 @@
 
     <div style="border-top:3px solid darkgray;height:800px; background:#ffffff;padding:0 20px;"> <!--留言板-->
         <div class="col-xs-8" style="margin-top: 20px;">
-            <p style="color: red;font-size: 16px;"><?php echo $form->textField($model,'author',array('size'=>60,'maxlength'=>128,'value'=>Yii::app()->user->name)).' | '.$form->textField($model,'email',array('size'=>60,'maxlength'=>128,'value'=>Yii::app()->user->email)); ?></p>
+            <p style="color: red;font-size: 16px;"><?php echo $form->textField($model,'author',array('size'=>60,'maxlength'=>128,'value'=>Yii::app()->user->name)).' | '.$form->textField($model,'email',array('size'=>60,'maxlength'=>128)); ?></p>
 <!--            <p style="color: red;font-size: 16px;">--><?php //echo Yii::app()->user->name; ?><!--</p>-->
             <textarea class="form-control" style="height: 100px;" id="a123"<?php echo $form->textArea($model,'content',array('rows'=>6, 'cols'=>50)); ?></textarea>
         </div>
