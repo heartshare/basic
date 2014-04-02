@@ -72,7 +72,6 @@
                                   if(!empty($post->pic_url)){
                                      $imageHelper=new ImageHelper();
                                             $picUrl=$imageHelper->thumb('180','178',$post->pic_url);
-                                            $picUrl=Yii::app()->baseUrl.$picUrl;
                                             $post=Yii::app()->createUrl("post/$post->id");
                                             echo 'box.add({"url": "'. $picUrl.'", "href": "'.$post.'", "title": "'.$post->title.'"});';
                                             $num++;

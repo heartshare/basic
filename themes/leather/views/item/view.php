@@ -44,7 +44,6 @@ $imageHelper=new ImageHelper();
                     <?php foreach ($item->itemImgs as $itemImg) {
                     if(!empty($itemImg->pic)){
                     $picUrl=$imageHelper->thumb('70','70',$itemImg->pic);
-                    $picUrl=yii::app()->baseUrl. $picUrl;
                     }else $picUrl=$item->getHolderJs('70','70');
                     echo '<li><img src="' .$picUrl . '" width="70" height="70"></li>';
                     } ?>
@@ -55,7 +54,6 @@ $imageHelper=new ImageHelper();
                     <?php foreach ($item->itemImgs as $itemImg) {
                     if($itemImg->pic){
                     $picUrl=$imageHelper->thumb('450','450',$itemImg->pic);
-                    $picUrl=yii::app()->baseUrl. $picUrl;
                     }else $picUrl=$item->getHolderJs('450','450');
                     //                        echo '<li><img src="' .$picUrl . '" width="450" height="450"></li>';
                     echo'<div><a href="javascript:void(0)" target="_blank" rel="nofollow"><img position=absolute   alt="' . $item->title . '" src="'  .$picUrl . '" width="450" height="450"/></a></div>';
@@ -314,7 +312,6 @@ $imageHelper=new ImageHelper();
                 foreach($recommendItems as $value){
                 if($value->getMainPic()){
                 $picUrl=$imageHelper->thumb('180','180',$value->getMainPic());
-                $picUrl=Yii::app()->baseUrl.$picUrl;
                 }else $picUrl=$item->getHolderJs('180','180');
                 ?>
                 <li>

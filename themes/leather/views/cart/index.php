@@ -53,7 +53,6 @@ Yii::app()->clientScript->registerCoreScript('jquery');
                         <td><?php echo CHtml::checkBox('position[]', false, array('value' => $key, 'data-url' => Yii::app()->createUrl('cart/getPrice'))); ?></td>
                         <?php
                             $picUrl=$imageHelper->thumb('70','70',$item->getMainPic());
-                            $picUrl=yii::app()->baseUrl. $picUrl;
                         ?>
                         <td><a href="<?php echo $itemUrl; ?>"><?php echo CHtml::image($picUrl, $item->title, array('width' => '80px', 'height' => '80px')); ?></a></td>
                         <td><?php echo CHtml::link($item->title, $itemUrl); ?></td>

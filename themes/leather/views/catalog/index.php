@@ -57,7 +57,6 @@
                                          if($value->getMainPic()){
                                             $imageHelper=new ImageHelper();
                                             $picUrl=$imageHelper->thumb('180','178',$value->getMainPic());
-                                            $picUrl=Yii::app()->baseUrl.$picUrl;
                                         }else {
                                             $picUrl=$value->getHolderJs('180','178');
                                         }
