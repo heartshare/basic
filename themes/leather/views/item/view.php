@@ -148,9 +148,9 @@ $imageHelper=new ImageHelper();
             </div>
             <input type="hidden" id="item_id" name="item_id" value="<?php echo $item->item_id; ?>" />
             <input type="hidden" id="props" name="props" value="" />
-            <div  class="deal_add_car" data-url="<?php echo Yii::app()->createUrl('cart/add'); ?>"><a href="javascript:void(0)" id="addToShopCart" data-toggle="modal" data-target="#myModal-1">加入购物车</a></div>
+            <div  class="deal_add_car" data-url="<?php echo Yii::app()->createUrl('cart/add'); ?>"><a href="javascript:void(0)" id="addToShopCart" >加入购物车</a></div>
             <div class="deal_add" data-url="<?php echo Yii::app()->createUrl('user/user/isLogin'); ?>" ><?php echo CHtml::link("立即购买", 'javascript:void(0);')?></div>
-            <div  class="deal_collect" data-url="<?php echo Yii::app()->createUrl('member/wishlist/addWish'); ?>" ><a data-toggle="modal" data-target="#myModal-2" href="javascript:void(0)">立即收藏</a></div>
+            <div  class="deal_collect" data-url="<?php echo Yii::app()->createUrl('member/wishlist/addWish'); ?>" ><a href="javascript:void(0)">立即收藏</a></div>
             <!-- Modal -->
             <div tabindex="-1" class="modal fade in" id="myModal" role="dialog" aria-hidden="false" aria-labelledby="myModalLabel" style="display: none;">
                 <div class="modal-dialog">
@@ -170,17 +170,16 @@ $imageHelper=new ImageHelper();
                                     <div> 密码：</div>
                                     <input class="txt form-control" id="password" name="password" type="password" placeholder="请输入密码"/>
                                 </div>
-                                <button id="log-btn-div"  name="button" type="button" onclick="llogin()" class="btn-success btn">登录</button>
+                                <button id="log-btn-div"  name="button" type="button"  class="btn-success btn">登录</button>
                                 <div id="register">
                                     <a href="<?php echo Yii::app()->createUrl('user/registration'); ?>" class="link"><u>免费注册</u></a>
-                                    <a href="javascript:void" class="link buy-without-login" ><u>免登陆直接购买</u></a>
+                                    <a href="javascript:void" class="link buy-without-login" id="buy-without-login" ><u>免登陆直接购买</u></a>
                                 </div>
                             </div>
                         </form>
                         </div>
                     </div>
                 </div>
-
 
 
         </form>
@@ -249,28 +248,17 @@ $imageHelper=new ImageHelper();
     </div><!-- /.modal-dialog -->
 </div>
 
-                                 <!-- Modal -->
-                                      <div tabindex="-1" class="modal fade in" id="myModal-1" role="dialog" aria-hidden="false" aria-labelledby="myModalLabel" style="display: none;">
-                                          <div class="modal-dialog">
-                                              <div class="modal-content clearfix" style="width:200px;height:150px;border:1px solid black;padding:10px 10px;" id="myModal-1-content">
-                                              <s id="mymodal-1-png" class="pull-left"></s> <span class="pull-left">成功加入购物车！</span>
+<!-- Modal -->
+<div tabindex="-1" class="modal fade in" id="myModal-3" role="dialog" aria-hidden="false" aria-labelledby="myModalLabel" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content clearfix" style="width:200px;height:150px;border:1px solid black;padding:10px 10px;" id="myModal-2-content">
+            <s id="mymodal-1-png" class="pull-left"></s> <span class="pull-left">您已收藏过该产品！</span>
 
-                                               <button class="close pull-right" aria-hidden="true" data-dismiss="modal" type="button"></button>
-                                               <button class="btn btn-success center-block" aria-hidden="true" data-dismiss="modal">确定</button>
-                                              </div><!-- /.modal-content -->
-                                          </div><!-- /.modal-dialog -->
-                                      </div>
-               <!-- Modal -->
-                                    <div tabindex="-1" class="modal fade in" id="myModal-2" role="dialog" aria-hidden="false" aria-labelledby="myModalLabel" style="display: none;">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content clearfix" style="width:200px;height:150px;border:1px solid black;padding:10px 10px;" id="myModal-1-content">
-                                            <s id="mymodal-1-png" class="pull-left"></s> <span class="pull-left">成功加入收藏夹！</span>
-
-                                             <button class="close pull-right" aria-hidden="true" data-dismiss="modal" type="button"></button>
-                                             <button class="btn btn-success center-block" aria-hidden="true" data-dismiss="modal">确定</button>
-                                            </div><!-- /.modal-content -->
-                                        </div><!-- /.modal-dialog -->
-                                    </div>
+            <button class="close pull-right" aria-hidden="true" data-dismiss="modal" type="button"></button>
+            <button class="btn btn-success center-block" aria-hidden="true" data-dismiss="modal">确定</button>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
 
 
 <div class="pd_l container_24">
@@ -540,31 +528,56 @@ $(function () {
         }
     });
     $('.deal_add_car').click(function() {
+        $("#log-btn-div").click(function() {carLogin();});
+        $("#buy-without-login").hide();
         var selectProps = $('.prop-select,.img-prop-select');
         if (selectProps.length < $('.deal_size p').length) {
             $('.deal_size').addClass('prop-div-select');
         } else {
             $('.deal_size').removeClass('prop-div-select');
-            $.post($(this).data('url'), $('#deal').serialize(), function(response) {
-                if(response.status=='success'){
-                    var num=$('.shopping_car').children().text();
-                    num=parseInt(num)+1;
-                    $('.shopping_car').children().text(num);
-                    showPopup(response.status);
-                }else
-                    showPopup(response.status);
-            },'json');
+            $.post($(".deal_add").data('url'), function(response){
+                if (response.status == 'login') {
+                $.post($('.deal_add_car').data('url'), $('#deal').serialize(), function(response) {
+                    if(response.status=='success'){
+                        var num=$('.shopping_car').children().text();
+                        num=parseInt(num)+1;
+                        $('.shopping_car').children().text(num);
+                        $("#myModal-1").modal('show');
+                    }else
+                        showPopup(response.status);
+                },'json');
+                } else {
+                    $('#myModal').modal('show');
+                }
+            }, 'json');
         }
     });
     $('.deal_collect').click(function() {
-        $.post($(this).data('url'), $('#item_id').serialize(), function(response) {
-            if(response.status=='exist'){
-                showPopup('已收藏过该商品');
-            }else
-                showPopup(response.status) ;
-        },'json');
+        $("#log-btn-div").click(function() {collectLogin();});
+        $("#buy-without-login").hide();
+            $.post($(".deal_add").data('url'), function(response){
+                if (response.status == 'login') {
+                    $.post($(".deal_collect").data('url'),$('#item_id').serialize(),function(response){
+                        if(response.status=='exist'){
+                            $("#myModal-3").modal('show');
+                        }else
+                            $("#myModal-2").modal('show');
+                    },'json');
+                } else {
+                    $('#myModal').modal('show');
+                }
+            }, 'json');
+
+//        $.post($(this).data('url'), $('#item_id').serialize(), function(response) {
+//            if(response.status=='exist'){
+//                $("#myModal-3").modal('show');
+//            }else
+//                $("#myModal-2").modal('show');
+//        },'json');
         });
         $('.deal_add').click(function() {
+            $("#log-btn-div").click(function() {llogin();});
+            $("#buy-without-login").show();
             var selectProps = $('.prop-select,.img-prop-select');
             if (selectProps.length < $('.deal_size p').length) {
                 $('.deal_size').addClass('prop-div-select');
@@ -587,6 +600,32 @@ $(function () {
         $('#deal').submit();
     });
 });
+
+function collectLogin() {
+    var data = { username: $("#user").val(), password: $("#password").val() };
+    $.post("../user/login/llogin",data , function(response) {
+        if (response.status == 'login') {
+            $('#test').load(location.href+" #test");
+            $('#myModal').modal('hide');
+            $('.deal_collect').trigger('click');
+        } else {
+            alert("Wrong username or password!");
+        }
+    }, 'json');
+}
+
+function carLogin() {
+    var data = { username: $("#user").val(), password: $("#password").val() };
+    $.post("../user/login/llogin",data , function(response) {
+        if (response.status == 'login') {
+            $('#test').load(location.href+" #test");
+            $('#myModal').modal('hide');
+            $('.deal_add_car').trigger('click');
+        } else {
+            alert("Wrong username or password!");
+        }
+    }, 'json');
+}
 
 var xmlHttp
 //    function test() {
@@ -636,7 +675,7 @@ function stateChanged(url)
     {
     $.post(url, function(response){
         if (response.status == 'login') {
-            $('#deal').submit();
+           $('#deal').submit();
         } else {
             alert("Wrong username or password!");
         }
