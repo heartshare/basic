@@ -97,11 +97,11 @@ html{
 .tabs-panels{
     clear:both;
     position:relative;
-    top:29px;
+    top:26px;
     overflow:hidden;
     margin-bottom:40px;
     padding:10px 20px;
-    border:1px solid #111111;
+    border:1px solid #AEC7E5;
 }
 .tabs-panels .order-info{
     display:block

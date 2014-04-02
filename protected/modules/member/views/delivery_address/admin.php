@@ -6,7 +6,7 @@ $this->breadcrumbs = array(
 ?>
 
 <div class="box">
-    <div class="box-title">delivery address</div>
+    <div class="box-title">收货地址</div>
     <div class="box-content">
 
         <span id="item">已保存有效的地址</span>

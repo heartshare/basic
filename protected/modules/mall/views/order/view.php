@@ -123,22 +123,11 @@
                     <col class="item">
                     <col class="sku">
                     <!-- 宝贝 -->
-
-                    <col class="status">
-                    <!-- 交易状态 -->
-
-                    <col class="service">
-                    <!-- 服务 -->
-
                     <col class="price">
                     <!-- 单价（元） -->
 
                     <col class="num">
                     <!-- 数量 -->
-
-                    <col class="discount">
-                    <!-- 优惠 -->
-
                     <col class="order-price">
 
                     <!-- 合计（元） -->
@@ -149,11 +138,11 @@
                     <td colspan="8"></td>
                 </tr>
                 <tr class="order-hd">
-                    <th class="item">宝贝</th>
-                    <th class="sku">宝贝属性</th>
-                    <th class="price">单价(元)</th>
-                    <th class="num">数量</th>
-                    <th class="order-price last">商品总价(元)</th>
+                    <th class="item col-xs-3">宝贝</th>
+                    <th class="sku col-xs-3">宝贝属性</th>
+                    <th class="price col-xs-2">单价(元)</th>
+                    <th class="num col-xs-2">数量</th>
+                    <th class="order-price last col-xs-2">商品总价(元)</th>
                 </tr>
 
                 <?php
