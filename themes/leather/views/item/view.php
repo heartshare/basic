@@ -211,35 +211,63 @@ $imageHelper=new ImageHelper();
             <div width="100%" id="look-collect"> 你可以<a href="/basic/member/wishlist/admin"><font color="#3388BB">查看收藏夹</font></a></div>
             <hr />
             <div class="col-xs-6 pull-left" align="left">收藏此商品的人还喜欢</div>
-            <div class="col-xs-6 pull-right" align="right"><a><font color="#3388BB">换一组更好的</font></a></div>
+            <div class="col-xs-6 pull-right" align="right" style="visibility: hidden"><a><font color="#3388BB">换一组</font></a></div>
+<!--            <div>-->
+<!--                <ul class="clearfix">-->
+<!--                    <li class="col-xs-2">-->
+<!--                        <a href="/basic/item/57" title=""target="_blank"><img src="/basic/upload/item/manclothes/.tmb/thumb_d_adaptiveResize_70_70.jpg" class="li-img" alt=""></a>-->
+<!--                        <div width="100%" align="center" height="15px">$1299.00</div>-->
+<!--                    </li>-->
+<!--                    <li class="col-xs-2">-->
+<!--                        <a href="/basic/item/59" title=""target="_blank"><img src="/basic/upload/item/manclothes/.tmb/thumb_iii_adaptiveResize_70_70.jpg" alt=""></a>-->
+<!--                        <div width="100%" align="center" height="15px">$1299.00</div>-->
+<!--                    </li>-->
+<!--                    <li class="col-xs-2">-->
+<!--                        <a href="/basic/item/35" title=""target="_blank"><img src="/basic/upload/item/manclothes/.tmb/thumb_T1vyPGFhxeXXXXXXXX_!!0-item_pic.jpg_460x460q90_adaptiveResize_70_70.jpg" class="li-img" alt=""></a>-->
+<!--                        <div width="100%" align="center" height="15px">$1299.00</div>-->
+<!--                    </li>-->
+<!--                    <li class="col-xs-2">-->
+<!--                        <a href="/basic/item/37" title=""target="_blank"><img src="/basic/upload/item/manclothes/.tmb/thumb_1015622205-1_u_1_adaptiveResize_70_70.jpg" class="li-img" alt=""></a>-->
+<!--                        <div width="100%" align="center" height="15px">$1299.00</div>-->
+<!--                    </li>-->
+<!--                    <li class="col-xs-2">-->
+<!--                        <a href="/basic/item/58" title=""target="_blank"><img src="/basic/upload/item/manclothes/.tmb/thumb_f_adaptiveResize_70_70.jpg" class="li-img" alt=""></a>-->
+<!--                        <div width="100%" align="center" height="15px">$1299.00</div>-->
+<!--                    </li>-->
+<!--                    <li class="col-xs-2">-->
+<!--                        <a href="/basic/item/31" title=""target="_blank"><img src="/basic/upload/item/manclothes/.tmb/thumb_01_adaptiveResize_70_70.jpg" class="li-img" alt=""></a>-->
+<!--                        <div width="100%" align="center" height="15px">$1299.00</div>-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--            </div>-->
+
             <div>
                 <ul class="clearfix">
-                    <li class="col-xs-2">
-                        <a href="/basic/item/57" title=""target="_blank"><img src="/basic/upload/item/manclothes/.tmb/thumb_d_adaptiveResize_70_70.jpg" class="li-img" alt=""></a>
-                        <div width="100%" align="center" height="15px">$1299.00</div>
-                    </li>
-                    <li class="col-xs-2">
-                        <a href="/basic/item/59" title=""target="_blank"><img src="/basic/upload/item/manclothes/.tmb/thumb_iii_adaptiveResize_70_70.jpg" alt=""></a>
-                        <div width="100%" align="center" height="15px">$1299.00</div>
-                    </li>
-                    <li class="col-xs-2">
-                        <a href="/basic/item/35" title=""target="_blank"><img src="/basic/upload/item/manclothes/.tmb/thumb_T1vyPGFhxeXXXXXXXX_!!0-item_pic.jpg_460x460q90_adaptiveResize_70_70.jpg" class="li-img" alt=""></a>
-                        <div width="100%" align="center" height="15px">$1299.00</div>
-                    </li>
-                    <li class="col-xs-2">
-                        <a href="/basic/item/37" title=""target="_blank"><img src="/basic/upload/item/manclothes/.tmb/thumb_1015622205-1_u_1_adaptiveResize_70_70.jpg" class="li-img" alt=""></a>
-                        <div width="100%" align="center" height="15px">$1299.00</div>
-                    </li>
-                    <li class="col-xs-2">
-                        <a href="/basic/item/58" title=""target="_blank"><img src="/basic/upload/item/manclothes/.tmb/thumb_f_adaptiveResize_70_70.jpg" class="li-img" alt=""></a>
-                        <div width="100%" align="center" height="15px">$1299.00</div>
-                    </li>
-                    <li class="col-xs-2">
-                        <a href="/basic/item/31" title=""target="_blank"><img src="/basic/upload/item/manclothes/.tmb/thumb_01_adaptiveResize_70_70.jpg" class="li-img" alt=""></a>
-                        <div width="100%" align="center" height="15px">$1299.00</div>
-                    </li>
+                    <?php
+                    $recommendItems=Item::model()->findAll(array(
+                        'condition'=>'category_id='.$item->category_id,
+                        'limit'=>6,
+                    ));
+                    $num=count(recommendItems);
+                    if($num>0){
+                        foreach($recommendItems as $value){
+                            if($value->getMainPic()){
+                                $picUrl=$imageHelper->thumb('70','70',$value->getMainPic());
+                                $picUrl=Yii::app()->baseUrl.$picUrl;
+                            }else $picUrl=$item->getHolderJs('70','70');
+                            ?>
+                            <li class="col-xs-2">
+                                <a href=""><img class="li-img" alt="" src="<?php echo $picUrl?>" width="70" height="70"/></a>
+                                <div width="100%" align="center" height="15px"><?php echo $value->price?></div>
+                            </li>
+                        <?php
+                        }
+                    }else echo"No data";
+                    ?>
+
                 </ul>
             </div>
+
             <button class="btn btn-success center-block" aria-hidden="true" data-dismiss="modal">确定</button>
 
         </div><!-- /.modal-content -->
@@ -603,7 +631,7 @@ function collectLogin() {
     var data = { username: $("#user").val(), password: $("#password").val() };
     $.post("../user/login/llogin",data , function(response) {
         if (response.status == 'login') {
-            $('#test').load(location.href+" #test");
+            $('#top_right').load(location.href+" #top_right");
             $('#myModal').modal('hide');
             $('.deal_collect').trigger('click');
         } else {
@@ -616,7 +644,7 @@ function carLogin() {
     var data = { username: $("#user").val(), password: $("#password").val() };
     $.post("../user/login/llogin",data , function(response) {
         if (response.status == 'login') {
-            $('#test').load(location.href+" #test");
+            $('#top_right').load(location.href+" #top_right");
             $('#myModal').modal('hide');
             $('.deal_add_car').trigger('click');
         } else {
