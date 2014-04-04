@@ -7,13 +7,13 @@
         $i = 0;
         foreach ($ads as $ad) {
             $i++;
-            ?>
+            echo <<<EOF
                 <div id="banner_pic_$i">
-                    <a href="<?php echo $ad->url;?>" target="_blank">
-                        <img alt=<?php echo $ad->title;?> src=<?php echo $ad->pic;?> width="1180" height="500">
+                    <a href="{$ad->url}" target="_blank">
+                        <img alt="{$ad->title}" src="{$ad->pic}" width="1180" height="500">
                     </a>
                 </div>
-<?php
+EOF;
         }
         ?>
         <a class="slidesjs-next slidesjs-navigation" href="#" style="top: 240px;width: 43px;position: absolute;right: 0;z-index: 9999;">
