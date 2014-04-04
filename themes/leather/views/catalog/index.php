@@ -76,7 +76,7 @@
         </div>
         <div class="pd_l_fr">
             <?php if(isset($key)){?>
-            <div class="searh_res">找到了 <span class="cor_red blod"><?php echo $key;?></span> 共计 <span class="cor_red blod"><?php echo count($items);?></span>
+            <div class="searh_res">找到了 <span class="cor_red blod"><?php echo $key;?></span> 共计 <span class="cor_red blod"><?php echo $count;?></span>
                 款供您选择
             </div>
             <?php }?>
