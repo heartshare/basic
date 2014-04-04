@@ -56,7 +56,7 @@ Yii::app()->clientScript->registerCoreScript('jquery');
             if ($AddressResult) {
                 foreach ($AddressResult as $address) {
                     $default_address = $address->is_default == 1 ? 'default_address' : '';
-                    echo '<li class=' . $default_address . '>' . CHtml::radioButton('delivery_address','true', $address->is_default == 1 ? TRUE : FALSE, array('value' => $address->contact_id, 'class' => 'delivery-address', 'id' => 'delivery_address' . $address->contact_id));
+                    echo '<li class=' . $default_address . '>' . CHtml::radioButton('delivery_address', $address->is_default == 1 ? TRUE : FALSE, array('value' => $address->contact_id, 'class' => 'delivery-address', 'id' => 'delivery_address' . $address->contact_id));
                     echo CHtml::tag('span', array(
                             'class' => 'buyer-address shop_selection'),
                         $address->s->name . '&nbsp;' . $address->c->name . '&nbsp;' . $address->d->name . '&nbsp;' . $address->address . '&nbsp;(' . $address->contact_name . '&nbsp;收)&nbsp;' . $address->mobile_phone);
@@ -281,7 +281,7 @@ Yii::app()->clientScript->registerCoreScript('jquery');
         </div>
 
             <div></iv><button class="btn btn-danger pull-right" style="line-height:20px;margin-right:150px;margin-bottom:30px;" href=""
-                <?php if(!$AddressResult) {
+                <?php if(!$AddressResult&&Yii::app()->user->id) {
                     echo "disabled=true";
                 }?>>确认订单</button></div>
 
