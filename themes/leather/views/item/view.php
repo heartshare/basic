@@ -565,9 +565,9 @@ $(function () {
                 if (response.status == 'login') {
                     $.post($('.deal_add_car').data('url'), $('#deal').serialize(), function(response) {
                         if(response.status=='success'){
-                            var num=$('.shopping_car').children().text();
-                            num=parseInt(num)+1;
-                            $('.shopping_car').children().text(num);
+//                            var num=$('.shopping_car').children().text();
+//                            num=parseInt(num)+1;
+                            $('.shopping_car').children().text(response.number);
                             $("#myModal-1").modal('show');
                         }else
                             showPopup(response.status);
