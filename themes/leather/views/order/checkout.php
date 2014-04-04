@@ -66,7 +66,7 @@ Yii::app()->clientScript->registerCoreScript('jquery');
 
             ?>
             <div>
-                <?php echo CHtml::link('请添加收货地址', array('/member/delivery_address/create')) ?>
+                <?php echo CHtml::link('请添加收货地址', array('/member/delivery_address/create'),array('target'=>'_blank')) ?>
             </div>
             <?php } ?>
         </div>
