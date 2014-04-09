@@ -1,3 +1,4 @@
 /.idea/
+/upload/
 /protected/config/main-local.php
 themes/leather/image/log-bg.jpg

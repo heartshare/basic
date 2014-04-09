@@ -14,7 +14,7 @@ class CartController extends YController
         $item = $this->loadItem();
         $quantity = empty($_POST['qty']) ? 1 : intval($_POST['qty']);
         if(Yii::app()->cart->put($item, $quantity))
-            echo json_encode(array('status' => 'success'));
+            echo json_encode(array('status' => 'success','number' => count(Yii::app()->cart)));
         else
             echo json_encode(array('status' => 'success'));
     }

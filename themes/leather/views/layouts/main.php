@@ -62,8 +62,8 @@
     </div>
     <?php echo Chtml::endForm(); ?>
     <a href="<?php echo Yii::app()->createUrl('cart/index'); ?>">
-        <div class="shopping_car">
-            购物车有<span class="cor_red bold"><?php echo Yii::app()->cart->getItemsCount(); ?></span>件商品
+        <div class="shopping_car" >
+            购物车有<span class="cor_red bold"><?php echo count(Yii::app()->cart); ?></span>件商品
         </div>
     </a>
 </div>

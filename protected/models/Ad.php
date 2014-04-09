@@ -145,9 +145,18 @@ class Ad extends CActiveRecord
 
     public function defaultScope()
     {
-        return array(
-            'condition' => "t.theme = '" . Yii::app()->theme->name . "'",
-            'order' => 't.sort_order',
-        );
+        if(Yii::app()->theme->name != 'backend')
+        {
+            return array(
+                'condition' => "t.theme = '" . Yii::app()->theme->name . "'",
+                'order' => 't.sort_order',
+            );
+        }
+        else
+        {
+            return array(
+                'order' => 't.sort_order',
+            );
+        }
     }
 }
