@@ -215,3 +215,6 @@ Pseudo ::after element
     width:572px;
     height:191px;
 }
+#page #sidebar-content .row-fluid .span12 form .tab-content .control-group input{
+    height:32px;
+}
