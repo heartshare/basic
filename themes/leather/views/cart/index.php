@@ -16,20 +16,22 @@ Yii::app()->clientScript->registerCoreScript('jquery');
 </script>
 <?php $imageHelper=new ImageHelper(); ?>
 <div class="box">
-    <div class="box-title container_24">购物车</div>
+    <div class="box-title container_24">我的购物车</div>
     <div class="box-content cart container_24">
         <?php echo CHtml::beginForm(array('/order/checkout'), 'POST', array('id' => 'cartForm')) ?>
-        <table class="table table-bordered" id="cart-table">
+        <table class="table" id="cart-table">
+           <thead>
             <tr>
-                <th class="col-md-1"><?php echo CHtml::checkBox('checkAllPosition', false, array('data-url' => Yii::app()->createUrl('cart/getPrice'))); ?></th>
-                <th class="col-md-3">图片</th>
-                <th class="col-md-2">名称</th>
-                <th class="col-md-2">属性</th>
+                <th class=""><?php echo CHtml::checkBox('checkAllPosition', false, array('data-url' => Yii::app()->createUrl('cart/getPrice'))); ?></th>
+                <th class="col-md-2">图片</th>
+                <th class="col-md-3">名称</th>
+                <th class="col-md-3">属性</th>
                 <th class="col-md-1">价格</th>
                 <th class="col-md-1">数量</th>
                 <th class="col-md-1">小计</th>
                 <th class="col-md-1">操作</th>
             </tr>
+            </thead>
             <?php
             $cart = Yii::app()->cart;
             $items = $cart->getPositions();
@@ -43,7 +45,7 @@ Yii::app()->clientScript->registerCoreScript('jquery');
                 foreach ($items as $key => $item) {
 //                    var_dump($key);die;
                     ?>
-                    <tr><?php
+                    <tbody><tr><?php
                         $itemUrl = Yii::app()->createUrl('item/view', array('id' => $item->item_id));
                         ?>
                         <td style="display:none;">
@@ -53,6 +55,7 @@ Yii::app()->clientScript->registerCoreScript('jquery');
                         <td><?php echo CHtml::checkBox('position[]', false, array('value' => $key, 'data-url' => Yii::app()->createUrl('cart/getPrice'))); ?></td>
                         <?php
                             $picUrl=$imageHelper->thumb('70','70',$item->getMainPic());
+                            $picUrl=yii::app()->baseUrl. $picUrl;
                         ?>
                         <td><a href="<?php echo $itemUrl; ?>"><?php echo CHtml::image($picUrl, $item->title, array('width' => '80px', 'height' => '80px')); ?></a></td>
                         <td><?php echo CHtml::link($item->title, $itemUrl); ?></td>
@@ -65,26 +68,24 @@ Yii::app()->clientScript->registerCoreScript('jquery');
 
                         <td><div id="SumPrice"><?php echo $item->getSumPrice() ?></div>元</td>
                         <td><?php echo CHtml::link('移除', array('/cart/remove', 'key' => $item->getId())) ?></td>
-                    </tr>
+                    </tr></tbody>
                 <?php
                 }
             } ?>
+            <tfoot>
             <tr>
                 <td colspan="8" style="padding:10px;text-align:right">总计：<label id="total_price">0</label>元</td>
             </tr>
             <tr>
-                <td colspan="8" style="vertical-align:middle"><button
-                        class="btn btn-danger"  style="float:left;padding:1px 10px;" ><?php echo CHtml::link('清空购物车', array('/cart/clear'), array('class' => 'btn1')) ?></button>
+                <td colspan="8" style="vertical-align:middle">
                     <button class="btn btn-primary"
-                        style="float:right;padding:1px 10px;"  id="btn-primary"><?php echo CHtml::link('继续购物', array('./'), array('class' => 'btn1')) ?></button>&nbsp;&nbsp;&nbsp;&nbsp;<button
-                        class="btn btn-warning"
-                       style="float:right;padding:1px 10px;"><?php echo CHtml::link('更新购物车', array('/cart/index'), array('id' => 'updateCart', 'class' => 'btn1')) ?></button>
+                        style="float:left;padding:1px 10px;"  id="btn-primary"><?php echo CHtml::link('继续购物', array('./'), array('class' => 'btn1')) ?></button>
+
+
+             <button class="btn btn-success" style="float:right;padding:1px 10px;"><?php echo CHtml::link('结算','#', array('class' => 'btn1','id'=>'account')) ?></button>
                 </td>
             </tr>
-            <tr>
-                <td colspan="8"><button class="btn btn-success" style="float:right;padding:1px 10px;"><?php echo CHtml::link('结算','#', array('class' => 'btn1','id'=>'account')) ?></button>
-                </td>
-            </tr>
+            </tfoot>
         </table>
         <?php echo CHtml::endForm(); ?>
     </div>
@@ -100,4 +101,6 @@ Yii::app()->clientScript->registerCoreScript('jquery');
                 $(this).val(tmptxt.replace(/\D|/g, ''));
             }).css("ime-mode", "disabled");
     });//输入验证，保证只有数字。
+
+
 </script>

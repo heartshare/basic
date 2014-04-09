@@ -315,14 +315,14 @@ dd{
     overflow: hidden;
     text-decoration: none !important;
     width: 151px;
-
+   padding: 0px !important;
     background-repeat: no-repeat;
    /* background: #858585; background-image: url("../../image/btn1.png");*/
 }
 .btn1{
     background-position: 0 -0px;
     display: block;
-    height: 38px;
+    padding: 0px !important;
     line-height:38px;
     font-size:16px;
     font-weight:bold;
@@ -331,6 +331,7 @@ dd{
     overflow: hidden;
     text-decoration: none !important;
     width: 151px;
+    height: 38px;
    /* background-image: url("../../image/btn1.png");*/
     background-repeat: no-repeat;
 

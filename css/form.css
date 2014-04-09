@@ -172,7 +172,7 @@ div.wide.form .buttons, div.wide.form .hint, div.wide.form .errorMessage
     background:#5CB85C;
     color: white;
     font-size: 15px;
-    margin: 0px 15px;
+    margin: 0px 45px;
 
 }
 #profile-form input[name="yt0"]:hover,#changepassword-form input[name="yt0"]:hover {
@@ -196,4 +196,31 @@ div.wide.form .buttons, div.wide.form .hint, div.wide.form .errorMessage
 #content .box .box-content #item{
     margin: 10px 20px;
     display: block;
+}
+.address-table th, .address-table td{
+    text-align: center;
+    border-top: 1px solid #A2CBFF !important;
+}
+.address-table th{
+    border-bottom: 1px solid #A2CBFF !important;
+}
+.address-table tbody,.address-table thead{
+ border: 1px solid #A2CBFF  !important;
+}
+.my-collect-table th,.my-collect-table td{
+    border: 0 none!important;
+    border-bottom: 1px solid #DDDDDD!important;
+    text-align: center;
+}
+.my-collect-table a{
+  color:#005EA7;
+}
+.my-collect-table a:hover{
+    text-decoration: underline;
+}
+.collect-checkbox
+{text-align:left!important;
+    border:0 none!important;
+    background:#F8F8F8!important;
+
 }
