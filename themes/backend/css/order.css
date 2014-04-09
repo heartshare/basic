@@ -194,7 +194,6 @@ html{
 }
 .clearfix{
     clear:both;
-    line-height:0
 }
 .item{
     text-align:center;
@@ -291,4 +290,14 @@ html{
     text-align:center;
     border:1px solid #ddd;
     border-top:0
+}
+.order-ft  .get-money{
+    display:block;
+    height:45px;
+    width:120px!important;
+    text-align:left;
+    padding-top:8px;
+}
+.order-ft  strong{
+    display:inline!important;
 }
