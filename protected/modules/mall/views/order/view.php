@@ -1,11 +1,6 @@
-<html>
-<head>
-    <meta http-equiv="X-UA-Compatible" content="IE=8">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link type="text/css" rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/order.css"/>
-</head>
 
-<body id="trade-order-detail" class="tm-buyer  ">
+    <link type="text/css" rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/order.css"/>
+
 
 <div class="tabs-container" id="J_TabView">
 <ul class="tabs-nav">
@@ -194,15 +189,15 @@
                 ?>
                 <tr class="order-ft">
                     <td colspan="8">
-                        <div class="get-money" colspan="6">
-                            <br>
+                        <div class="get-money">
+
                                 实付款：
                                 <strong>
                                     <?php
                                         echo $Order->pay_fee;
                                     ?>
                                 </strong>元
-                            <br>
+
                         </div>
                     </td>
                 </tr>
@@ -213,5 +208,4 @@
         </div>
     </div><!-- end order-info -->
 
-</body>
-</html>
+
