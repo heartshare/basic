@@ -9,7 +9,7 @@ $this->menu = array(
 );
 ?>
 
-<h1>管理商品属性</h1>
+<h3>管理商品属性</h3>
 
 <?php
 $this->widget('bootstrap.widgets.TbGridView', array(

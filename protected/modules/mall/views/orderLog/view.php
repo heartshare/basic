@@ -6,7 +6,7 @@ $this->breadcrumbs=array(
 
 ?>
 
-<h1>View OrderLog #<?php echo $model->log_id; ?></h1>
+<h3>查看订单日志 #<?php echo $model->log_id; ?></h3>
 
 <?php
 $this->widget('bootstrap.widgets.TbDetailView', array(

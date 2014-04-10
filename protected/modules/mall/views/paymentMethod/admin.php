@@ -5,12 +5,12 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List PaymentMethod', 'icon'=>'list', 'url'=>array('index')),
-	array('label'=>'Create PaymentMethod', 'icon'=>'plus','url'=>array('create')),
+	array('label'=>"支付方式清单", 'icon'=>'list', 'url'=>array('index')),
+	array('label'=>'选择支付方式', 'icon'=>'plus','url'=>array('create')),
 );
 ?>
 
-<h1>支付方式</h1>
+<h3>支付方式</h3>
 
 <?php $this->widget('bootstrap.widgets.TbGridView', array(
 	'id'=>'payment-method-grid',

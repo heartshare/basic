@@ -4,7 +4,7 @@ $this->breadcrumbs = array(
     'Manage',
 );
 ?>
-<h1>Manage Orders</h1>
+<h3>管理订单</h3>
 
 <p>
     You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>

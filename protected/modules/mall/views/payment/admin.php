@@ -5,12 +5,12 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List Payment', 'icon'=>'list', 'url'=>array('index')),
-	array('label'=>'Create Payment', 'icon'=>'plus','url'=>array('create')),
+	array('label'=>'付款单', 'icon'=>'list', 'url'=>array('index')),
+	array('label'=>'付款方式', 'icon'=>'plus','url'=>array('create')),
 );
 ?>
 
-<h1>Manage Payments</h1>
+<h3>支付方式管理</h3>
 
 <p>
 You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>

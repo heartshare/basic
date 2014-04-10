@@ -9,7 +9,7 @@ $this->menu = array(
 );
 ?>
 
-<h1>管理分类</h1>
+<h3>管理分类</h3>
 
 <div class="well well-large">
     <?php $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
