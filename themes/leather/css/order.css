@@ -115,7 +115,7 @@ th{
 }
 .order-info dt,.order-info dd{
     min-height:30px;
-    _height:30px
+   max_height:30px;
 }
 .order-info hr{
     margin:10px 0 5px;*margin:0

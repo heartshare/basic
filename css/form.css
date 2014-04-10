@@ -226,13 +226,11 @@ div.wide.form .buttons, div.wide.form .hint, div.wide.form .errorMessage
 }
 .personal-info{
     width: 60%;
-    margin: 30px auro;
-
 }
 .personal-info th{
-    background: white;
     text-align: center;
 }
+<<<<<<< HEAD
 .reminde-box{
 background: #FFFFE0;
     border: 1px solid #F9DFB2;
@@ -246,3 +244,5 @@ background: #FFFFE0;
 .reminde-box ul li{
     margin-left: 20px;
 }
+=======
+>>>>>>> 17430d43fa93a5aeb423c77800c50860a3b019f0

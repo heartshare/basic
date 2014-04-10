@@ -15,6 +15,7 @@
  */
 class OrderLog extends CActiveRecord
 {
+    private $user_id;
     /**
      * Returns the static model of the specified AR class.
      * @param string $className active record class name.
@@ -41,15 +42,15 @@ class OrderLog extends CActiveRecord
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('order_id ', 'numerical', 'integerOnly'=>true),
+            array('user_id', 'numerical', 'integerOnly'=>true),
+            array('order_id', 'length', 'max'=>20),
             array('op_name', 'length', 'max'=>45),
             array('action_time', 'length', 'max'=>10),
-            array('user_id', 'length', 'max'=>20),
             array('result', 'length', 'max'=>7),
             array('log_text', 'safe'),
             // The following rule is used by search().
-            // Please remove those attributes that should not be searched.
-            array('log_id, order_id, op_name, log_text, action_time, behavior, result', 'safe', 'on'=>'search'),
+            // @todo Please remove those attributes that should not be searched.
+            array('log_id, order_id, op_name, log_text, action_time, user_id, result', 'safe', 'on'=>'search'),
         );
     }
 
@@ -75,7 +76,7 @@ class OrderLog extends CActiveRecord
             'op_name' => 'Op Name',
             'log_text' => 'Log Text',
             'action_time' => 'Action Time',
-            'user_id' => 'User_id',
+            'user_id' => 'User',
             'result' => 'Result',
         );
     }
@@ -86,17 +87,16 @@ class OrderLog extends CActiveRecord
      */
     public function search()
     {
-        // Warning: Please modify the following code to remove attributes that
-        // should not be searched.
+        // @todo Please modify the following code to remove attributes that should not be searched.
 
         $criteria=new CDbCriteria;
 
         $criteria->compare('log_id',$this->log_id,true);
-        $criteria->compare('order_id',$this->order_id);
+        $criteria->compare('order_id',$this->order_id,true);
         $criteria->compare('op_name',$this->op_name,true);
         $criteria->compare('log_text',$this->log_text,true);
         $criteria->compare('action_time',$this->action_time,true);
-        $criteria->compare('user_id',$this->user_id,true);
+        $criteria->compare('user_id',$this->user_id);
         $criteria->compare('result',$this->result,true);
 
         return new CActiveDataProvider($this, array(
@@ -107,7 +107,8 @@ class OrderLog extends CActiveRecord
     protected function beforeSave(){
         $this->action_time = time();
         $this->user_id = Yii::app()->user->id;
-        return parent::beforeSave();
+        parent::beforeSave();
+        return true;
     }
 
     public function showOp($log_id){

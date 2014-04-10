@@ -143,7 +143,6 @@ class OrderController extends Controller
                         $item = Item::model()->findBypk($_POST['item_id']);
                         $model->total_fee = $item->price * $_POST['quantity'];
                     }
-
                     if ($model->save()) {
                         if(empty($_POST['keys']))
                         {
@@ -154,16 +153,17 @@ class OrderController extends Controller
                                 throw new Exception('stock is not enough!');
                             }
                             $OrderItem = new OrderItem;
-                            $OrderItem->order_id = $model->order_id;
-                            $OrderItem->item_id = $item->item_id;
-                            $OrderItem->title = $item->title;
-                            $OrderItem->desc = $item->desc;
-                            $OrderItem->pic = $item->getMainPic();
-                            $OrderItem->props_name = $sku->props_name;
-                            $OrderItem->price = $item->price;
-                            $OrderItem->quantity = $_POST['quantity'];
-                            $OrderItem->total_price = $OrderItem->quantity * $OrderItem->price;
-                            if (!$OrderItem->save()) {
+
+//                            $OrderItem->order_id = $model->order_id;
+//                            $OrderItem->item_id = $item->item_id;
+//                            $OrderItem->title = $item->title;
+//                            $OrderItem->desc = $item->desc;
+//                            $OrderItem->pic = $item->getMainPic();
+//                            $OrderItem->props_name = $sku->props_name;
+//                            $OrderItem->price = $item->price;
+//                            $OrderItem->quantity = $_POST['quantity'];
+//                            $OrderItem->total_price = $OrderItem->quantity * $OrderItem->price;
+                            if (!$OrderItem::model()->saveOrderItem($OrderItem,$model->order_id,$item,$sku->props_name,$_POST['quantity'])) {
                                 throw new Exception('save order item fail');
                             }
                         }
@@ -201,9 +201,8 @@ class OrderController extends Controller
                     $transaction->commit();
                     $this->redirect(array('success'));
                 } catch (Exception $e) {
-                    $transaction->rollBack();var_dump($model->getErrors());exit;
+                    $transaction->rollBack();
                     $this->redirect(array('fail'));
-
                      }
                 }
             }
