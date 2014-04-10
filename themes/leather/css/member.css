@@ -223,3 +223,10 @@ span[class="required"]{
 .my-sidenav ul li{
     margin: 10px;
 }
+.remind-box ul li{
+    float: left;
+    display: inline-block;
+}
+.remind-box ul{
+    display: inline-block;
+}

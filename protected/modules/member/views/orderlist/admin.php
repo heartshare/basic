@@ -7,7 +7,7 @@ $this->breadcrumbs = array(
 
 <div class="box">
     <div class="box-title">管理订单</div>
-    <div class="box-content">
+    <div class="box-content clearfix">
       <!--  <?php
         $this->widget('zii.widgets.grid.CGridView', array(
             'id' => 'order-grid',
@@ -48,7 +48,22 @@ $this->breadcrumbs = array(
             ),
         ));
         ?>  -->
+        <div class="reminde-box clearfix" id="Reminde-box" data-spm="7">
+            <h4 class="pull-left">我的交易提醒：</h4>
+            <ul class="pull-left clearfix" >
+                <li class="pull-left"><a href="">待付款<span class="num">(0)</span></a></li>
+                <li class="pull-left"><a href="">待确认收货<span class="num">(4)</span></a></li>
+                <li class="pull-left"><a href="">待评价<span class="num">(4)</span></a></li>
+            </ul>
 
+        </div>
+        <div style="padding-top: 5px">
+            <label for="BaobeiName">宝贝名称：</label>
+            <input type="text" size="50" id="BaobeiName" name="auctionTitle" value="" maxlength="30">
+            <button class="btn btn-sm btn-success" type="submit" data-point-url="">搜索</button>
+            <span class="glyphicon glyphicon-trash" style="margin-left: 400px;">
+                </span>订单回收站
+        </div>
          <table class="table table-bordered my-order-table">
          <colgroup>
           <col class="selector">
