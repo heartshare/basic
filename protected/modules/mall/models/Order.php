@@ -33,6 +33,7 @@
 class Order extends CActiveRecord
 {
 
+    private $orderLog;
     public $id;
     /**
      * Returns the static model of the specified AR class.
@@ -186,29 +187,26 @@ class Order extends CActiveRecord
     protected function beforeSave() {
         $orderLog = new OrderLog();
         if ($this->isNewRecord) {
-
             $orderLog->op_name = 'create';
             $orderLog->log_text = serialize($this->attributes);
         } else {
             $orderLog->op_name = 'update';
             $orderLog->log_text = serialize($this->findByPk($this->order_id));
-
         }
-        $orderLog->order_id = $this->order_id;
-        Yii::app()->params['orderLog'] = $orderLog;
-        return parent::beforeSave();
+        $orderLog->order_id = (int)$this->order_id;
+        $this->orderLog = $orderLog;
+        parent::beforeSave();
+        return true;
     }
 
     protected function afterSave() {
-        $orderLog = Yii::app()->params['orderLog'];
-        $orderLog->result = 'success';
-        try{
-        $orderLog->save();
+        $this->orderLog->result = 'success';
+        $this->orderLog->isNewRecord = true;
+        if(!$this->orderLog->save()){
+            return false;
         }
-        catch(Exception $e)
-        {
-            throw(new Exception('Save order Log fail'));
-        }
+       parent::afterSave();
+       return true;
     }
 
     protected function afterDelete()
