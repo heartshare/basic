@@ -224,3 +224,12 @@ div.wide.form .buttons, div.wide.form .hint, div.wide.form .errorMessage
     background:#F8F8F8!important;
 
 }
+.personal-info{
+    width: 60%;
+    margin: 30px auro;
+
+}
+.personal-info th{
+    background: white;
+    text-align: center;
+}
