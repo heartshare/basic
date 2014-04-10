@@ -109,11 +109,11 @@ html{
 .order-info dl{
     width:860px;
     overflow:hidden;
-    line-height:30px
+    line-height:30px;
 }
 .order-info dt,.order-info dd{
     min-height:30px;
-    _height:30px
+    max-height:30px;
 }
 .order-info hr{
     margin:10px 0 5px;*margin:0
@@ -129,7 +129,7 @@ html{
     margin-bottom:4px;
     padding-left:80px;
     *padding-left:0;
-    word-wrap:break-word
+    word-wrap:break-word;
 }
 .tabs-panels col.status{
     width:100px
@@ -225,7 +225,10 @@ html{
     padding:8px 10px;
     line-height:130%;
     text-align:center;
-    border-bottom:1px solid #ddd
+    border-bottom:1px solid #ddd;
+    background:#333333;
+    font-size:14px;
+    font-weight:bold;
 }
 .order-item .pic-info{
     display:inline;

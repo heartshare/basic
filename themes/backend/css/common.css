@@ -218,9 +218,10 @@ Pseudo ::after element
 #page #sidebar-content .row-fluid .span12 form .tab-content .control-group input{
     height:32px;
 }
+
 .bd dl dd,dt{
-   line-height:inherit;
+    line-height:37px!important
 }
-.sep-row td{
-   height:20px;
+#table-margin{
+    margin-top:9px;
 }
