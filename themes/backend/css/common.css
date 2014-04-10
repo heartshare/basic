@@ -225,3 +225,10 @@ Pseudo ::after element
 #table-margin{
     margin-top:9px;
 }
+.tab-content{
+    margin-top: 10px;
+}
+#sku td{
+    text-align: center;
+    vertical-align: middle;
+}
