@@ -168,3 +168,65 @@ span[class="required"]{
 #copy{
     display:none;
 }
+.col-name{
+    padding: 0px;
+}
+.col-name th {
+    background: #EFF3F7;
+    text-align: center;
+    padding: 14px 10px 6px!important;
+}
+ .skin-gray{
+     background: #F3F3F3;
+ }
+ .order-hd{
+     background:#E8F2FF;
+ }
+.skin-gray a{
+    display:inline-block;
+    border: 1px solid darkgray;
+    border-radius: 4px;
+    color: #3366CC;
+}
+.sep-row td{
+    padding: 0px!important;
+    height: 6px;
+
+}
+.baobei-name{
+    color:#3366CC!important;
+}
+.desc span{
+    color:#808080!important;
+}
+.xiangqing td{
+    text-align: center;
+    vertical-align: middle;}
+.my-order-table a{
+    color:#3366CC!important ;
+}
+.my-order-table a:hover{
+    color: red!important;
+    text-decoration: underline;
+}
+#changepassword-form input{
+    width: 200px;
+}
+#changepassword-form{
+    padding: 0px 50px;
+}
+.my-sidenav {
+    background: #F7F5FA;
+    font-size: 14px !important;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif!important;
+}
+.my-sidenav ul li{
+    margin: 10px;
+}
+.remind-box ul li{
+    float: left;
+    display: inline-block;
+}
+.remind-box ul{
+    display: inline-block;
+}

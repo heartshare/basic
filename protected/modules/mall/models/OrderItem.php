@@ -136,4 +136,26 @@ class OrderItem extends CActiveRecord
             $model->save();
             return parent::afterSave();
     }
+
+    public function saveOrderItem($OrderItem,$order_id,$item,$props_name,$quantity)
+    {
+        $OrderItem->order_id = $order_id;
+        $OrderItem->item_id = $item->item_id;
+        $OrderItem->title = $item->title;
+        $OrderItem->desc = $item->desc;
+        $OrderItem->pic = $item->getMainPic();
+        $OrderItem->props_name = $props_name;
+        $OrderItem->price = $item->price;
+        $OrderItem->quantity = $quantity;
+        $OrderItem->total_price = $OrderItem->quantity * $OrderItem->price;
+        if (!$OrderItem->save()) {
+//            throw new Exception('save order item fail');
+            throw new Exception($OrderItem->getError());
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
 }

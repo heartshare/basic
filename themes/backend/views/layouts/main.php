@@ -93,7 +93,7 @@
 
     <div class="clear"></div>
 
-    <footer>
+    <footer class="clearfix">
         <div class="row-fluid">
             <div class="span12">
                 <p class="powered"><?php echo Yii::powered(); ?>

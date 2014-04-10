@@ -1,11 +1,6 @@
-<html>
-<head>
-    <meta http-equiv="X-UA-Compatible" content="IE=8">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link type="text/css" rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/order.css"/>
-</head>
 
-<body id="trade-order-detail" class="tm-buyer  ">
+    <link type="text/css" rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/order.css"/>
+
 
 <div class="tabs-container" id="J_TabView">
 <ul class="tabs-nav">
@@ -23,7 +18,7 @@
                     </dt>
                     <dd>
                         <?php
-                            echo $Order->receiver_name.' ，'.$Order->receiver_mobile.' ，';
+                            echo $Order->receiver_name.'&nbsp;&nbsp;'.$Order->receiver_mobile.'&nbsp;&nbsp;';
                             echo Order::model()->showDetailAddress($Order);
                         ?>
                     </dd>
@@ -118,7 +113,7 @@
                 <div class="clearfix"></div>
             </div>
             <!-- 订单信息 -->
-            <table>
+            <table id="table-margin">
                 <colgroup>
                     <col class="item">
                     <col class="sku">
@@ -134,9 +129,7 @@
                     <!-- 买/卖家信息 -->
                 </colgroup>
                 <tbody class="order">
-                <tr class="sep-row">
-                    <td colspan="8"></td>
-                </tr>
+
                 <tr class="order-hd">
                     <th class="item col-xs-3">宝贝</th>
                     <th class="sku col-xs-3">宝贝属性</th>
@@ -159,10 +152,10 @@
                             </div>
                         </div>
                         <div class="txt-info">
-                            <div class="desc">
+
                                 <span class="name"><a href="#" title="" target="_blank"><?php echo $orderItems->title ?></a></span>
                                 <br>
-                            </div>
+
                         </div>
                     </td>
                     <td class="sku">
@@ -194,15 +187,15 @@
                 ?>
                 <tr class="order-ft">
                     <td colspan="8">
-                        <div class="get-money" colspan="6">
-                            <br>
+                        <div class="get-money">
+
                                 实付款：
                                 <strong>
                                     <?php
                                         echo $Order->pay_fee;
                                     ?>
                                 </strong>元
-                            <br>
+
                         </div>
                     </td>
                 </tr>
@@ -213,5 +206,4 @@
         </div>
     </div><!-- end order-info -->
 
-</body>
-</html>
+
