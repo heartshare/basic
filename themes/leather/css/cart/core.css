@@ -40,8 +40,18 @@ table, td, th {
     vertical-align:top;
 }
 .cart table, td, th {
-    vertical-align:middle;
-    border:solid 1px #DDDDDD;
+    vertical-align: middle;
+}
+.cart table tbody{
+    background: #FFFDEE;
+}
+.table td,.table th{
+    vertical-align: middle!important;
+    text-align: center;
+}
+.table #quantity{
+    text-align: center;
+    font-weight:300;
 }
 .span-4 {
     width: 150px;
