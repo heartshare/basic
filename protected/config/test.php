@@ -8,7 +8,7 @@ return CMap::mergeArray(
             ),
 
         'db' => array(
-            'connectionString' => 'mysql:host=localhost;dbname=yincart-basic',
+            'connectionString' => 'mysql:host=localhost;dbname=yincart-basic-test',
             'emulatePrepare' => true,
             'username' => 'root',
             'password' => '',
