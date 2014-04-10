@@ -82,11 +82,12 @@ Yii::app()->clientScript->registerCoreScript('jquery');
             </tr>
             <tr>
                 <td colspan="8" style="vertical-align:middle">
-                    <button class="btn btn-primary"
-                        style="float:left;padding:1px 10px;"  id="btn-primary"><?php echo CHtml::link('继续购物', array('./'), array('class' => 'btn1')) ?></button>
 
+                    <button class="btn btn-danger pull-left"><?php echo CHtml::link('清空购物车', array('/cart/clear'), array('class' => 'btn1')) ?></button>
 
              <button class="btn btn-success" style="float:right;padding:1px 10px;"><?php echo CHtml::link('结算','#', array('class' => 'btn1','id'=>'account')) ?></button>
+                    <button class="btn btn-primary"
+                            style="float:right;padding:1px 10px;margin-right: 10px;"  id="btn-primary"><?php echo CHtml::link('继续购物', array('./'), array('class' => 'btn1')) ?></button>
                 </td>
             </tr>
             </tfoot>
