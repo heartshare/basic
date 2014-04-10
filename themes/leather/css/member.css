@@ -23,7 +23,7 @@
     padding: 0;
 }
 .box-title{
-    background:transparent url(../image/box_title_bg.gif) repeat-x scroll 0 0;
+    background:#E5E5E5;
     height:29px;
     line-height:29px;
     font-weight:bold;
