@@ -18,7 +18,7 @@
                     </dt>
                     <dd>
                         <?php
-                            echo $Order->receiver_name.' ，'.$Order->receiver_mobile.' ，';
+                            echo $Order->receiver_name.'&nbsp;&nbsp;'.$Order->receiver_mobile.'&nbsp;&nbsp;';
                             echo Order::model()->showDetailAddress($Order);
                         ?>
                     </dd>
