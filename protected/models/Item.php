@@ -533,4 +533,110 @@ class Item extends YActiveRecord
     }
 
     #endregion
+
+    /**
+     * name: getSearchCriteria
+     * function: get the criteria when search
+     * @param $GET
+     * @param $descendantIds
+     * @return CDbCriteria
+     * @author: shuai.du@jago-ag.cn
+     */
+    public function getSearchCriteria($GET,$descendantIds)
+    {
+        $criteria = new CDbCriteria();
+        $criteria->addInCondition('category_id', $descendantIds);
+
+        if (!empty($GET['key'])) {
+            $criteria->addCondition("(t.title LIKE '%{$GET['key']}%')");
+        }
+        if (!empty($GET['floor_price'])) {
+            $criteria->addCondition("t.price >= '{$GET['floor_price']}'");
+        }
+        if (!empty($GET['top_price'])) {
+            $criteria->addCondition("t.price <= '{$GET['top_price']}'");
+        }
+        if (!empty($GET['has_stock']) && $GET['has_stock']) {
+            $criteria->addCondition("t.stock > 0");
+        }
+        if (!empty($GET['sort'])) {
+            switch ($GET['sort']) {
+                case 'sold':
+                    break;
+                case 'soldd':
+                    break;
+                case 'price':
+                    $criteria->order = 't.price';
+                    break;
+                case 'priced':
+                    $criteria->order = 't.price desc';
+                    break;
+                case 'new':
+                    $criteria->order = 't.update_time';
+                    break;
+                case 'newd':
+                    $criteria->order = 't.update_time desc';
+                    break;
+                default:
+                    $criteria->order = 't.click_count desc';
+                    break;
+            }
+        }
+
+        if (!empty($GET['props'])) {
+            $pvids = array();
+            $props = explode(';', $GET['props']);
+            foreach ($props as $p) {
+                $ids = explode(':', $p);
+                if (count($ids) >= 2) {
+                    if (isset($pvids[$ids[0]])) {
+                        if (!is_array($pvids[$ids[0]]))
+                            $pvids[$ids[0]] = array($pvids[$ids[0]]);
+                        $pvids[$ids[0]][] = $ids[1];
+                    } else {
+                        $pvids[$ids[0]] = $ids[1];
+                    }
+                }
+            }
+            foreach ($pvids as $pid => $vids) {
+                if (is_array($vids)) {
+                    $where = array();
+                    foreach ($vids as $vid) {
+                        $where[] = "props like '%$pid:$vid%'";
+                    }
+                    $where = '(' . implode(' OR ', $where) . ')';
+                    $criteria->addCondition($where);
+                } else {
+                    $criteria->addSearchCondition('props', $pid . ':' . $vids);
+                }
+            }
+        }
+
+        return $criteria;
+    }
+
+
+    public function setBreadcrumbs($category)
+    {
+        $breadcrumbs = array();
+        $parentCategories = $category->parent()->findAll();
+        $parentCategories = array_reverse($parentCategories);
+        $categoryIds = array($category->category_id);
+        $params = array();
+        if (!empty($_GET['key'])) {
+            $params['key'] = $_GET['key'];
+        }
+        foreach ($parentCategories as $cate) {
+            if (!$cate->isRoot()) {
+                $params['cat'] = $cate->getUrl();
+                $breadcrumbs[] = array('name' => $cate->name . '>> ', 'url' => Yii::app()->createUrl('catalog/index', $params));
+                $categoryIds[] = $cate->category_id;
+            }
+        }
+        $params['cat'] = $category->getUrl();
+        $breadcrumbs[] = array('name' => $category->name, 'url' => Yii::app()->createUrl('catalog/index', $params));
+        Yii::app()->params['categoryIds'] = $categoryIds;
+
+        return $breadcrumbs;
+    }
 }
