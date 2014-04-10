@@ -113,7 +113,7 @@
                 <div class="clearfix"></div>
             </div>
             <!-- 订单信息 -->
-            <table>
+            <table id="table-margin">
                 <colgroup>
                     <col class="item">
                     <col class="sku">
@@ -129,9 +129,7 @@
                     <!-- 买/卖家信息 -->
                 </colgroup>
                 <tbody class="order">
-                <tr class="sep-row">
-                    <td colspan="8"></td>
-                </tr>
+
                 <tr class="order-hd">
                     <th class="item col-xs-3">宝贝</th>
                     <th class="sku col-xs-3">宝贝属性</th>
@@ -154,10 +152,10 @@
                             </div>
                         </div>
                         <div class="txt-info">
-                            <div class="desc">
+
                                 <span class="name"><a href="#" title="" target="_blank"><?php echo $orderItems->title ?></a></span>
                                 <br>
-                            </div>
+
                         </div>
                     </td>
                     <td class="sku">
