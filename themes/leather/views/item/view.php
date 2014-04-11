@@ -558,6 +558,7 @@ $(function () {
         $("#buy-without-login").hide();
         var selectProps = $('.prop-select,.img-prop-select');
         if (selectProps.length < $('.deal_size p').length) {
+            showPopup("请添加商品属性。");
             $('.deal_size').addClass('prop-div-select');
         } else {
             $('.deal_size').removeClass('prop-div-select');
