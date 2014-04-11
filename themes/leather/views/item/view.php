@@ -70,7 +70,6 @@ $imageHelper=new ImageHelper();
             <div class="deal_tit"><?php echo $item->title; ?></div>
             <div class="deal_price">
                 <span class="cor_red bold font30"><?php echo $item->currency . $item->price ?></span>
-                <span class="cor_gray">市场价：<strong><?php echo $item->currency . $item->price ?></strong></span>
             </div>
             <div class="deal_sold">月销售量 <span class="cor_red bold"><?php echo $item->deal_count;?></span>&nbsp;件</div>
             <?php
