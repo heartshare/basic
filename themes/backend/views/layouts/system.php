@@ -6,7 +6,7 @@
             'type' => TbHtml::NAV_TYPE_LIST,
             'items' => array_merge(array(
                 array('label' => 'MAIN MENU'),
-                array('label' => '控制面板', 'icon' => 'home', 'url' => array('/site/index')),
+//                array('label' => '控制面板', 'icon' => 'home', 'url' => array('/site/index')),
                 array('label' => '菜单管理', 'icon' => 'list', 'url' => array('/menu/admin')),
                 array('label' => '分类管理', 'icon' => 'leaf', 'url' => array('/category/admin')),
                 array('label' => '皮肤管理', 'icon' => 'cog', 'url' => array('/theme/admin')),

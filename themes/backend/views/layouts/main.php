@@ -25,7 +25,7 @@
         array(
             'class' => 'bootstrap.widgets.TbNav',
             'items' => array(
-                array('label' => '控制面板', 'url' => array('/site/index'), 'visible' => !Yii::app()->user->isGuest),
+//                array('label' => '控制面板', 'url' => array('/site/index'), 'visible' => !Yii::app()->user->isGuest),
                 array('label' => '内容管理', 'url' => '#', 'items' => array(
                     array('label' => '内容分类', 'url' => array('/cms/contentCategory/admin')),
                     array('label' => '单页管理', 'url' => array('/cms/page/admin')),

@@ -7,7 +7,7 @@
             'type' => TbHtml::NAV_TYPE_LIST,
             'items' => array_merge(array(
                 array('label' => 'MAIN MENU'),
-                array('label' => '控制面板', 'icon' => 'home', 'url' => array('/site/index')),
+//                array('label' => '控制面板', 'icon' => 'home', 'url' => array('/site/index')),
                 array('label' => 'ITEM'),
                 array('label' => '商品分类', 'icon' => 'bookmark', 'url' => array('/mall/itemCategory/admin')),
                 array('label' => '商品属性', 'icon' => 'list-alt', 'url' => array('/mall/itemProp/admin')),
