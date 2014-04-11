@@ -86,3 +86,6 @@
          $this->endWidget();
     ?>
 
+<script>
+    $('#deliverForm').removeClass().addClass('table table-bordered table-responsive');
+</script>
