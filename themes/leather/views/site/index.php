@@ -9,7 +9,7 @@ Yii::app()->plugin->render('Hook_Login');
 <div class="warp_contant">
     <div class="float">
         <div class="float_button">
-            <a href="">联系<br/>在线客服</a>
+            <a href="/basic/page/contact?key=help">联系<br/>在线客服</a>
         </div>
     </div>
     <div class="warp_tab contaniner_24">
