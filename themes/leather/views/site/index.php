@@ -53,7 +53,6 @@ Yii::app()->plugin->render('Hook_Login');
                             </div>
                             <div class="tab_price">
                                 <div class="tab_price_n"><?php echo $hotItem->currency . $hotItem->price ?></div>
-                                <div class="tab_price_p"><?php echo $hotItem->currency . $hotItem->price ?></div>
                                 <div class="tab_price_v"><?php echo CHtml::link('详情点击', $itemUrl); ?></div>
                             </div>
                         </div>
@@ -149,7 +148,6 @@ Yii::app()->plugin->render('Hook_Login');
                                     </div>
                                     <div class="product_price">
                                         <div class="product_price_n"><?php echo $newItem->currency . $newItem->price ?></div>
-                                        <div class="product_price_p"><?php echo $newItem->currency . $newItem->price ?></div>
                                         <div class="product_price_v"><a href="<?php echo $itemUrl; ?>">详情点击</a></div>
                                     </div>
                                 </div>
@@ -183,8 +181,6 @@ Yii::app()->plugin->render('Hook_Login');
                                     <div class="product_price">
                                         <div
                                             class="product_price_n"><?php echo $newItem->currency . $newItem->price ?></div>
-                                        <div
-                                            class="product_price_p"><?php echo $newItem->currency . $newItem->price ?></div>
                                         <div class="product_price_v"><a href="<?php echo $itemUrl; ?>">详情点击</a></div>
                                     </div>
                                 </div>
