@@ -4,7 +4,7 @@ $this->breadcrumbs = array(
     'Manage',
 );
 ?>
-<h1>Manage Orders</h1>
+<h3>管理订单</h3>
 
 <p>
     You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>
@@ -21,6 +21,7 @@ $this->breadcrumbs = array(
     'id' => 'order-grid',
     'dataProvider' => $model->search(),
     'filter' => $model,
+    'enableHistory' => 'true',
     'columns' => array(
 
         'order_id',
@@ -58,9 +59,13 @@ $this->breadcrumbs = array(
             'name' => 'create_time',
             'value'=>'date("Y-m-d H:i:s",$data->create_time)'
         ),
-
         array(
             'name' => 'receiver_name',
+        ),
+        array(
+            'name'=>'ship_status',
+            'value' => 'Tbfunction::showShipStatus($data->ship_status)',
+            'filter' => Tbfunction::ReturnShipStatus(),
         ),
         array(
             'class' => 'bootstrap.widgets.TbButtonColumn',
@@ -68,10 +73,10 @@ $this->breadcrumbs = array(
             'buttons' => array(
                 'deliver' => array(
                     'label' => '发货',
-                    'icon' => 'plane',
-                   'url'=>'Yii::app()->createUrl("mall/order/deliver", array("id"=>$data->order_id))',
+//                    'icon' => 'plane',
+                    'url'=>'Yii::app()->createUrl("mall/order/deliver", array("id"=>$data->order_id))',
                     'options'=>array(
-                        'class'=>'plane',
+                        'class'=>'btn btn-info btn-lg',
                         'data-target'=> '#myModal',
                         'data-toggle' => 'modal',
                         'ajax'=>array(

@@ -9,6 +9,7 @@
    <?php Yii::app()->getClientScript()->registerCssFile(F::themeUrl() . '/css/bootstrap-responsive.css'); ?>
    <?php Yii::app()->getClientScript()->registerCssFile(F::themeUrl() . '/css/yiistrap.css'); ?>
     <?php Yii::app()->getClientScript()->registerCssFile(F::themeUrl() . '/css/styles.css'); ?>
+    <?php Yii::app()->getClientScript()->registerCoreScript('jquery'); ?>
     <link type="text/css" rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl; ?>/css/common.css"/>
     <link type="text/css" rel="stylesheet" href="<?php echo Yii::app()->baseUrl; ?>/css/common.css"/>
  <?php //Yii::app()->bootstrap->register(); ?>
@@ -28,7 +29,7 @@
                 array('label' => '内容管理', 'url' => '#', 'items' => array(
                     array('label' => '内容分类', 'url' => array('/cms/contentCategory/admin')),
                     array('label' => '单页管理', 'url' => array('/cms/page/admin')),
-                    array('label' => '文章管理', 'url' => array('/cms/article/admin')),
+//                    array('label' => '文章管理', 'url' => array('/cms/article/admin')),
                     array('label' => '新闻管理', 'url' => array('/cms/news/admin')),
                     array('label' => '留言管理', 'url' => array('/cms/feedback/admin')),
                     array('label' => 'OTHER'),
@@ -92,7 +93,7 @@
 
     <div class="clear"></div>
 
-    <footer>
+    <footer class="clearfix">
         <div class="row-fluid">
             <div class="span12">
                 <p class="powered"><?php echo Yii::powered(); ?>
@@ -108,7 +109,7 @@
 </div>
 <!-- page -->
 <script type="text/javascript" src="<?php echo Yii::app()->theme->baseUrl; ?>/js/common.js"></script>
-<script type="text/javascript" src="<?php echo Yii::app()->theme->baseUrl; ?>/js/jquery.js"></script>
+
 <script type="text/javascript" src="<?php echo Yii::app()->theme->baseUrl; ?>/js/bootstrap.js"></script>
 <script type="text/javascript" src="<?php echo Yii::app()->theme->baseUrl; ?>/js/jquery-ui.min.js"></script>
 <script type="text/javascript" src="<?php echo Yii::app()->baseUrl; ?>/js/jquery.dynotable.js"></script>

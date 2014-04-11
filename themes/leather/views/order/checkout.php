@@ -45,7 +45,7 @@ Yii::app()->clientScript->registerCoreScript('jquery');
 <?php if (Yii::app()->user->id) { ?>
     <div class="box address-panel">
         <div class="box-title container_24"><span
-                style="float:right"><?php echo CHtml::link('管理收货地址', array('/member/delivery_address/admin')) ?></span>收货地址
+                style="float:right"><?php echo CHtml::link('管理收货地址', array('/member/delivery_address/admin'),array('target'=>'_blank')) ?></span>收货地址
         </div>
         <div class="box-content">
             <?php
@@ -62,8 +62,13 @@ Yii::app()->clientScript->registerCoreScript('jquery');
                         $address->s->name . '&nbsp;' . $address->c->name . '&nbsp;' . $address->d->name . '&nbsp;' . $address->address . '&nbsp;(' . $address->contact_name . '&nbsp;收)&nbsp;' . $address->mobile_phone);
                     echo '</li>';
                 }
-            }
+            } else {
+
             ?>
+            <div>
+                <?php echo CHtml::link('请添加收货地址', array('/member/delivery_address/create'),array('target'=>'_blank')) ?>
+            </div>
+            <?php } ?>
         </div>
     </div>
 
@@ -196,7 +201,7 @@ Yii::app()->clientScript->registerCoreScript('jquery');
         </div>
     </div>
 
-
+    <?php $imageHelper=new ImageHelper(); ?>
     <div class="box">
         <div class="box-title container_24">商品列表</div>
         <div class="box-content cart container_24">
@@ -213,7 +218,7 @@ Yii::app()->clientScript->registerCoreScript('jquery');
                 $cart = Yii::app()->cart;
                 if (isset($item)) {
                     $item->getId();
-                    if($cart->isEmpty())
+                    if($keys==null)
                     {
                         echo CHtml::hiddenField('sku_id', $item->sku->sku_id);
                         echo CHtml::hiddenField('item_id', $item->sku->item_id);
@@ -221,8 +226,9 @@ Yii::app()->clientScript->registerCoreScript('jquery');
                     }
                     ?>
                     <tr><?php
+                            $picUrl=$imageHelper->thumb('70','70',$item->getMainPic());
                         ?>
-                        <td><?php echo CHtml::image($item->getMainPic(), $item->title, array('width' => '80px', 'height' => '80px')); ?></td>
+                        <td><?php echo CHtml::image($picUrl, $item->title, array('width' => '80px', 'height' => '80px')); ?></td>
                         <td><?php echo $item->title; ?></td>
                         <td><?php echo  empty($item->sku) ? '' : implode(';', json_decode($item->sku->props_name, true)); ?></td>
                         <td><?php echo $item->getPrice(); ?></td>
@@ -274,7 +280,10 @@ Yii::app()->clientScript->registerCoreScript('jquery');
             </div>
         </div>
 
-            <button class="btn btn-danger pull-right" style="line-height:20px;margin-right:150px;margin-bottom:30px;" href="">确认订单</button>
+            <div></iv><button class="btn btn-danger pull-right" style="line-height:20px;margin-right:150px;margin-bottom:30px;" href=""
+                <?php if(!$AddressResult&&Yii::app()->user->id) {
+                    echo "disabled=true";
+                }?>>确认订单</button></div>
 
 
 

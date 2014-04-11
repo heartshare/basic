@@ -35,32 +35,28 @@ $imageHelper=new ImageHelper();
         <div class="deal_tip">
             <a href="<?php echo Yii::app()->baseUrl; ?>">首页>></a>
             <?php foreach ($this->breadcrumbs as $breadcrumb) {
-            echo '<a href="' . $breadcrumb['url'] . '">' . $breadcrumb['name'] . '</a>';
+                echo '<a href="' . $breadcrumb['url'] . '">' . $breadcrumb['name'] . '</a>';
             } ?>
-        </div><!--上面的小的导航栏-->
+        </div>
         <div class="deal_pic clearfix">
             <div>
                 <ul id="idNum" class="hdnum">
-                    <?php
-                        foreach ($item->itemImgs as $itemImg) {
-                            if(!empty($itemImg->pic)){
-                                $picUrl=$imageHelper->thumb('70','70',$itemImg->pic);
-                                $picUrl=yii::app()->baseUrl. $picUrl;
-                            }else $picUrl=$item->getHolderJs('70','70');
-                            echo '<li><img src="' .$picUrl . '" width="70" height="70"></li>';
-                        }
-                    ?>
+                    <?php foreach ($item->itemImgs as $itemImg) {
+                        if(!empty($itemImg->pic)){
+                            $picUrl=$imageHelper->thumb('70','70',$itemImg->pic);
+                        }else $picUrl=$item->getHolderJs('70','70');
+                        echo '<li><img src="' .$picUrl . '" width="70" height="70"></li>';
+                    } ?>
                 </ul>
             </div>
             <div style="width: 450px; height: 450px; overflow: hidden; position: relative;" id=idTransformView >
                 <ul id=idSlider class=slider>
                     <?php foreach ($item->itemImgs as $itemImg) {
-                    if($itemImg->pic){
-                    $picUrl=$imageHelper->thumb('450','450',$itemImg->pic);
-                    $picUrl=yii::app()->baseUrl. $picUrl;
-                    }else $picUrl=$item->getHolderJs('450','450');
-                    //                        echo '<li><img src="' .$picUrl . '" width="450" height="450"></li>';
-                    echo'<div><a href="javascript:void(0)" target="_blank" rel="nofollow"><img position=absolute   alt="' . $item->title . '" src="'  .$picUrl . '" width="450" height="450"/></a></div>';
+                        if($itemImg->pic){
+                            $picUrl=$imageHelper->thumb('450','450',$itemImg->pic);
+                        }else $picUrl=$item->getHolderJs('450','450');
+                        //                        echo '<li><img src="' .$picUrl . '" width="450" height="450"></li>';
+                        echo'<div><a href="javascript:void(0)" target="_blank" rel="nofollow"><img position=absolute   alt="' . $item->title . '" src="'  .$picUrl . '" width="450" height="450"/></a></div>';
                     } ?>
                 </ul>
             </div>
@@ -76,14 +72,14 @@ $imageHelper=new ImageHelper();
                 <span class="cor_red bold font30"><?php echo $item->currency . $item->price ?></span>
                 <span class="cor_gray">市场价：<strong><?php echo $item->currency . $item->price ?></strong></span>
             </div>
-            <div class="deal_sold">已售出 <span class="cor_red bold">30</span>&nbsp;件</div>
+            <div class="deal_sold">月销售量 <span class="cor_red bold"><?php echo $item->deal_count;?></span>&nbsp;件</div>
             <?php
-        $skus = array();
-        foreach ($item->skus as $sku) {
+            $skus = array();
+            foreach ($item->skus as $sku) {
 
-            $skuId[]=$sku->sku_id;
-            $key = implode(';', json_decode($sku->props, true));
-            $skus[$key] = json_encode(array('price' => $sku->price, 'stock' => $sku->stock));
+                $skuId[]=$sku->sku_id;
+                $key = implode(';', json_decode($sku->props, true));
+                $skus[$key] = json_encode(array('price' => $sku->price, 'stock' => $sku->stock));
             }
             ?>
             <div class="deal_size" data-sku-key='<?php echo json_encode(array_keys($skus)); ?>'
@@ -92,52 +88,52 @@ $imageHelper=new ImageHelper();
                 $propImgs = CHtml::listData($item->propImgs, 'item_prop_value', 'pic');
                 $itemProps = $propValues = array();
                 foreach ($item->category->itemProps as $itemProp) {
-                $itemProps[$itemProp->item_prop_id] = $itemProp;
-                foreach ($itemProp->propValues as $propValue) {
-                $propValues[$propValue->prop_value_id] = $propValue;
-                }
+                    $itemProps[$itemProp->item_prop_id] = $itemProp;
+                    foreach ($itemProp->propValues as $propValue) {
+                        $propValues[$propValue->prop_value_id] = $propValue;
+                    }
                 }
                 $pvids = json_decode($item->props);
                 foreach ($pvids as $pid => $pvid) {
-                if (isset($itemProps[$pid]) && $itemProps[$pid]->is_sale_prop) {
-                $itemProp = $itemProps[$pid];
-                ?>
-                <p><span><?php echo $itemProp->prop_name ?>：</span>
-                    <?php if (is_array($pvid)) {
-                            foreach ($pvid as $v) {
-                                $ids = explode(':', $v);
+                    if (isset($itemProps[$pid]) && $itemProps[$pid]->is_sale_prop) {
+                        $itemProp = $itemProps[$pid];
+                        ?>
+                        <p><span><?php echo $itemProp->prop_name ?>：</span>
+                            <?php if (is_array($pvid)) {
+                                foreach ($pvid as $v) {
+                                    $ids = explode(':', $v);
+                                    $propValue = $propValues[$ids[1]];
+                                    if ($itemProp->is_color_prop && false) {
+                                        ?>
+                                        <a href="javascript:void(0)" data-value="<?php echo $v; ?>" id="prop<?php echo str_replace(':','-',$v); ?>">
+                                            <img alt="<?php echo $propValue->value_name; ?>"
+                                                 src="<?php echo isset($propImgs[$v]) ? $propImgs[$v] : ''; ?>"
+                                                 width="41" height="41"></a>
+                                    <?php } else { ?>
+                                        <a href="javascript:void(0)"
+                                           data-value="<?php echo $v; ?>" id="prop<?php echo str_replace(':','-',$v); ?>"><?php echo $propValue->value_name; ?></a>
+                                    <?php
+                                    }
+                                }
+                            } else {
+                                $ids = explode(':', $pvid);
                                 $propValue = $propValues[$ids[1]];
                                 if ($itemProp->is_color_prop && false) {
-                    ?>
-                    <a href="javascript:void(0)" data-value="<?php echo $v; ?>" id="prop<?php echo str_replace(':','-',$v); ?>">
-                        <img alt="<?php echo $propValue->value_name; ?>"
-                             src="<?php echo isset($propImgs[$v]) ? $propImgs[$v] : ''; ?>"
-                             width="41" height="41"></a>
-                    <?php } else { ?>
-                    <a href="javascript:void(0)"
-                       data-value="<?php echo $v; ?>" id="prop<?php echo str_replace(':','-',$v); ?>"><?php echo $propValue->value_name; ?></a>
-                    <?php
+                                    ?>
+                                    <a href="javascript:void(0)" data-value="<?php echo $pvid; ?>" id="prop<?php echo str_replace(':','-',$v); ?>">
+                                        <img alt="<?php echo $propValue->value_name; ?>"
+                                             src="<?php echo isset($propImgs[$pvid]) ? $propImgs[$pvid] : ''; ?>"
+                                             width="41" height="41"></a>
+                                <?php } else { ?>
+                                    <a href="javascript:void(0)"
+                                       data-value="<?php echo $pvid; ?>" id="prop<?php echo str_replace(':','-',$v); ?>"><?php echo $propValue->value_name; ?></a>
+                                <?php
                                 }
-                            }
-                        } else {
-                            $ids = explode(':', $pvid);
-                            $propValue = $propValues[$ids[1]];
-                            if ($itemProp->is_color_prop && false) {
-                    ?>
-                    <a href="javascript:void(0)" data-value="<?php echo $pvid; ?>" id="prop<?php echo str_replace(':','-',$v); ?>">
-                        <img alt="<?php echo $propValue->value_name; ?>"
-                             src="<?php echo isset($propImgs[$pvid]) ? $propImgs[$pvid] : ''; ?>"
-                             width="41" height="41"></a>
-                    <?php } else { ?>
-                    <a href="javascript:void(0)"
-                       data-value="<?php echo $pvid; ?>" id="prop<?php echo str_replace(':','-',$v); ?>"><?php echo $propValue->value_name; ?></a>
+                            } ?>
+                        </p>
                     <?php
-                            }
-                        } ?>
-                </p>
-                <?php
-                }
-            } ?>
+                    }
+                } ?>
             </div>
             <div class="deal_num">
                 <span>我要买</span><span class="deal_num_c">
@@ -150,9 +146,9 @@ $imageHelper=new ImageHelper();
             </div>
             <input type="hidden" id="item_id" name="item_id" value="<?php echo $item->item_id; ?>" />
             <input type="hidden" id="props" name="props" value="" />
-            <div  class="deal_add_car" data-url="<?php echo Yii::app()->createUrl('cart/add'); ?>"><a href="javascript:void(0)" id="addToShopCart" data-toggle="modal" data-target="#myModal-1">加入购物车</a></div>
+            <div  class="deal_add_car" data-url="<?php echo Yii::app()->createUrl('cart/add'); ?>"><a href="javascript:void(0)" id="addToShopCart" >加入购物车</a></div>
             <div class="deal_add" data-url="<?php echo Yii::app()->createUrl('user/user/isLogin'); ?>" ><?php echo CHtml::link("立即购买", 'javascript:void(0);')?></div>
-            <div  class="deal_collect" data-url="<?php echo Yii::app()->createUrl('member/wishlist/addWish'); ?>" ><a data-toggle="modal" data-target="#myModal-2" href="javascript:void(0)">立即收藏</a></div>
+            <div  class="deal_collect" data-url="<?php echo Yii::app()->createUrl('member/wishlist/addWish'); ?>" ><a href="javascript:void(0)">立即收藏</a></div>
             <!-- Modal -->
             <div tabindex="-1" class="modal fade in" id="myModal" role="dialog" aria-hidden="false" aria-labelledby="myModalLabel" style="display: none;">
                 <div class="modal-dialog">
@@ -172,21 +168,20 @@ $imageHelper=new ImageHelper();
                                     <div> 密码：</div>
                                     <input class="txt form-control" id="password" name="password" type="password" placeholder="请输入密码"/>
                                 </div>
-                                <button id="log-btn-div"  name="button" type="button" onclick="llogin()" class="btn-success btn">登录</button>
+                                <button id="log-btn-div"  name="button" type="button"  class="btn-success btn">登录</button>
                                 <div id="register">
                                     <a href="<?php echo Yii::app()->createUrl('user/registration'); ?>" class="link"><u>免费注册</u></a>
-                                    <a href="javascript:void" class="link buy-without-login" ><u>免登陆直接购买</u></a>
+                                    <a href="javascript:void" class="link buy-without-login" id="buy-without-login" ><u>免登陆直接购买</u></a>
                                 </div>
                             </div>
                         </form>
-                        </div>
                     </div>
                 </div>
-
+            </div>
 
 
         </form>
-    </div><!--图片和sku部分 -->
+    </div><!-- /.modal-content -->
 </div><!-- /.modal-dialog -->
 
 
@@ -199,7 +194,7 @@ $imageHelper=new ImageHelper();
         <div class="modal-content clearfix" style="width:200px;height:150px;border:1px solid black;padding:10px 10px;" id="myModal-2-content">
             <s id="mymodal-1-png" class="pull-left"></s> <span class="pull-left">成功加入购物车！</span>
 
-            <button class="close pull-right" aria-hidden="true" data-dismiss="modal" type="button">×</button>
+            <button class="close pull-right" aria-hidden="true" data-dismiss="modal" type="button"></button>
             <button class="btn btn-success center-block" aria-hidden="true" data-dismiss="modal">确定</button>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
@@ -210,69 +205,86 @@ $imageHelper=new ImageHelper();
         <div class="modal-content" style="width:560px;height:310px;border:1px solid black;padding:20px 20px;" id="myModal-1-content">
             <div class="clearfix">
                 <s id="mymodal-1-png" class="pull-left"></s> <span class="pull-left">成功加入收藏夹！</span>
-                <button class="close pull-right" aria-hidden="true" data-dismiss="modal" type="button">×</button>
+                <button class="close pull-right" aria-hidden="true" data-dismiss="modal" type="button"></button>
                 </br>
             </div>
-            <div width="100%" id="look-collect"> 你可以<a href="/basic/member/wishlist/admin"><font color="#3388BB">查看收藏夹</font></a></div>
+            <div width="100%" id="look-collect"> 你可以<a href="/basic/member/wishlist/admin"><font color="#3388BB" src="//member/wishlist/admin">查看收藏夹</font></a></div>
             <hr />
             <div class="col-xs-6 pull-left" align="left">收藏此商品的人还喜欢</div>
-            <div class="col-xs-6 pull-right" align="right"><a><font color="#3388BB">换一组更好的</font></a></div>
+            <div class="col-xs-6 pull-right" align="right" style="visibility: hidden"><a><font color="#3388BB">换一组</font></a></div>
+<!--            <div>-->
+<!--                <ul class="clearfix">-->
+<!--                    <li class="col-xs-2">-->
+<!--                        <a href="/basic/item/57" title=""target="_blank"><img src="/basic/upload/item/manclothes/.tmb/thumb_d_adaptiveResize_70_70.jpg" class="li-img" alt=""></a>-->
+<!--                        <div width="100%" align="center" height="15px">$1299.00</div>-->
+<!--                    </li>-->
+<!--                    <li class="col-xs-2">-->
+<!--                        <a href="/basic/item/59" title=""target="_blank"><img src="/basic/upload/item/manclothes/.tmb/thumb_iii_adaptiveResize_70_70.jpg" alt=""></a>-->
+<!--                        <div width="100%" align="center" height="15px">$1299.00</div>-->
+<!--                    </li>-->
+<!--                    <li class="col-xs-2">-->
+<!--                        <a href="/basic/item/35" title=""target="_blank"><img src="/basic/upload/item/manclothes/.tmb/thumb_T1vyPGFhxeXXXXXXXX_!!0-item_pic.jpg_460x460q90_adaptiveResize_70_70.jpg" class="li-img" alt=""></a>-->
+<!--                        <div width="100%" align="center" height="15px">$1299.00</div>-->
+<!--                    </li>-->
+<!--                    <li class="col-xs-2">-->
+<!--                        <a href="/basic/item/37" title=""target="_blank"><img src="/basic/upload/item/manclothes/.tmb/thumb_1015622205-1_u_1_adaptiveResize_70_70.jpg" class="li-img" alt=""></a>-->
+<!--                        <div width="100%" align="center" height="15px">$1299.00</div>-->
+<!--                    </li>-->
+<!--                    <li class="col-xs-2">-->
+<!--                        <a href="/basic/item/58" title=""target="_blank"><img src="/basic/upload/item/manclothes/.tmb/thumb_f_adaptiveResize_70_70.jpg" class="li-img" alt=""></a>-->
+<!--                        <div width="100%" align="center" height="15px">$1299.00</div>-->
+<!--                    </li>-->
+<!--                    <li class="col-xs-2">-->
+<!--                        <a href="/basic/item/31" title=""target="_blank"><img src="/basic/upload/item/manclothes/.tmb/thumb_01_adaptiveResize_70_70.jpg" class="li-img" alt=""></a>-->
+<!--                        <div width="100%" align="center" height="15px">$1299.00</div>-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--            </div>-->
+
             <div>
                 <ul class="clearfix">
-                    <li class="col-xs-2">
-                        <a href="/basic/item/57" title=""target="_blank"><img src="/basic/upload/item/manclothes/.tmb/thumb_d_adaptiveResize_70_70.jpg" class="li-img" alt=""></a>
-                        <div width="100%" align="center" height="15px">$1299.00</div>
-                    </li>
-                    <li class="col-xs-2">
-                        <a href="/basic/item/59" title=""target="_blank"><img src="/basic/upload/item/manclothes/.tmb/thumb_iii_adaptiveResize_70_70.jpg" alt=""></a>
-                        <div width="100%" align="center" height="15px">$1299.00</div>
-                    </li>
-                    <li class="col-xs-2">
-                        <a href="/basic/item/35" title=""target="_blank"><img src="/basic/upload/item/manclothes/.tmb/thumb_T1vyPGFhxeXXXXXXXX_!!0-item_pic.jpg_460x460q90_adaptiveResize_70_70.jpg" class="li-img" alt=""></a>
-                        <div width="100%" align="center" height="15px">$1299.00</div>
-                    </li>
-                    <li class="col-xs-2">
-                        <a href="/basic/item/37" title=""target="_blank"><img src="/basic/upload/item/manclothes/.tmb/thumb_1015622205-1_u_1_adaptiveResize_70_70.jpg" class="li-img" alt=""></a>
-                        <div width="100%" align="center" height="15px">$1299.00</div>
-                    </li>
-                    <li class="col-xs-2">
-                        <a href="/basic/item/58" title=""target="_blank"><img src="/basic/upload/item/manclothes/.tmb/thumb_f_adaptiveResize_70_70.jpg" class="li-img" alt=""></a>
-                        <div width="100%" align="center" height="15px">$1299.00</div>
-                    </li>
-                    <li class="col-xs-2">
-                        <a href="/basic/item/31" title=""target="_blank"><img src="/basic/upload/item/manclothes/.tmb/thumb_01_adaptiveResize_70_70.jpg" class="li-img" alt=""></a>
-                        <div width="100%" align="center" height="15px">$1299.00</div>
-                    </li>
+                    <?php
+                    $recommendItems=Item::model()->findAll(array(
+                        'condition'=>'category_id='.$item->category_id,
+                        'limit'=>6,
+                    ));
+                    $num=count(recommendItems);
+                    if($num>0){
+                        foreach($recommendItems as $value){
+                            if($value->getMainPic()){
+                                $picUrl=$imageHelper->thumb('70','70',$value->getMainPic());
+                                $picUrl=Yii::app()->baseUrl.$picUrl;
+                            }else $picUrl=$item->getHolderJs('70','70');
+                            ?>
+                            <li class="col-xs-2">
+                                <a href=""><img class="li-img" alt="" src="<?php echo $picUrl?>" width="70" height="70"/></a>
+                                <div width="100%" align="center" height="15px"><?php echo $value->price?></div>
+                            </li>
+                        <?php
+                        }
+                    }else echo"No data";
+                    ?>
+
                 </ul>
             </div>
+
             <button class="btn btn-success center-block" aria-hidden="true" data-dismiss="modal">确定</button>
 
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div>
 
-                                 <!-- Modal -->
-                                      <div tabindex="-1" class="modal fade in" id="myModal-1" role="dialog" aria-hidden="false" aria-labelledby="myModalLabel" style="display: none;">
-                                          <div class="modal-dialog">
-                                              <div class="modal-content clearfix" style="width:200px;height:150px;border:1px solid black;padding:10px 10px;" id="myModal-1-content">
-                                              <s id="mymodal-1-png" class="pull-left"></s> <span class="pull-left">成功加入购物车！</span>
+<!-- Modal -->
+<div tabindex="-1" class="modal fade in" id="myModal-3" role="dialog" aria-hidden="false" aria-labelledby="myModalLabel" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content clearfix" style="width:200px;height:150px;border:1px solid black;padding:10px 10px;" id="myModal-2-content">
+            <s id="mymodal-1-png" class="pull-left"></s> <span class="pull-left">您已收藏过该产品！</span>
 
-                                               <button class="close pull-right" aria-hidden="true" data-dismiss="modal" type="button">×</button>
-                                               <button class="btn btn-success center-block" aria-hidden="true" data-dismiss="modal">确定</button>
-                                              </div><!-- /.modal-content -->
-                                          </div><!-- /.modal-dialog -->
-                                      </div>
-               <!-- Modal -->
-                                    <div tabindex="-1" class="modal fade in" id="myModal-2" role="dialog" aria-hidden="false" aria-labelledby="myModalLabel" style="display: none;">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content clearfix" style="width:200px;height:150px;border:1px solid black;padding:10px 10px;" id="myModal-1-content">
-                                            <s id="mymodal-1-png" class="pull-left"></s> <span class="pull-left">成功加入收藏夹！</span>
-
-                                             <button class="close pull-right" aria-hidden="true" data-dismiss="modal" type="button">×</button>
-                                             <button class="btn btn-success center-block" aria-hidden="true" data-dismiss="modal">确定</button>
-                                            </div><!-- /.modal-content -->
-                                        </div><!-- /.modal-dialog -->
-                                    </div>
+            <button class="close pull-right" aria-hidden="true" data-dismiss="modal" type="button"></button>
+            <button class="btn btn-success center-block" aria-hidden="true" data-dismiss="modal">确定</button>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
 
 
 <div class="pd_l container_24">
@@ -281,7 +293,7 @@ $imageHelper=new ImageHelper();
             <div class="pd_l_ti">
                 <a href="<?php echo Yii::app()->baseUrl; ?>">首页>></a>
                 <?php foreach ($this->breadcrumbs as $breadcrumb) {
-                echo '<a href="' . $breadcrumb['url'] . '">' . $breadcrumb['name'] . '</a>';
+                    echo '<a href="' . $breadcrumb['url'] . '">' . $breadcrumb['name'] . '</a>';
                 } ?>
             </div>
             <h2>所有分类</h2>
@@ -290,18 +302,18 @@ $imageHelper=new ImageHelper();
             $children = $root->children()->findAll();
             $params = array();
             if (!empty($_GET['key'])) {
-            $params['key'] = $_GET['key'];
+                $params['key'] = $_GET['key'];
             }
             foreach ($children as $child) {
-            $params['cat'] = $child->getUrl();
-            echo '<div class="pd_l_ca"><a href="' . Yii::app()->createUrl('catalog/index', $params) . '">' . $child->name . '</a></div>';
-            echo '<ul class="pd_ca_list" >';
-            $leafs = $child->children()->findAll();
-            foreach ($leafs as $leaf) {
-            $params['cat'] = $leaf->getUrl();
-            echo '<li><a href="' . Yii::app()->createUrl('catalog/index', $params) . '">' . $leaf->name . '</a></li>';
-            }
-            echo '</ul>';
+                $params['cat'] = $child->getUrl();
+                echo '<div class="pd_l_ca"><a href="' . Yii::app()->createUrl('catalog/index', $params) . '">' . $child->name . '</a></div>';
+                echo '<ul class="pd_ca_list" >';
+                $leafs = $child->children()->findAll();
+                foreach ($leafs as $leaf) {
+                    $params['cat'] = $leaf->getUrl();
+                    echo '<li><a href="' . Yii::app()->createUrl('catalog/index', $params) . '">' . $leaf->name . '</a></li>';
+                }
+                echo '</ul>';
             } ?>
         </div>
         <div class="pd_l_intr">
@@ -309,22 +321,22 @@ $imageHelper=new ImageHelper();
             <ul class="pd_intr_list">
                 <?php
                 $recommendItems=Item::model()->best()->findAll(array(
-                'limit'=>3,
+                    'limit'=>3,
                 ));
                 $num=count(recommendItems);
                 if($num>0){
-                foreach($recommendItems as $value){
-                if($value->getMainPic()){
-                $picUrl=$imageHelper->thumb('180','180',$value->getMainPic());
-                $picUrl=Yii::app()->baseUrl.$picUrl;
-                }else $picUrl=$item->getHolderJs('180','180');
-                ?>
-                <li>
-                    <div class="intr_list_img"><a href=""><img alt="" src="<?php echo $picUrl?>" width="180" height="180"/></a></div>
-                    <div class="intr_list_tit"><a href=""><?php echo $value->getTitle()?></a></div>
-                    <div class="intr_list_price"><span class="cor_red bold"><?php echo $value->price?></span></div>
-                </li>
-                <?php
+                    foreach($recommendItems as $value){
+                        if($value->getMainPic()){
+                            $picUrl=$imageHelper->thumb('180','180',$value->getMainPic());
+                            $picUrl=Yii::app()->baseUrl.$picUrl;
+                        }else $picUrl=$item->getHolderJs('180','180');
+                        ?>
+                        <li>
+                            <div class="intr_list_img"><a href=""><img alt="" src="<?php echo $picUrl?>" width="180" height="180"/></a></div>
+                            <div class="intr_list_tit"><a href=""><?php echo $value->getTitle()?></a></div>
+                            <div class="intr_list_price"><span class="cor_red bold"><?php echo $value->price?></span></div>
+                        </li>
+                    <?php
                     }
                 }else echo"No data";
                 ?>
@@ -343,8 +355,8 @@ $imageHelper=new ImageHelper();
         </div>
         <div class="deal_describe" id="describe_2" style="display:none;">
             <?php    $this->widget('widgets.default.WReview',array(
-            '_itemId'=> $item->item_id,
-            '_entityId'=>'1',
+                '_itemId'=> $item->item_id,
+                '_entityId'=>'1',
             ))?>
         </div>
 
@@ -352,45 +364,45 @@ $imageHelper=new ImageHelper();
             <?php
             $num=count($item->orderItems);
             if($num>0){
-            ?>
-            <table class="table table-bordered table-hover table-striped" >
-                <colgroup>
-                    <col class="col-user">
-                    <col class="col-title">
-                    <col class="col-price">
-                    <col class="col-quantity">
-                    <col class="col-time">
-                    <col class="col-status">
-                </colgroup>
-                <thead id="table-th">
-                <tr>
-                    <th>买家</th>
-                    <th>宝贝名称</th>
-                    <th>价格</th>
-                    <th>购买数量</th>
-                    <th>成交时间</th>
-                    <th>状态</th>
-                </tr>
-                </thead>
-                <tbody>
-                <?php
+                ?>
+                <table class="table table-bordered table-hover table-striped" >
+                    <colgroup>
+                        <col class="col-user">
+                        <col class="col-title">
+                        <col class="col-price">
+                        <col class="col-quantity">
+                        <col class="col-time">
+                        <col class="col-status">
+                    </colgroup>
+                    <thead id="table-th">
+                    <tr>
+                        <th>买家</th>
+                        <th>宝贝名称</th>
+                        <th>价格</th>
+                        <th>购买数量</th>
+                        <th>成交时间</th>
+                        <th>状态</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
 
-                foreach($item->orderItems as $orderItem) {
-                /** @var OrderItem $orderItem */
-                ?>
-                <tr>
-                    <td><?php echo Tbfunction::getUser($orderItem->order->user_id);?></td>
-                    <td><?php echo $orderItem->title;?></td>
-                    <td><?php echo $orderItem->price;?></td>
-                    <td><?php echo $orderItem->quantity;?></td>
-                    <td><?php echo date("M j, Y",$orderItem->order->create_time);?></td>
-                    <td><?php echo $orderItem->order->status? finished:unfinished;?></td>
-                </tr>
-                <?php
+                    foreach($item->orderItems as $orderItem) {
+                        /** @var OrderItem $orderItem */
+                        ?>
+                        <tr>
+                            <td><?php echo Tbfunction::getUser($orderItem->order->user_id);?></td>
+                            <td><?php echo $orderItem->title;?></td>
+                            <td><?php echo $orderItem->price;?></td>
+                            <td><?php echo $orderItem->quantity;?></td>
+                            <td><?php echo date("M j, Y",$orderItem->order->create_time);?></td>
+                            <td><?php echo $orderItem->order->status? finished:unfinished;?></td>
+                        </tr>
+                    <?php
                     }
-                ?>
-                </tbody>
-            </table>
+                    ?>
+                    </tbody>
+                </table>
             <?php
             }
             else echo "No data";
@@ -542,53 +554,105 @@ $(function () {
         }
     });
     $('.deal_add_car').click(function() {
+        $("#log-btn-div").click(function() {carLogin();});
+        $("#buy-without-login").hide();
+        var selectProps = $('.prop-select,.img-prop-select');
+        if (selectProps.length < $('.deal_size p').length) {
+            showPopup("请添加商品属性。");
+            $('.deal_size').addClass('prop-div-select');
+        } else {
+            $('.deal_size').removeClass('prop-div-select');
+            $.post($(".deal_add").data('url'), function(response){
+                if (response.status == 'login') {
+                    $.post($('.deal_add_car').data('url'), $('#deal').serialize(), function(response) {
+                        if(response.status=='success'){
+//                            var num=$('.shopping_car').children().text();
+//                            num=parseInt(num)+1;
+                            $('.shopping_car').children().text(response.number);
+                            $("#myModal-1").modal('show');
+                        }else
+                            showPopup(response.status);
+                    },'json');
+                } else {
+                    $('#myModal').modal('show');
+                }
+            }, 'json');
+        }
+    });
+    $('.deal_collect').click(function() {
+        $("#log-btn-div").click(function() {collectLogin();});
+        $("#buy-without-login").hide();
+        $.post($(".deal_add").data('url'), function(response){
+            if (response.status == 'login') {
+                $.post($(".deal_collect").data('url'),$('#item_id').serialize(),function(response){
+                    if(response.status=='exist'){
+                        $("#myModal-3").modal('show');
+                    }else
+                        $("#myModal-2").modal('show');
+                },'json');
+            } else {
+                $('#myModal').modal('show');
+            }
+        }, 'json');
+
+//        $.post($(this).data('url'), $('#item_id').serialize(), function(response) {
+//            if(response.status=='exist'){
+//                $("#myModal-3").modal('show');
+//            }else
+//                $("#myModal-2").modal('show');
+//        },'json');
+    });
+    $('.deal_add').click(function() {
+        $("#log-btn-div").click(function() {llogin();});
+        $("#buy-without-login").show();
         var selectProps = $('.prop-select,.img-prop-select');
         if (selectProps.length < $('.deal_size p').length) {
             $('.deal_size').addClass('prop-div-select');
         } else {
             $('.deal_size').removeClass('prop-div-select');
-            $.post($(this).data('url'), $('#deal').serialize(), function(response) {
-                if(response.status=='success'){
-                    var num=$('.shopping_car').children().text();
-                    num=parseInt(num)+1;
-                    $('.shopping_car').children().text(num);
-                    showPopup(response.status);
-                }else
-                    showPopup(response.status);
-            },'json');
+//                $('#deal').submit();
+            $.post($(this).data('url'), function(response){
+                if (response.status == 'login') {
+                    $('#deal').submit();
+                } else {
+//                     $('#loginPage')
+                    $('#myModal').modal('show');
+                }
+            }, 'json');
         }
     });
-    $('.deal_collect').click(function() {
-        $.post($(this).data('url'), $('#item_id').serialize(), function(response) {
-            if(response.status=='exist'){
-                showPopup('已收藏过该商品');
-            }else
-                showPopup(response.status) ;
-        },'json');
-        });
-        $('.deal_add').click(function() {
-            var selectProps = $('.prop-select,.img-prop-select');
-            if (selectProps.length < $('.deal_size p').length) {
-                $('.deal_size').addClass('prop-div-select');
-            } else {
-                $('.deal_size').removeClass('prop-div-select');
-//                $('#deal').submit();
-                $.post($(this).data('url'), function(response){
-                    if (response.status == 'login') {
-                        $('#deal').submit();
-                    } else {
-//                     $('#loginPage')
-                        $('#myModal').modal('show');
-                    }
-                }, 'json');
-            }
-        });
 
 
     $('.buy-without-login').click(function() {
         $('#deal').submit();
     });
 });
+
+function collectLogin() {
+    var data = { username: $("#user").val(), password: $("#password").val() };
+    $.post("../user/login/llogin",data , function(response) {
+        if (response.status == 'login') {
+            $('#top_right').load(location.href+" #top_right");
+            $('#myModal').modal('hide');
+            $('.deal_collect').trigger('click');
+        } else {
+            alert("Wrong username or password!");
+        }
+    }, 'json');
+}
+
+function carLogin() {
+    var data = { username: $("#user").val(), password: $("#password").val() };
+    $.post("../user/login/llogin",data , function(response) {
+        if (response.status == 'login') {
+            $('#top_right').load(location.href+" #top_right");
+            $('#myModal').modal('hide');
+            $('.deal_add_car').trigger('click');
+        } else {
+            alert("Wrong username or password!");
+        }
+    }, 'json');
+}
 
 var xmlHttp
 //    function test() {
@@ -636,44 +700,7 @@ function stateChanged(url)
 
     function stateChanged(url)
     {
-    $.post(url, function(response){
-        if (response.status == 'login') {
-            $('#deal').submit();
-        } else {
-            alert("Wrong username or password!");
-        }
-    }, 'json');
-
-//            document.getElementById("user").innerHTML=xmlHttp.responseText;
-    //$("#myModal").css("display","none");
-    //      }
-}
-
-function GetXmlHttpObject()
-{
-    var xmlHttp=null;
-
-    try
-    {
-        // Firefox, Opera 8.0+, Safari
-        xmlHttp=new XMLHttpRequest();
-    }
-    catch (e)
-    {
-        // Internet Explorer
-        try
-        {
-            xmlHttp=new ActiveXObject("Msxml2.XMLHTTP");
-        }
-        catch (e)
-        {
-            xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
-        }
-    }
-    return xmlHttp;
-}
         $.post(url, function(response){
-
             if (response.status == 'login') {
                 $('#deal').submit();
             } else {
@@ -709,4 +736,41 @@ function GetXmlHttpObject()
         }
         return xmlHttp;
     }
+    $.post(url, function(response){
+
+        if (response.status == 'login') {
+            $('#deal').submit();
+        } else {
+            alert("Wrong username or password!");
+        }
+    }, 'json');
+
+//            document.getElementById("user").innerHTML=xmlHttp.responseText;
+    //$("#myModal").css("display","none");
+    //      }
+}
+
+function GetXmlHttpObject()
+{
+    var xmlHttp=null;
+
+    try
+    {
+        // Firefox, Opera 8.0+, Safari
+        xmlHttp=new XMLHttpRequest();
+    }
+    catch (e)
+    {
+        // Internet Explorer
+        try
+        {
+            xmlHttp=new ActiveXObject("Msxml2.XMLHTTP");
+        }
+        catch (e)
+        {
+            xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+        }
+    }
+    return xmlHttp;
+}
 </script>

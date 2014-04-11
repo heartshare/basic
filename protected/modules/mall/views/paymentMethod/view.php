@@ -13,7 +13,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>View PaymentMethod #<?php echo $model->payment_method_id; ?></h1>
+<h3>查看支付方式 #<?php echo $model->payment_method_id; ?></h3>
 
 <?php $this->widget('bootstrap.widgets.TbDetailView', array(
 	'data'=>$model,

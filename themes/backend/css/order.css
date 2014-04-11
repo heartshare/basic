@@ -97,11 +97,11 @@ html{
 .tabs-panels{
     clear:both;
     position:relative;
-    top:29px;
+    top:26px;
     overflow:hidden;
     margin-bottom:40px;
     padding:10px 20px;
-    border:1px solid #111111;
+    border:1px solid #AEC7E5;
 }
 .tabs-panels .order-info{
     display:block
@@ -109,11 +109,11 @@ html{
 .order-info dl{
     width:860px;
     overflow:hidden;
-    line-height:30px
+    line-height:30px;
 }
 .order-info dt,.order-info dd{
     min-height:30px;
-    _height:30px
+    max-height:30px;
 }
 .order-info hr{
     margin:10px 0 5px;*margin:0
@@ -129,7 +129,7 @@ html{
     margin-bottom:4px;
     padding-left:80px;
     *padding-left:0;
-    word-wrap:break-word
+    word-wrap:break-word;
 }
 .tabs-panels col.status{
     width:100px
@@ -194,7 +194,6 @@ html{
 }
 .clearfix{
     clear:both;
-    line-height:0
 }
 .item{
     text-align:center;
@@ -226,7 +225,10 @@ html{
     padding:8px 10px;
     line-height:130%;
     text-align:center;
-    border-bottom:1px solid #ddd
+    border-bottom:1px solid #ddd;
+    background:#333333;
+    font-size:14px;
+    font-weight:bold;
 }
 .order-item .pic-info{
     display:inline;
@@ -291,4 +293,14 @@ html{
     text-align:center;
     border:1px solid #ddd;
     border-top:0
+}
+.order-ft  .get-money{
+    display:block;
+    height:45px;
+    width:120px!important;
+    text-align:left;
+    padding-top:8px;
+}
+.order-ft  strong{
+    display:inline!important;
 }

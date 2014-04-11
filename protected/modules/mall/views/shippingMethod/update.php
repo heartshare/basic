@@ -13,6 +13,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Update ShippingMethod <?php echo $model->shipping_method_id; ?></h1>
+<h3>更新支付方式 <?php echo $model->shipping_method_id; ?></h3>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

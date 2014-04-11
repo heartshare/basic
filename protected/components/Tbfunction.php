@@ -52,6 +52,9 @@ class Tbfunction {
         return array('0' => '无效', '1' => '有效');
     }
 
+    public function ReturnOrderStatus(){
+        return array('0' => '未提交', '1' => '已提交');
+    }
 
     public function ReturnPayStatus(){
         return array('0' => '待支付', '1' => '已支付');
@@ -66,7 +69,7 @@ class Tbfunction {
     }
 
     public function ReturnShipMethod(){
-        return array('' => '请选择', '1' => '平邮', '2' => '快递', '3' => 'EMS');
+        return array( '1' => '平邮', '2' => '快递', '3' => 'EMS');
     }
 
     public function ReturnYesOrNo(){
@@ -108,10 +111,19 @@ class Tbfunction {
         return $shipMethod[$ship_method];
     }
 
-
+    public function showShipDisabled($ship_status)
+    {
+        $shipStatus = array('0'=>' ','1'=>' disabled');
+        return $shipStatus[$ship_status];
+    }
 
     public function showStatus($status){
         $Status=array('0'=>'未提交','1'=>'有效');
+        return $Status[$status];
+    }
+
+    public function showOrderStatus($status){
+        $Status=array('0'=>'未提交','1'=>'已提交');
         return $Status[$status];
     }
 

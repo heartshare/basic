@@ -1,7 +1,8 @@
 <?php
 echo $form->textFieldControlGroup($model, 'title');
-
-echo  $form->textFieldControlGroup($model, 'stock', array('help' => '库存默认为1000','readonly' => false));
+if($model->stock) {
+    echo  $form->textFieldControlGroup($model, 'stock', array('help' => '库存默认为1000','readonly' => true));
+}
 
 echo  $form->textFieldControlGroup($model, 'min_number', array('help' => '最少订货量默认为1'));
 echo  $form->textFieldControlGroup($model, 'price');

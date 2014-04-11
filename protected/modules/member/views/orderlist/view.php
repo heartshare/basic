@@ -148,11 +148,11 @@
         <td colspan="8"></td>
     </tr>
     <tr class="order-hd">
-        <th class="item">宝贝</th>
-        <th class="sku">宝贝属性</th>
-        <th class="price">单价(元)</th>
-        <th class="num">数量</th>
-        <th class="order-price last">商品总价(元)</th>
+        <th class="item " style="width:31%">宝贝</th>
+                           <th class="sku" style="width:24%">宝贝属性</th>
+                           <th class="price" style="width:15%">单价(元)</th>
+                           <th class="num" style="width:15%">数量</th>
+                           <th class="order-price last" style="width:15%">商品总价(元)</th>
     </tr>
 
     <?php

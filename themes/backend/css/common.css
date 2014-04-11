@@ -215,3 +215,30 @@ Pseudo ::after element
     width:572px;
     height:191px;
 }
+#page #sidebar-content .row-fluid .span12 form .tab-content .control-group input{
+    height:32px;
+}
+
+.bd dl dd,dt{
+    line-height:37px!important
+}
+#table-margin{
+    margin-top:9px;
+}
+.tab-content{
+    margin-top: 10px;
+}
+#sku td{
+    text-align: center;
+    vertical-align: middle;
+}
+.control-group .controls input{
+     height:30px;
+
+}
+#order-grid .items{
+    margin-top:17px;
+}
+#demo-table{
+   margin-left:0px;
+}

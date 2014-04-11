@@ -104,9 +104,9 @@ class CatalogController extends YController
 
         $categories = $category->children()->findAll();
         $itemProps = ItemProp::model()->with('propValues')->findAll(new CDbCriteria(array('condition' => "t.`category_id` = $category->category_id AND t.`type` > 1")));
-
         $this->render('index', array(
             'cat' => $cat,
+            'count' => $count,
             'category' => $category,
             'items' => $items,
             'pager' => $pager,
