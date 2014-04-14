@@ -50,6 +50,7 @@ class AddressResult extends CActiveRecord {
             array('user_id, create_time, update_time', 'length', 'max' => 10),
             array('country, state, city, district,', 'length', 'max' => 11),
             array('contact_name, zipcode, phone, mobile_phone', 'length', 'max' => 45),
+            array('mobile_phone','length','is' => 11),
             array('address', 'length', 'max' => 255),
             array('memo', 'safe'),
             // The following rule is used by search().

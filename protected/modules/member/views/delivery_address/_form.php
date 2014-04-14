@@ -31,13 +31,13 @@
 	</div>
 
     <div class="form-group" style="height:40px; overflow:hidden;border:1px solid white">
-        <lable class="col-xs-2 control-label" style="width:120px;padding-top:10px;margin-left:13px;"><b>所在地区：</b><span class="required">*</span></lable>
+        <lable class="col-xs-2 control-label" ><b>所在地区：</b><span class="required">*</span></lable>
             <?php
                 $state_data=  Area::model()->findAll("grade=:grade",
                   array(":grade"=>1));
                 $state=CHtml::listData($state_data,"area_id","name");
                 $s_default = $model->isNewRecord ? '' : $model->state;
-                echo '&nbsp;'.CHtml::dropDownList('AddressResult[state]', $s_default, $state,
+                echo '&nbsp;&nbsp;&nbsp;&nbsp;'.CHtml::dropDownList('AddressResult[state]', $s_default, $state,
                             array(
                             'empty'=>'请选择省份',
                             'ajax' => array(
@@ -56,7 +56,7 @@
                 }
 
                 $city_update = $model->isNewRecord ? array() : $city;
-                echo '&nbsp;市&nbsp;'.CHtml::dropDownList('AddressResult[city]', $c_default, $city_update,
+                echo '&nbsp;&nbsp;'.CHtml::dropDownList('AddressResult[city]', $c_default, $city_update,
                             array(
                             'empty'=>'请选择城市',
                             'ajax' => array(
@@ -72,7 +72,7 @@
                 $district=CHtml::listData($district_data,"area_id","name");
                 }
                 $district_update = $model->isNewRecord ? array() : $district;
-                 echo '&nbsp;区&nbsp;'.CHtml::dropDownList('AddressResult[district]', $d_default, $district_update,
+                 echo '&nbsp;&nbsp;'.CHtml::dropDownList('AddressResult[district]', $d_default, $district_update,
                          array(
                             'empty'=>'请选择地区',
                          )
