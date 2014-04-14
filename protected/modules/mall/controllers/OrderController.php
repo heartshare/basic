@@ -143,12 +143,11 @@ class OrderController extends Controller
                 $model->update_time = time();
                 if ($model->save()) {
                     $flag = array();
-
                     $OrderItem = OrderItem::model()->findAllByAttributes(array('order_id' => $id));
                     foreach ($OrderItem as $key => $original) {
                         $criteria=new CDbCriteria();
                         $criteria->addCondition('item_id=:item_id');
-                        $criteria->addCondition('price=:price');
+//                        $criteria->addCondition('price=:price');
                         $criteria->addCondition('props_name=:props_name');
                         $criteria->params[':item_id']=$original->item_id;
 //                        $criteria->params[':price']=$original->price;

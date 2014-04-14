@@ -53,6 +53,7 @@
         foreach ($item->orderItems as $key2=>$orderItem) {
             ?>
             <div>
+                <tbody>
                 <tr>
                          <td>
                              <input id="Sku_item_id" name="Sku[item_id][]" type="hidden" value="<?php echo $item->item_id ?>"/>
@@ -66,9 +67,7 @@
                          <td id="Item-num"><?php echo $orderItem->quantity; ?></td>
                          <td><div class="btn btn-danger" id="delete">Delete</div> </td>
                 </tr>
-
-
-
+                </tbody>
             </div>
         <?php }
     }
