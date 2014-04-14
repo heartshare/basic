@@ -740,7 +740,7 @@ function stateChanged(url)
         if (response.status == 'login') {
             $('#deal').submit();
         } else {
-            alert("Wrong username or password!");
+            alert("用户名或密码错误!");
         }
     }, 'json');
 

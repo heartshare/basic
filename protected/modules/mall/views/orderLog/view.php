@@ -27,3 +27,8 @@ $this->widget('bootstrap.widgets.TbDetailView', array(
 		'result',
 	),
 )); ?>
+
+<script>
+    $('table[id=yw0]').removeClass().addClass('table table-bordered table-condensed').css('width','30%');
+
+</script>

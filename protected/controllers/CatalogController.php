@@ -17,11 +17,16 @@ class CatalogController extends YController
         if (!empty($_GET['key'])) {
             $criteria->addCondition("(t.title LIKE '%{$_GET['key']}%')");
         }
-        if (!empty($_GET['floor_price'])) {
-            $criteria->addCondition("t.price >= '{$_GET['floor_price']}'");
-        }
-        if (!empty($_GET['top_price'])) {
-            $criteria->addCondition("t.price <= '{$_GET['top_price']}'");
+        if(!empty($_GET['floor_price'])&&!empty($_GET['top_price'])&&$_GET['top_price']<$_GET['floor_price']) {
+            $criteria->addCondition("t.price >= '{$_GET['top_price']}'");
+            $criteria->addCondition("t.price <= '{$_GET['floor_price']}'");
+        } else {
+            if (!empty($_GET['floor_price'])) {
+                $criteria->addCondition("t.price >= '{$_GET['floor_price']}'");
+            }
+            if (!empty($_GET['top_price'])) {
+                $criteria->addCondition("t.price <= '{$_GET['top_price']}'");
+            }
         }
         if (!empty($_GET['has_stock']) && $_GET['has_stock']) {
             $criteria->addCondition("t.stock > 0");
