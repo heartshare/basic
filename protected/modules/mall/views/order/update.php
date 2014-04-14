@@ -6,5 +6,5 @@
 //);
 ?>
 
-    <h1 style="text-align:center">Update Order <?php echo $model->order_id; ?></h1>
+    <h1 style="text-align:center">订单更新 <?php echo $model->order_id; ?></h1>
 <?php echo $this->renderPartial('_form', array('model'=>$model,'Item'=>$Item,'ItemSku'=>$ItemSku)); ?>

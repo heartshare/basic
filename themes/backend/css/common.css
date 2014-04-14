@@ -147,7 +147,6 @@ Pseudo ::after element
     border-bottom-right-radius: 0;
 }
 .input-group-addon {
-    padding: 6px 12px;
     font-size: 14px;
     font-weight: normal;
     line-height: 1;
@@ -244,4 +243,13 @@ Pseudo ::after element
 }
 #Order_order_ship_id{
      height:28px;
+}
+#tab_1{
+    height:500px;
+}
+.tab-content .input-group{
+    margin-top:35px;
+}
+#yw0 ul{
+     margin-bottom:-5px;
 }
