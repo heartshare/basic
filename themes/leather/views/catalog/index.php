@@ -266,4 +266,14 @@
             }
         }
     });
+
+    $(function(){
+        $("#floor_price,#top_price").keyup(function() {
+            var tmptxt = $(this).val();
+            $(this).val(tmptxt.replace(/\D|/g, ''));
+        }).bind("paste", function() {
+                var tmptxt = $(this).val();
+                $(this).val(tmptxt.replace(/\D|/g, ''));
+            }).css("ime-mode", "disabled");
+    });//输入验证，保证只有数字。
 </script>
