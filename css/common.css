@@ -89,3 +89,10 @@ input[type="radio"], input[type="checkbox"]{
     width:95%
 }
 h2{font-size: 20px;}
+#shipping-method-form input{
+    width: 220px;
+    height: 30px;
+}
+#shipping-method-form textarea{
+    width: 220px;
+}
