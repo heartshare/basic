@@ -8,6 +8,11 @@
 class WReview extends CWidget
 {
     public $_itemId;
+    /**
+     * @var int
+     * for example
+     * 1:product;2:article
+     */
     public $_entityId;
     public $_rating;
     public $_strOutput;
