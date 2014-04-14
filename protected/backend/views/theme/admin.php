@@ -5,8 +5,8 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List Theme', 'icon'=>'list', 'url'=>array('index')),
-	array('label'=>'Create Theme', 'icon'=>'plus', 'url'=>array('create')),
+	array('label'=>'主题列表', 'icon'=>'list', 'url'=>array('index')),
+	array('label'=>'创建主题', 'icon'=>'plus', 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -23,7 +23,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Manage Themes</h1>
+<h1>管理  主题</h1>
 
 <p>
 You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
