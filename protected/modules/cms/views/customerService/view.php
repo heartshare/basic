@@ -14,7 +14,7 @@ $this->menu=array(
 	array('label'=>'Create CustomerService', 'icon'=>'plus', 'url'=>array('create')),
 	array('label'=>'Update CustomerService', 'icon'=>'pencil', 'url'=>array('update', 'id'=>$model->id)),
 	array('label'=>'Delete CustomerService', 'icon'=>'trash', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage CustomerService', 'icon'=>'cog', 'url'=>array('admin')),
+	array('label'=>'客服管理', 'icon'=>'cog', 'url'=>array('admin')),
 );
 ?>
 
