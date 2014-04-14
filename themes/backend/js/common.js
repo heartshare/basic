@@ -118,26 +118,38 @@ $(document).ready(function () {
                     var number = parseInt($('#item-number').val());
                     var sku = $('#ItemList').find('input[value=' + skuValue.val() + '][id=Sku_sku_id]');
                     if ((sku.val() != undefined)) {
-                        number += parseInt(sku.parent().find('#Item-number').val());
+                        number += parseInt(sku.parent().parent().find('#Item-num').html());
+                        $.get($('#item-number').data('url'), {number: number, sku_id: skuValue.val() }, function (response) {
+                            if (response == 0) {
+                                $('#stockError').remove();
+                                $('#StockError').append('<div style="color: red" id="stockError">库存不足！</div>');
+                            }
+                            else {
+                                $('#stockError').remove();
+                                sku.parent().parent().find('#Item-num').text(number);
+                            }
+                        });
+                    }else
+                    {
+                        $.get($('#item-number').data('url'), {number: number, sku_id: skuValue.val() }, function (response) {
+                            if (response == 0) {
+                                $('#stockError').remove();
+                                $('#StockError').append('<div style="color: red" id="stockError">库存不足！</div>');
+                            }
+                            else {
+                                $('#stockError').remove();
+                                sku.parent().remove();
+                                var html = '<tbody><tr><td>';
+                                html += '<input id="Sku_item_id" name="Sku[item_id][]" type="hidden" value="' + $('#selectItem').val() + '"/>';
+                                html += '<input id="Sku_sku_id" name="Sku[sku_id][]" type="hidden" value="' + $('#Sku_item').val() + '"/>';
+                                html += '<input id="Item-number" name="Item-number[]" type="hidden" value="' + number + '"/>';
+                                html +=  $("#selectItem  option:selected").html() + '</td><td>'+ $("#Sku_item  option:selected").html() +'</td><td id="Item-num">'+number +'</td><td> <div class="btn btn-danger" id="delete">Delete</div></td></tr></tobody>';
+
+
+                                $('#head-title').after(html);
+                            }
+                        });
                     }
-                    $.get($('#item-number').data('url'), {number: number, sku_id: skuValue.val() }, function (response) {
-                        if (response == 0) {
-                            $('#stockError').remove();
-                            $('#StockError').append('<div style="color: red" id="stockError">库存不足！</div>');
-                        }
-                        else {
-                            $('#stockError').remove();
-                            sku.parent().remove();
-                            var html = '<tbody><tr><td>';
-                            html += '<input id="Sku_item_id" name="Sku[item_id][]" type="hidden" value="' + $('#selectItem').val() + '"/>';
-                            html += '<input id="Sku_sku_id" name="Sku[sku_id][]" type="hidden" value="' + $('#Sku_item').val() + '"/>';
-                            html += '<input id="Item-number" name="Item-number[]" type="hidden" value="' + number + '"/>';
-                            html +=  $("#selectItem  option:selected").html() + '</td><td>'+ $("#Sku_item  option:selected").html() +'</td><td>'+number +'</td><td> <div class="btn btn-danger" id="delete">Delete</div></td></tr></tobody>';
-
-
-                            $('#head-title').after(html);
-                        }
-                    });
                 }
             }
         }

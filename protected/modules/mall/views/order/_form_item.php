@@ -38,59 +38,43 @@
 <div style="clear: both"></div>
 <div id="ItemList" style="float: left">
 
+    <table class="table table-striped table-bordered" id="tab">
+        <thead id="head-title">
+        <tr>
+            <th>商品标题：</th>
+            <th>商品属性：</th>
+            <th>商品数量：</th>
+            <th>操作：</th>
+        </tr>
+        </thead>
 
 <?php if (isset($Item)) {
     foreach ($Item as $key1=>$item) {
         foreach ($item->orderItems as $key2=>$orderItem) {
             ?>
             <div>
-            <input id="Sku_item_id" name="Sku[item_id][]" type="hidden" value="<?php echo $item->item_id ?>"/>
-            <input id="Sku_sku_id" name="Sku[sku_id][]" type="hidden" value="<?php echo $ItemSku[$key1][$key2]->sku_id ?>"/>
-            <input id="Item-number" name="Item-number[]" type="hidden" value="<?php echo $orderItem->quantity ?>"/>
-          <!--  <table class="table table-striped table-bordered" id="tab">
-
-            <tr>
-            <th>商品标题：</th>
-            <td><?php echo $item->title ?></td></tr>
-            <tr>
-           <td>商品属性：</td>
-            <td>
-            <?php  foreach (json_decode($orderItem->props_name, true) as $props) {
-                    echo ($props).' ';
-                }?>
-             </td>
-             </tr>
-            <tr>
-            <td>商品数量：</td>
-            <td><?php echo $orderItem->quantity ?></td>
-            </tr>
-            </table>   -->
-             <div style="width:100%;height:50px;"><div id="add-button" class="btn btn-primary" style="float: right;width:135px;margin:15px 33px;">Add</div></div>
-              <table class="table table-striped table-bordered" id="tab">
-               <thead id="head-title">
-               <tr>
-                          <th>商品标题：</th>
-                          <th>商品属性：</th>
-                          <th>商品数量：</th>
-                          <th>操作：</th>
-                </tr>
-                </thead>
-
-                <tr id="example-tr">
-                         <td><?php echo $item->title ?></td>
+                <tr>
+                         <td>
+                             <input id="Sku_item_id" name="Sku[item_id][]" type="hidden" value="<?php echo $item->item_id ?>"/>
+                             <input id="Sku_sku_id" name="Sku[sku_id][]" type="hidden" value="<?php echo $ItemSku[$key1][$key2]->sku_id ?>"/>
+                             <input id="Item-number" name="Item-number[]" type="hidden"  value="<?php echo $orderItem->quantity ?>"/>
+                             <?php echo $item->title ?>
+                         </td>
                          <td> <?php  foreach (json_decode($orderItem->props_name, true) as $props) {
                                                  echo ($props).' ';
                                              }?></td>
-                         <td><?php echo $orderItem->quantity ?></td>
+                         <td id="Item-num"><?php echo $orderItem->quantity; ?></td>
                          <td><div class="btn btn-danger" id="delete">Delete</div> </td>
                 </tr>
-                </table>
+
 
 
             </div>
         <?php }
     }
 } ?>
+    </table>
+    <div style="width:100%;height:50px;"><div id="add-button" class="btn btn-primary" style="float: right;width:135px;margin:15px 33px;">Add</div></div>
 <div style="clear: both"></div>
 
 <div style="clear: both"></div>

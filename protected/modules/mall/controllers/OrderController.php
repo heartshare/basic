@@ -133,7 +133,7 @@ class OrderController extends Controller
         $Item = Item::model()->with('orderItems')->findAll(new CDbCriteria(array('condition' => "order_id='$id'")));
         foreach ($Item as $key1 => $items)
             foreach ($items->orderItems as $key2 => $orderItem) {
-                $ItemSku[$key1][$key2] = Sku::model()->findByAttributes(array('item_id' => $orderItem->item_id, 'props_name' => $orderItem->props_name, 'price' => $orderItem->price));
+                $ItemSku[$key1][$key2] = Sku::model()->findByAttributes(array('item_id' => $orderItem->item_id, 'props_name' => $orderItem->props_name));
             }
         if (isset($_POST['Order']) && isset($_POST['Sku'])) {
             $transaction = $model->dbConnection->beginTransaction();
