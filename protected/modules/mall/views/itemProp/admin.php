@@ -27,6 +27,7 @@ $this->widget('bootstrap.widgets.TbGridView', array(
         ),
         array(
             'name' => 'prop.prop_values',
+            'header' => '属性值',
             'value' => '$data->getPropValues()',
             'htmlOptions' => array('width'=>'600'),
         ),
