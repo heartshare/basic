@@ -138,10 +138,12 @@ class OrderController extends Controller
         if (isset($_POST['Order']) && isset($_POST['Sku'])) {
             $transaction = $model->dbConnection->beginTransaction();
             try {
+
                 $model->attributes = $_POST['Order'];
                 $model->update_time = time();
                 if ($model->save()) {
                     $flag = array();
+
                     $OrderItem = OrderItem::model()->findAllByAttributes(array('order_id' => $id));
                     foreach ($OrderItem as $key => $original) {
                         $criteria=new CDbCriteria();
@@ -149,7 +151,7 @@ class OrderController extends Controller
                         $criteria->addCondition('price=:price');
                         $criteria->addCondition('props_name=:props_name');
                         $criteria->params[':item_id']=$original->item_id;
-                        $criteria->params[':price']=$original->price;
+//                        $criteria->params[':price']=$original->price;
                         $criteria->params[':props_name']=$original->props_name;
                         $sku = Sku::model()->find($criteria);
                         $sku->stock+=$original->quantity;
@@ -164,6 +166,7 @@ class OrderController extends Controller
                             $original->delete();
                         }
                     }
+
                     foreach ($_POST['Sku']['item_id'] as $key => $itemId) {
                         $item = Item::model()->findByPk($itemId);
                         $sku = Sku::model()->findByPk($_POST['Sku']['sku_id'][$key]);

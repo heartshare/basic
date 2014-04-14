@@ -127,6 +127,7 @@ $(document).ready(function () {
                             else {
                                 $('#stockError').remove();
                                 sku.parent().parent().find('#Item-num').text(number);
+                                sku.parent().find('#Item-number').val(number);
                             }
                         });
                     }else
