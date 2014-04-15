@@ -247,16 +247,20 @@ background: #FFFFE0;
 .message-bord{
     border:1px solid darkgray;
     padding:10px 30px 50px;
+
 }
 .message-bord li
 {
-    border-bottom: 2px solid darkgray;
-    padding-left: 10px;
+    border-bottom: 2px solid #E0E0E0;
+    padding: 10px;
 }
-.message-bord li p{
+.message-bord li .mainTxt{
     text-indent: 4em;
     color:#2D2D2D;
-    ;
+
+}
+.message-bord li .mainReply{
+    text-indent: 1em;
 }
 .message-bord li small{
     margin-left: 17px;

@@ -96,3 +96,13 @@ h2{font-size: 20px;}
 #shipping-method-form textarea{
     width: 220px;
 }
+#feedback-form{margin-left:50px}
+#feedback-form input{
+    height: 25px;
+}
+#feedback-form input[type='submit']{
+    background: green;
+    color: #ffffff;
+    font-size: 15px;
+    border-radius: 4px;
+}
