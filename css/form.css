@@ -245,7 +245,7 @@ background: #FFFFE0;
     margin-left: 20px;
 }
 .message-bord{
-    border:1px solid darkgray;
+
     padding:10px 30px 50px;
 
 }
@@ -264,4 +264,17 @@ background: #FFFFE0;
 }
 .message-bord li small{
     margin-left: 17px;
+}
+
+.message-bord-pag a{
+    color: #428bca!important;
+    text-indent: 1px!important;
+    width: 29px!important;
+    height: 29px!important;
+}
+.message-bord-pag{
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+
 }
