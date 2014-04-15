@@ -16,24 +16,49 @@ $this->widget('bootstrap.widgets.TbDetailView', array(
     'data'=>$model,
     'attributes'=>array(
         array(
-            'name' =>  'category_id',
+            'name' =>Yii::t('backend','分类'),
             'value' => $data[0]['name'],
         ),
         array(
-           'name'=> 'prop_value',
-           'value' => $propstr
+           'name'=> Yii::t('backend','品牌名'),
+           'value' => $propstr,
         ),
-        'prop_name',
-        'prop_alias',
         array(
-            'name' => 'type',
+            'name' => 'prop_name',
+            'label' =>  Yii::t('backend','属性名'),
         ),
-        'is_key_prop',
-        'is_sale_prop',
-        'is_color_prop',
-        'must',
-        'status',
-        'sort_order',
+        array(
+            'name' => 'prop_alias',
+            'label' =>  Yii::t('backend','属性别名'),
+        ),
+        array(
+            'name' => Yii::t('backend','属性类型'),
+            'value' => $model->getType(),
+        ),
+        array(
+            'name' => Yii::t('backend','是否关键属性'),
+            'value' => $model->getKey(),
+        ),
+        array(
+            'name' => Yii::t('backend','是否销售属性'),
+            'value' => $model->getSale(),
+        ),
+        array(
+            'name' => Yii::t('backend','是否颜色属性'),
+            'value' => $model->getColor(),
+        ),
+        array(
+            'name' => Yii::t('backend','是否必选'),
+            'value' => $model->getMust(),
+        ),
+        array(
+            'name' => Yii::t('backend','状态'),
+            'value' => $model->getStatus(),
+        ),
+        array(
+            'name' => 'sort_order',
+            'label' => '排序',
+        ),
         'item_propcol',
     )
 ));
