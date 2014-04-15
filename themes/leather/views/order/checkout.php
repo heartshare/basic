@@ -226,9 +226,13 @@ Yii::app()->clientScript->registerCoreScript('jquery');
                     }
                     ?>
                     <tr><?php
+                        if($picUrl){
                             $picUrl=$imageHelper->thumb('70','70',$item->getMainPic());
                         ?>
-                        <td><?php echo CHtml::image($picUrl, $item->title, array('width' => '80px', 'height' => '80px')); ?></td>
+                        <td><?php echo CHtml::image($picUrl, $item->title, array('width' => '80px', 'height' => '80px'));
+                            } else {
+                                echo Yii::t('leather','该商品没有上传图片');
+                            } ?></td>
                         <td><?php echo $item->title; ?></td>
                         <td><?php echo  empty($item->sku) ? '' : implode(';', json_decode($item->sku->props_name, true)); ?></td>
                         <td><?php echo $item->getPrice(); ?></td>
