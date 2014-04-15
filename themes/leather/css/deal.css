@@ -70,6 +70,15 @@
     overflow:hidden;
     padding:0 5px;
 }
+.deal_num_cart{
+    overflow:hidden;
+    padding:0 5px;
+}
+.deal_num_cart span{
+    float:left;
+    overflow:hidden;
+    line-height:21px;
+}
 .deal_num span{
     float:left;
     overflow:hidden;

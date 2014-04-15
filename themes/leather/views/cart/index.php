@@ -1,8 +1,6 @@
-
-
-
-
 <?php
+$cs = Yii::app()->clientScript;
+$cs->registerCssFile(Yii::app()->theme->baseUrl . '/css/deal.css');
 Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl . '/css/cart/core.css');
 Yii::app()->clientScript->registerCssFile(Yii::app()->theme->baseUrl . '/css/cart/box.css');
 $this->breadcrumbs = array(
@@ -26,7 +24,7 @@ Yii::app()->clientScript->registerCoreScript('jquery');
         <table class="table" id="cart-table">
            <thead>
             <tr>
-                <th class=""><?php echo CHtml::checkBox('checkAllPosition', false, array('data-url' => Yii::app()->createUrl('cart/getPrice'))); ?></th>
+                <th class=""><?php echo CHtml::checkBox('checkAllPosition', true, array('data-url' => Yii::app()->createUrl('cart/getPrice'))); ?></th>
                 <th class="col-md-2">图片</th>
                 <th class="col-md-3">名称</th>
                 <th class="col-md-3">属性</th>
@@ -46,6 +44,8 @@ Yii::app()->clientScript->registerCoreScript('jquery');
                 </tr>
             <?php
             } else {
+                $i = 0;
+                $total = 0;
                 foreach ($items as $key => $item) {
 //                    var_dump($key);die;
                     ?>
@@ -56,7 +56,7 @@ Yii::app()->clientScript->registerCoreScript('jquery');
                             <?php echo CHtml::hiddenField('item_id[]', $item->item_id, array('id' => '','class' => 'item-id'));
                             echo CHtml::hiddenField('props[]', empty($item->sku) ? '' : implode(';', json_decode($item->sku->props, true)),  array('id' => '','class' => 'props'));?>
                         </td>
-                        <td><?php echo CHtml::checkBox('position[]', false, array('value' => $key, 'data-url' => Yii::app()->createUrl('cart/getPrice'))); ?></td>
+                        <td><?php echo CHtml::checkBox('position[]', true, array('value' => $key, 'data-url' => Yii::app()->createUrl('cart/getPrice'))); ?></td>
                         <?php
                             $picUrl=$imageHelper->thumb('70','70',$item->getMainPic());
                             $picUrl=yii::app()->baseUrl. $picUrl;
@@ -67,27 +67,40 @@ Yii::app()->clientScript->registerCoreScript('jquery');
                         <td><div id="Singel-Price"><?php echo $item->getPrice(); ?></div></td>
 
 
-                        <td><?php echo CHtml::textField('quantity[]', $item->getQuantity(), array('size' => '4', 'maxlength' => '5', 'data-url' => Yii::app()->createUrl('cart/update'))); ?><div id="stock-error"></div></td>
+                        <td>
+                            <div class="deal_num_cart">
+                                <span class="deal_num_c">
+                                    <a href="javascript:sub(<?php echo $i;?>)" class="minus"></a>
+                                    <label  class="qty_num" id="num<?php echo $i;?>"><?php echo $item->getQuantity(); ?></label>
+                                    <input type="hidden" id="quantity<?php echo $i; ?>" data-url="<?php echo Yii::app()->createUrl('cart/update'); ?>" name="quantity[]" value="<?php echo $item->getQuantity(); ?>" />
+                                    <a href="javascript:add(<?php echo $i;?>)" class="add"></a>
+                                </span>
+                            </div>
+<!--                            <a href="javascript:testsub(--><?php //echo $i;?><!--)">test</a>--><?php //echo CHtml::textField('quantity[]', $item->getQuantity(), array('size' => '4', 'maxlength' => '5', 'data-url' => Yii::app()->createUrl('cart/update'))); ?><!--<div id="stock-error"></div>-->
+                        </td>
 
 
-                        <td><div id="SumPrice"><?php echo $item->getSumPrice() ?></div>元</td>
+                        <td><div id="SumPrice"><?php echo $item->getSumPrice(); ?></div>元</td>
                         <td><?php echo CHtml::link('移除', array('/cart/remove', 'key' => $item->getId())) ?></td>
                     </tr></tbody>
+                    <?php $i++; $total += $item->getSumPrice();?>
                 <?php
                 }
             } ?>
             <tfoot>
             <tr>
-                <td colspan="8" style="padding:10px;text-align:right">总计：<label id="total_price">0</label>元</td>
+                <td colspan="8" style="padding:10px;text-align:right">总计：<label id="total_price"><?php echo $total;?></label>元</td>
             </tr>
             <tr>
                 <td colspan="8" style="vertical-align:middle">
+                    <input class="btn btn-danger pull-left" type="button" value="清空购物车" onclick="window.location.href='<?php echo Yii::app()->createUrl('cart/clear');?>'"/>
+<!--                    <button class="btn btn-danger pull-left">--><?php //echo CHtml::link('清空购物车', array('/cart/clear'), array('class' => 'btn1')) ?><!--</button>-->
 
-                    <button class="btn btn-danger pull-left"><?php echo CHtml::link('清空购物车', array('/cart/clear'), array('class' => 'btn1')) ?></button>
-
-             <button class="btn btn-success" style="float:right;padding:1px 10px;"><?php echo CHtml::link('结算','#', array('class' => 'btn1','id'=>'account')) ?></button>
-                    <button class="btn btn-primary"
-                            style="float:right;padding:1px 10px;margin-right: 10px;"  id="btn-primary"><?php echo CHtml::link('继续购物', array('./'), array('class' => 'btn1')) ?></button>
+             <button class="btn btn-success" style="float:right;padding:1px 10px;" id="checkout"><?php echo CHtml::link('结算','#', array('class' => 'btn1','id'=>'account')) ?></button>
+                    <input class="btn btn-primary" style="float:right;padding:1px 10px;margin-right: 10px;"  id="btn-primary" type="button"
+                           value="继续购物" onclick="javascript:history.back(-1);"/>
+<!--                    <button class="btn btn-primary"-->
+<!--                            style="float:right;padding:1px 10px;margin-right: 10px;"  id="btn-primary">--><?php //echo CHtml::link('继续购物', array('./'), array('class' => 'btn1')) ?><!--</button>-->
                 </td>
             </tr>
             </tfoot>
@@ -98,6 +111,20 @@ Yii::app()->clientScript->registerCoreScript('jquery');
 <script type="text/javascript">
 
     $(function(){
+        $('[name="position[]"]').change(function() {
+            if($('[name="position[]"]:checked').length == 0) {
+                $("#checkout").attr('disabled',true);
+            } else {
+                $("#checkout").removeAttr('disabled');
+            }
+        });
+        $("#checkAllPosition").change(function() {
+            if(!$("#checkAllPosition").attr('checked')) {
+                $("#checkout").attr('disabled',true);
+            } else {
+                $("#checkout").removeAttr('disabled');
+            }
+        });
         $("#quantity").keyup(function() {
             var tmptxt = $(this).val();
             $(this).val(tmptxt.replace(/\D|/g, ''));
@@ -107,5 +134,52 @@ Yii::app()->clientScript->registerCoreScript('jquery');
             }).css("ime-mode", "disabled");
     });//输入验证，保证只有数字。
 
+    function add(i) {
+        $('#num'+i).text(parseInt($('#num'+i).text()) + 1);
+        $('#quantity'+i).val(parseInt($('#quantity'+i).val()) + 1);
+        update(i);
+    }
+    function sub(i) {
+        $('#num'+i).text(parseInt($('#num'+i).text()) - 1);
+        $('#quantity'+i).val(parseInt($('#quantity'+i).val()) - 1);
+        var num = $('#quantity'+i).val();
+        if(num < 1){
+            alert('商品数量不能小于1！');
+            $('#num'+i).text(parseInt($('#num'+i).text()) + 1);
+            $('#quantity'+i).val(parseInt($('#quantity'+i).val()) + 1);
+        }
+        update(i);
+    }
+    function update(i) {
+        var tr = $('#quantity'+i).closest('tr');
+        var sku_id = tr.find("#position");
+        var qty = tr.find("#quantity"+i);
+        var item_id = tr.find(".item-id");
+        var props = tr.find(".props");
+        var cart=parseInt($(".shopping_car").find("span").html());
+        var sumPrice= parseFloat(tr.find("#SumPrice").html());
+        var singlePrice=parseFloat( tr.find("#Singel-Price").html());
+        var data = {'item_id': item_id.val(), 'props': props.val(), 'qty': qty.val(),'sku_id':sku_id.val()};
+        $.get('/cart/update', data, function (response) {
+            tr.find("#error-message").remove();
+            if (!response) {
+                $(".shopping_car").find("span").html(cart-sumPrice/singlePrice+parseInt(qty.val()));
+                tr.find("#SumPrice").html(parseFloat(qty.val()) * parseFloat(singlePrice));
+                update_total_price();
+            }
+            tr.find("#stock-error").append(response);
+        });
+    }
+    function update_total_price() {
+        var positions = [];
+        $('[name="position[]"]:checked').each(function () {
+            positions.push($(this).val());
+        });
+        $.get('/cart/getPrice', {'positions': positions}, function (data) {
+            if (!data.msg) {
+                $('#total_price').text(data.total);
+            }
+        }, 'json');
+    }
 
 </script>
