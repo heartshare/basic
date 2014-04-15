@@ -1,7 +1,7 @@
 <?php
 $this->breadcrumbs=array(
-	'Shipping Methods'=>array('index'),
-	'Manage',
+	'配送方式'=>array('index'),
+	'管理',
 );
 
 $this->menu=array(
@@ -27,8 +27,16 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'code',
 		'name',
 		'desc',
-		'enabled',
-		'is_cod',
+        array(
+            'name' => 'enabled',
+            'value' => 'Tbfunction::showYesOrNo($data->enabled)',
+            'filter' => Tbfunction::ReturnYesOrNo(),
+        ),
+        array(
+            'name' => 'is_cod',
+            'value' => 'Tbfunction::showYesOrNo($data->is_cod)',
+            'filter' => Tbfunction::ReturnYesOrNo(),
+        ),
 		/*
 		'sort_order',
 		*/
