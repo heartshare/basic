@@ -63,11 +63,12 @@ class ShippingMethod extends CActiveRecord
         return array(
             'shipping_method_id' => 'Shipping Method',
             'code' => 'Code',
-            'name' => '名字',
-            'desc' => '描述',
-            'enabled' => '开启',
-            'is_cod' => '能否',
-            'sort_order' => '排序',
+            'name' =>Yii::t('backend','名字'),
+
+            'desc' => Yii::t('backend','描述'),
+            'enabled' => Yii::t('backend','能否'),
+            'is_cod' => Yii::t('backend','是否'),
+            'sort_order' => Yii::t('backend','排序'),
         );
     }
 
