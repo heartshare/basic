@@ -13,6 +13,6 @@ $this->menu=array(
 );
 ?>
 
-<h3>更新支付方式 <?php echo $model->name; ?></h3>
+<h3>更新货运方式 <?php echo $model->name; ?></h3>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
