@@ -71,13 +71,13 @@ class OrderLog extends CActiveRecord
     public function attributeLabels()
     {
         return array(
-            'log_id' => 'Log',
-            'order_id' => 'Order',
-            'op_name' => 'Op Name',
-            'log_text' => 'Log Text',
-            'action_time' => 'Action Time',
-            'user_id' => 'User',
-            'result' => 'Result',
+            'log_id' => '日志id',
+            'order_id' => '订单id',
+            'op_name' => '操作名称',
+            'log_text' => '日志内容',
+            'action_time' => '操作时间',
+            'user_id' => '用户id',
+            'result' => '返回结果',
         );
     }
 
@@ -98,6 +98,8 @@ class OrderLog extends CActiveRecord
         $criteria->compare('action_time',$this->action_time,true);
         $criteria->compare('user_id',$this->user_id);
         $criteria->compare('result',$this->result,true);
+
+        $criteria->order='log_id desc';
 
         return new CActiveDataProvider($this, array(
             'criteria'=>$criteria,
