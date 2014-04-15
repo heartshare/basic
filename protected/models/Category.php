@@ -73,7 +73,7 @@ class Category extends CActiveRecord
             'right' => 'Right',
             'root' => 'Root',
             'level' => 'Level',
-            'name' => 'Name',
+            'name' => '名字',
             'label' => 'Label',
             'url' => 'Url',
             'pic' => 'Pic',

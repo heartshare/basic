@@ -73,20 +73,20 @@ class ItemProp extends YActiveRecord
     public function attributeLabels()
     {
         return array(
-            'item_prop_id' => 'Item Prop',
+            'item_prop_id' => '属性编号',
             'category_id' => 'Category',
             'parent_prop_id' => 'Parent Prop',
-            'parent_value_id' => 'Parent Value',
-            'prop_name' => 'Prop Name',
+            'parent_value_id' => 'Prop value',
+            'prop_name' => '属性名字',
             'prop_alias' => 'Prop Alias',
-            'type' => 'Type',
+            'type' => '类型',
             'is_key_prop' => 'Is Key Prop',
             'is_sale_prop' => 'Is Sale Prop',
             'is_color_prop' => 'Is Color Prop',
             'must' => 'Must',
             'multi' => 'Multi',
             'status' => 'Status',
-            'sort_order' => 'Sort Order',
+            'sort_order' => '排序',
             'item_propcol' => 'Item Propcol',
         );
     }
