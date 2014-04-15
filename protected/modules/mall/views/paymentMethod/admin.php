@@ -22,7 +22,11 @@ $this->menu=array(
 		'name',
 		'desc',
 //		'config',
-		'enabled',
+        array(
+            'name' => 'enabled',
+            'value' => 'Tbfunction::showYesOrNo($data->enabled)',
+            'filter' => Tbfunction::ReturnYesOrNo(),
+        ),
 		/*
 		'is_cod',
 		'is_online',
