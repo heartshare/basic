@@ -43,15 +43,43 @@ $this->widget('bootstrap.widgets.TbDetailView', array(
         ),
         'desc',
         'shipping_fee',
-        'is_show',
-        'is_promote',
-        'is_new',
-        'is_hot',
-        'is_best',
+       // 'is_show',
+        array(
+            'name' => Yii::t('backend','是否展示'),
+            'value' => $model->getShow(),
+        ),
+        //'is_promote',
+        array(
+            'name' => Yii::t('backend','是否促销'),
+            'value' => $model->getPromote(),
+        ),
+
+       // 'is_new',
+
+        array(
+            'name' => Yii::t('backend','是否新的'),
+            'value' => $model->getNew(),
+        ),
+       // 'is_hot',
+        array(
+            'name' => Yii::t('backend','是否热销'),
+            'value' => $model->getHot(),
+        ),
+        //'is_best',
+        array(
+            'name' => Yii::t('backend','是否最好的'),
+            'value' => $model->getBest(),
+        ),
         'click_count',
         'wish_count',
         'review_count',
-        'deal_count',
+      //  'deal_count',
+        array(
+           // 'name' => Yii::t('backend','打折'),
+             'name' =>  'deal_count',
+            //'value' => 'deal_count',
+             ),
+
         array(
             'name' => 'create_time',
             'value' => date("Y年m月d日 H:i:s",$model->create_time + 8*3600)

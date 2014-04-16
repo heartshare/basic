@@ -15,7 +15,7 @@ $this->menu = array(
 <div id="loading-header">
     <div class="header-row">
         <header>
-            <h3 class="header-main"><i class="glyphicon glyphicon-pencil"></i>&nbsp;&nbsp;查看商品 #<?php echo $model->item_id; ?></h3>
+            <h3 class="header-main"><i class="glyphicon glyphicon-pencil"></i>&nbsp;&nbsp;查看商品 #<?php echo $model->title; ?></h3>
         </header>
     </div> <!-- /.header-row -->
 </div>

@@ -240,6 +240,19 @@ class Item extends YActiveRecord
                 return array(0 => 'No', 1 => 'Yes');
             }
         }
+
+       if ($prefix === 'get') {
+            $key = strtolower(substr($name, 3));
+        if (in_array($key, array('show', 'promote', 'new', 'hot', 'best'))) {
+            $data = array(0 => 'No', 1 => 'Yes');
+        }
+        if (in_array($key,array('show', 'promote', 'new', 'hot', 'best') )) {
+            $key = 'is_' . $key ;
+         }
+
+    }
+if (isset($data[$this->$key]))
+return $data[$this->$key];
         return parent::__call($name, $parameters);
     }
 
