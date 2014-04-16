@@ -76,7 +76,7 @@ class SettingsController extends Controller {
     }
     public function actionClearBackend() {
         Yii::app()->cache->flush();
-        $this->redirect('/basic/backend.php/settings/index');
+        $this->redirect('index');
     }
     public function actionClearFrontend() {
         $local=require('./protected/config/main-local.php');
@@ -84,6 +84,6 @@ class SettingsController extends Controller {
         $config=CMap::mergeArray($base, $local);
         Yii::setApplication(null);
         Yii::createWebApplication($config)->cache->flush();
-        $this->redirect('/basic/backend.php/settings/index');
+        $this->redirect('index');
     }
 }
