@@ -675,3 +675,9 @@ dd{
     text-align: center;
     vertical-align: middle;
 }
+.btn-add ,.btn-reduce{
+    cursor: pointer;
+}
+.quantity{
+    margin-left:3px ;
+}
