@@ -49,7 +49,7 @@ Yii::app()->clientScript->registerCoreScript('jquery');
                 foreach ($items as $key => $item) {
 //                    var_dump($key);die;
                     ?>
-                    <tbody><tr><?php
+                    <tbody id="<?php echo $item->getId();?>"><tr><?php
                         $itemUrl = Yii::app()->createUrl('item/view', array('id' => $item->item_id));
                         ?>
                         <td style="display:none;">
@@ -64,19 +64,20 @@ Yii::app()->clientScript->registerCoreScript('jquery');
                         <td><a href="<?php echo $itemUrl; ?>"><?php echo CHtml::image($picUrl, $item->title, array('width' => '80px', 'height' => '80px')); ?></a></td>
                         <td><?php echo CHtml::link($item->title, $itemUrl); ?></td>
                         <td><?php echo empty($item->sku) ? '' : implode(';', json_decode($item->sku->props_name, true)); ?></td>
-                        <td><div id="Singel-Price"><?php echo $item->getPrice(); ?></div></td>
+                        <td><divcatalog id="Singel-Price"><?php echo $item->getPrice(); ?></div></td>
 
 
                         <td>
-                            <div class="deal_num_cart">
-                                <span class="deal_num_c">
-                                    <a href="javascript:sub(<?php echo $i;?>)" class="minus"></a>
-                                    <label  class="qty_num" id="num<?php echo $i;?>"><?php echo $item->getQuantity(); ?></label>
-                                    <input type="hidden" id="quantity<?php echo $i; ?>" data-url="<?php echo Yii::app()->createUrl('cart/update'); ?>" name="quantity[]" value="<?php echo $item->getQuantity(); ?>" />
-                                    <a href="javascript:add(<?php echo $i;?>)" class="add"></a>
-                                </span>
-                            </div>
-<!--                            <a href="javascript:testsub(--><?php //echo $i;?><!--)">test</a>--><?php //echo CHtml::textField('quantity[]', $item->getQuantity(), array('size' => '4', 'maxlength' => '5', 'data-url' => Yii::app()->createUrl('cart/update'))); ?><!--<div id="stock-error"></div>-->
+<!--                            <div class="deal_num_cart">-->
+<!--                                <span class="deal_num_c">-->
+<!--                                    <a href="javascript:sub(--><?php //echo $i;?><!--)" class="minus"></a>-->
+<!--                                    <label  class="qty_num" id="num--><?php //echo $i;?><!--">--><?php //echo $item->getQuantity(); ?><!--</label>-->
+<!--                                    <input type="hidden" id="quantity--><?php //echo $i; ?><!--" data-url="--><?php //echo Yii::app()->createUrl('cart/update'); ?><!--" name="quantity[]" value="--><?php //echo $item->getQuantity(); ?><!--" />-->
+<!--                                    <a href="javascript:add(--><?php //echo $i;?><!--)" class="add"></a>-->
+<!--                                </span>-->
+<!--                            </div>-->
+                            <span class="glyphicon glyphicon-minus-sign btn-reduce"></span><?php echo CHtml::textField('quantity[]', $item->getQuantity(), array('size' => '4', 'class'=>'quantity','maxlength' => '5', 'data-url' => Yii::app()->createUrl('cart/update'))); ?>
+                            <span class="glyphicon glyphicon-plus-sign btn-add"></span><div id="stock-error"></div>
                         </td>
 
 
@@ -109,6 +110,22 @@ Yii::app()->clientScript->registerCoreScript('jquery');
     </div>
 </div>
 <script type="text/javascript">
+  $(document).ready(function(){
+      $(".btn-add").on('click',function(){
+          $(this).siblings(".quantity").val(Number( $(this).siblings(".quantity").val())+1);
+      })
+      $(".btn-reduce").on('click',function(){
+          var change_quantity = Number( $(this).siblings(".quantity").val());
+          if(change_quantity <= 1){
+              $(this).siblings(".quantity").val(1);
+          }else{
+              $(this).siblings(".quantity").val(change_quantity-1);
+          }
+      })
+  })
+
+
+
 
     $(function(){
         $('[name="position[]"]').change(function() {
