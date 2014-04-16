@@ -75,8 +75,8 @@
             'class' => 'bootstrap.widgets.TbNav',
             'htmlOptions' => array('class' => 'pull-right'),
             'items' => array(
-                array('label' => '清除前台缓存', 'url' => Yii::app()->createUrl('settings/clearFrontend')),
-                array('label' => '清除后台缓存', 'url' => Yii::app()->createUrl('settings/clearBackend')),
+                array('label' => '清除前台缓存', 'url' => Yii::app()->createUrl('settings/clearFrontend'),'visible' => !Yii::app()->user->isGuest),
+                array('label' => '清除后台缓存', 'url' => Yii::app()->createUrl('settings/clearBackend'),'visible' => !Yii::app()->user->isGuest),
                 array('label' => '网站前台', 'url' => Yii::app()->request->hostInfo . Yii::app()->baseUrl),
                 array('label' => '站点配置', 'url' => array('/settings/index'), 'visible' => !Yii::app()->user->isGuest),
                 array('label' => '登录', 'url' => array('/site/login'), 'visible' => Yii::app()->user->isGuest),
