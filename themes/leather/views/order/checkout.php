@@ -259,7 +259,9 @@ Yii::app()->clientScript->registerCoreScript('jquery');
                             ?>
                             <tr><?php
                                 ?>
-                                <td><?php echo CHtml::image($item->getMainPic(), $item->title, array('width' => '80px', 'height' => '80px')); ?></td>
+                                <td><?php
+                                    $picUrl=$imageHelper->thumb('70','70',$item->getMainPic());
+                                    echo CHtml::image($picUrl, $item->title, array('width' => '80px', 'height' => '80px')); ?></td>
                                 <td><?php echo $item->title; ?></td>
                                 <td><?php echo empty($item->sku) ? '' : implode(';', json_decode($item->sku->props_name, true)); ?></td>
                                 <td><?php echo $item->getPrice(); ?></td>
@@ -284,7 +286,7 @@ Yii::app()->clientScript->registerCoreScript('jquery');
             </div>
         </div>
 
-            <div></iv><button class="btn btn-danger pull-right" style="line-height:20px;margin-right:150px;margin-bottom:30px;" href=""
+            <div><button id="checkout" class="btn btn-danger pull-right" style="line-height:20px;margin-right:150px;margin-bottom:30px;" href=""
                 <?php if(!$AddressResult&&Yii::app()->user->id) {
                     echo "disabled=true";
                 }?>>确认订单</button></div>
@@ -297,6 +299,13 @@ Yii::app()->clientScript->registerCoreScript('jquery');
 
 <?php echo CHtml::endForm() ?>
 <script type="text/javascript">
+    $(function() {
+        if($("input:radio[name='delivery_address']").is(":checked")) {
+            $("#checkout").removeAttr('disabled');
+        } else {
+            $('input:radio:first').attr('checked', true);
+        }
+    });
     $('#AddressResult_state, #AddressResult_city').change(function() {
         var url = $(this).parent('.row').data('url');
         var select = '';
