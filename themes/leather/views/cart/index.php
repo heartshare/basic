@@ -44,7 +44,6 @@ Yii::app()->clientScript->registerCoreScript('jquery');
                 </tr>
             <?php
             } else {
-                $i = 0;
                 $total = 0;
                 foreach ($items as $key => $item) {
 //                    var_dump($key);die;
@@ -68,16 +67,9 @@ Yii::app()->clientScript->registerCoreScript('jquery');
 
 
                         <td>
-<!--                            <div class="deal_num_cart">-->
-<!--                                <span class="deal_num_c">-->
-<!--                                    <a href="javascript:sub(--><?php //echo $i;?><!--)" class="minus"></a>-->
-<!--                                    <label  class="qty_num" id="num--><?php //echo $i;?><!--">--><?php //echo $item->getQuantity(); ?><!--</label>-->
-<!--                                    <input type="hidden" id="quantity--><?php //echo $i; ?><!--" data-url="--><?php //echo Yii::app()->createUrl('cart/update'); ?><!--" name="quantity[]" value="--><?php //echo $item->getQuantity(); ?><!--" />-->
-<!--                                    <a href="javascript:add(--><?php //echo $i;?><!--)" class="add"></a>-->
-<!--                                </span>-->
-<!--                            </div>-->
                             <span class="glyphicon glyphicon-minus-sign btn-reduce"></span><?php echo CHtml::textField('quantity[]', $item->getQuantity(), array('size' => '4', 'class'=>'quantity','maxlength' => '5', 'data-url' => Yii::app()->createUrl('cart/update'))); ?>
-                            <span class="glyphicon glyphicon-plus-sign btn-add"></span><div id="stock-error"></div>
+                            <input id="pre_quantity" class="pre_quantity" type="hidden" value="<?php echo $item->getQuantity();?>" />
+                            <span class="glyphicon glyphicon-plus-sign btn-add"></span><div id="stock-error"></div><input id="pre_quantity" type="hidden"  />
                         </td>
 
 
@@ -113,19 +105,23 @@ Yii::app()->clientScript->registerCoreScript('jquery');
   $(document).ready(function(){
       $(".btn-add").on('click',function(){
           $(this).siblings(".quantity").val(Number( $(this).siblings(".quantity").val())+1);
-      })
+          $(this).siblings(".pre_quantity").val(Number( $(this).siblings(".pre_quantity").val())+1);
+          update($(this).siblings(".quantity"));
+      });
       $(".btn-reduce").on('click',function(){
           var change_quantity = Number( $(this).siblings(".quantity").val());
+          $(this).siblings("#stock-error").find("#num-error").remove();
           if(change_quantity <= 1){
               $(this).siblings(".quantity").val(1);
+              $(this).siblings(".pre_quantity").val(1);
+              $(this).siblings("#stock-error").append("<div id=\"num-error\" style=\"color:red\">商品数量不能小于1</div>");
           }else{
+              $(this).siblings(".pre_quantity").val(change_quantity-1);
               $(this).siblings(".quantity").val(change_quantity-1);
+              update($(this).siblings(".quantity"));
           }
-      })
-  })
-
-
-
+      });
+  });
 
     $(function(){
         $('[name="position[]"]').change(function() {
@@ -142,7 +138,7 @@ Yii::app()->clientScript->registerCoreScript('jquery');
                 $("#checkout").removeAttr('disabled');
             }
         });
-        $("#quantity").keyup(function() {
+        $(".quantity").keyup(function() {
             var tmptxt = $(this).val();
             $(this).val(tmptxt.replace(/\D|/g, ''));
         }).bind("paste", function() {
@@ -151,40 +147,28 @@ Yii::app()->clientScript->registerCoreScript('jquery');
             }).css("ime-mode", "disabled");
     });//输入验证，保证只有数字。
 
-    function add(i) {
-        $('#num'+i).text(parseInt($('#num'+i).text()) + 1);
-        $('#quantity'+i).val(parseInt($('#quantity'+i).val()) + 1);
-        update(i);
-    }
-    function sub(i) {
-        $('#num'+i).text(parseInt($('#num'+i).text()) - 1);
-        $('#quantity'+i).val(parseInt($('#quantity'+i).val()) - 1);
-        var num = $('#quantity'+i).val();
-        if(num < 1){
-            alert('商品数量不能小于1！');
-            $('#num'+i).text(parseInt($('#num'+i).text()) + 1);
-            $('#quantity'+i).val(parseInt($('#quantity'+i).val()) + 1);
-        }
-        update(i);
-    }
-    function update(i) {
-        var tr = $('#quantity'+i).closest('tr');
+    function update(quantity) {
+        var tr = quantity.closest('tr');
         var sku_id = tr.find("#position");
-        var qty = tr.find("#quantity"+i);
+        var qty = quantity;
         var item_id = tr.find(".item-id");
         var props = tr.find(".props");
         var cart=parseInt($(".shopping_car").find("span").html());
         var sumPrice= parseFloat(tr.find("#SumPrice").html());
         var singlePrice=parseFloat( tr.find("#Singel-Price").html());
         var data = {'item_id': item_id.val(), 'props': props.val(), 'qty': qty.val(),'sku_id':sku_id.val()};
-        $.get('/cart/update', data, function (response) {
+        $.post('/cart/update', data, function (response) {
             tr.find("#error-message").remove();
+            tr.find("#num-error").remove();
             if (!response) {
                 $(".shopping_car").find("span").html(cart-sumPrice/singlePrice+parseInt(qty.val()));
                 tr.find("#SumPrice").html(parseFloat(qty.val()) * parseFloat(singlePrice));
                 update_total_price();
             }
             tr.find("#stock-error").append(response);
+            if(quantity.siblings('#stock-error').find("#error-message").text()) {
+                quantity.val(Number(quantity.val())-1);
+            }
         });
     }
     function update_total_price() {
@@ -192,7 +176,7 @@ Yii::app()->clientScript->registerCoreScript('jquery');
         $('[name="position[]"]:checked').each(function () {
             positions.push($(this).val());
         });
-        $.get('/cart/getPrice', {'positions': positions}, function (data) {
+        $.post('/cart/getPrice', {'positions': positions}, function (data) {
             if (!data.msg) {
                 $('#total_price').text(data.total);
             }
