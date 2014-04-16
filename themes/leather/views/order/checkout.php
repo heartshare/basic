@@ -226,7 +226,7 @@ Yii::app()->clientScript->registerCoreScript('jquery');
                     }
                     ?>
                     <tr><?php
-                        if($picUrl){
+                        if($item->getMainPic()){
                             $picUrl=$imageHelper->thumb('70','70',$item->getMainPic());
                         ?>
                         <td><?php echo CHtml::image($picUrl, $item->title, array('width' => '80px', 'height' => '80px'));
