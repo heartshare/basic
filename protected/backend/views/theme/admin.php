@@ -5,8 +5,8 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'主题列表', 'icon'=>'list', 'url'=>array('index')),
-	array('label'=>'创建主题', 'icon'=>'plus', 'url'=>array('create')),
+	array('label'=>Yii::t('backend','主题列表'), 'icon'=>'list', 'url'=>array('index')),
+	array('label'=>Yii::t('backend','创建主题'), 'icon'=>'plus', 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -23,7 +23,8 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>管理  主题</h1>
+    <h1><?php echo Yii::t('backend','管理主题');?></h1>
+
 
 <p>
 You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
