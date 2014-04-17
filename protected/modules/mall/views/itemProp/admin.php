@@ -9,7 +9,8 @@ $this->menu = array(
 );
 ?>
 
-<h3>管理商品属性</h3>
+
+<h1><?php echo Yii::t('backend','管理商品属性');?></h1>
 
 <?php
 $this->widget('bootstrap.widgets.TbGridView', array(
@@ -27,7 +28,7 @@ $this->widget('bootstrap.widgets.TbGridView', array(
         ),
         array(
             'name' => 'prop.prop_values',
-            'header' => '属性值',
+            'header' =>Yii::t('backend','属性值'),
             'value' => '$data->getPropValues()',
             'htmlOptions' => array('width'=>'600'),
         ),

@@ -73,7 +73,7 @@ class Category extends CActiveRecord
             'right' => 'Right',
             'root' => 'Root',
             'level' => 'Level',
-            'name' => '名字',
+            'name' =>Yii::t('backend','名字'),
             'label' => 'Label',
             'url' => 'Url',
             'pic' => 'Pic',
