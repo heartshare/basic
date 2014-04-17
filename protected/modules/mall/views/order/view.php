@@ -47,7 +47,7 @@
                         <?php
                         if($Order->create_time){
 
-                            echo date("Y-m-d H:i:s",$Order->create_time + 8*3600);
+                            echo date("Y-m-d H:i:s",$Order->create_time);
                         }
                         ?>
                     </dd></dl>
@@ -56,7 +56,7 @@
                     <dd>
                         <?php
                         if($Order->ship_time){
-                            echo date("Y-m-d H:i;s",$Order->ship_time + 8*3600);
+                            echo date("Y-m-d H:i;s",$Order->ship_time);
                         }
                         ?>
                     </dd>
@@ -65,7 +65,7 @@
                     <dd>
                         <?php
                         if($Order->pay_time){
-                            echo date("Y-m-d H:i;s",$Order->pay_time + 8*3600);
+                            echo date("Y-m-d H:i;s",$Order->pay_time);
                         }
                         ?>
                     </dd>
@@ -117,16 +117,9 @@
                 <colgroup>
                     <col class="item">
                     <col class="sku">
-                    <!-- 宝贝 -->
                     <col class="price">
-                    <!-- 单价（元） -->
-
                     <col class="num">
-                    <!-- 数量 -->
                     <col class="order-price">
-
-                    <!-- 合计（元） -->
-                    <!-- 买/卖家信息 -->
                 </colgroup>
                 <tbody class="order">
 
@@ -140,7 +133,6 @@
 
                 <?php
                     foreach($Order_item as $orderItems){
-
                  ?>
                 <tr class="order-item">
                     <td class="item">
