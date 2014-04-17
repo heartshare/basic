@@ -517,6 +517,13 @@ class Item extends YActiveRecord
 
 
     }
+//    public function ReturnIsShow(){
+//        return array('0' => 'NO', '1' => 'Yes');
+//    }
+    public function showIsShow($is_show){
+        $isShow=array('0'=>'待展示','1'=>'已展示');
+        return $isShow[$is_show];
+    }
 
     /**
      * get props values combine
