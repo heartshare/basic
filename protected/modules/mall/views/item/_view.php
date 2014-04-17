@@ -47,7 +47,7 @@ $this->widget('bootstrap.widgets.TbDetailView', array(
         array(
            'name' => Yii::t('backend','是否展示'),
           // 'name' => 'is_show',
-            'value' =>$model->showIsShow($is_show),
+            'value' =>$model->showIsShow($model->is_show),
             'filter' =>array('0' => 'NO', '1' => 'Yes'),
            // 'value' => $model->getShow(),
         ),
@@ -55,6 +55,7 @@ $this->widget('bootstrap.widgets.TbDetailView', array(
         array(
             'name' => Yii::t('backend','是否促销'),
            // 'value' => $model->getPromote(),
+            'value' =>$model->showIsPromote($model->is_show),
         ),
 
        // 'is_new',
@@ -62,16 +63,19 @@ $this->widget('bootstrap.widgets.TbDetailView', array(
         array(
             'name' => Yii::t('backend','是否新的'),
            // 'value' => $model->getNew(),
+            'value' =>$model-> showIsNew($model->is_show),
         ),
        // 'is_hot',
         array(
             'name' => Yii::t('backend','是否热销'),
             //'value' => $model->getHot(),
+            'value' =>$model->showIsHot($model->is_show),
         ),
         //'is_best',
         array(
             'name' => Yii::t('backend','是否最好的'),
            // 'value' => $model->getBest(),
+            'value' =>$model->showIsBest($model->is_show),
         ),
         'click_count',
         'wish_count',
