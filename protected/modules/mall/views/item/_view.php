@@ -43,32 +43,40 @@ $this->widget('bootstrap.widgets.TbDetailView', array(
         ),
         'desc',
         'shipping_fee',
-       // 'is_show',
+       //'is_show',
+
         array(
             'name' => Yii::t('backend','是否展示'),
-            'value' => $model->getShow(),
+            //var_dump(is_show),
+            'value' =>$model->showIsShow($model->is_show),
+
+          //  'value' => 'is_show',
         ),
         //'is_promote',
         array(
             'name' => Yii::t('backend','是否促销'),
-            'value' => $model->getPromote(),
+           // 'value' => $model->getPromote(),
+            'value' =>$model->showIsPromote($model->is_show),
         ),
 
        // 'is_new',
 
         array(
             'name' => Yii::t('backend','是否新的'),
-            'value' => $model->getNew(),
+          //  'value' => $model->getNew(),
+            'value' =>$model->showIsNew($model->is_show),
         ),
        // 'is_hot',
         array(
             'name' => Yii::t('backend','是否热销'),
-            'value' => $model->getHot(),
+          //  'value' => $model->getHot(),
+            'value' =>$model->showIsHot($model->is_show),
         ),
         //'is_best',
         array(
             'name' => Yii::t('backend','是否最好的'),
-            'value' => $model->getBest(),
+           // 'value' => $model->getBest(),
+            'value' =>$model->showIsBest($model->is_show),
         ),
         'click_count',
         'wish_count',
