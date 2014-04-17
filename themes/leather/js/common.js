@@ -43,18 +43,24 @@ $(document).ready(function () {
         var sumPrice= parseFloat(tr.find("#SumPrice").html());
         var singlePrice=parseFloat( tr.find("#Singel-Price").html());
         var data = {'item_id': item_id.val(), 'props': props.val(), 'qty': qty.val(),'sku_id':sku_id.val()};
-        $.post($(this).data('url'), data, function (response) {
-            tr.find("#error-message").remove();
-            if (!response) {
-                $(".shopping_car").find("span").html(cart-sumPrice/singlePrice+parseInt(qty.val()));
-                tr.find("#SumPrice").html(parseFloat(qty.val()) * parseFloat(singlePrice));
-                tr.find("#pre_quantity").val(qty.val());
-            }
-            tr.find("#stock-error").append(response);
-            if(tr.find("#error-message").text()) {
-                tr.find("#quantity").val(tr.find("#pre_quantity").val());
-            }
-        });
+
+        if(qty.val()>0) {
+            $.post($(this).data('url'), data, function (response) {
+                tr.find("#error-message").remove();
+                if (!response) {
+                    $(".shopping_car").find("span").html(cart-sumPrice/singlePrice+parseInt(qty.val()));
+                    tr.find("#SumPrice").html(parseFloat(qty.val()) * parseFloat(singlePrice));
+                    tr.find("#pre_quantity").val(qty.val());
+                }
+                tr.find("#stock-error").append(response);
+                if(tr.find("#error-message").text()) {
+                    tr.find("#quantity").val(tr.find("#pre_quantity").val());
+                }
+            });
+            $(this).siblings("#stock-error").remove();
+        } else {
+            $(this).siblings("#stock-error").append("<div id=\"num-error\" style=\"color:red\">商品数量不能小于1</div>");
+        }
     });
     $('#cartForm').on('click', '[name="position[]"],#checkAllPosition', function () {
         var flag = 0;
