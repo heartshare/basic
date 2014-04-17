@@ -73,20 +73,20 @@ class ItemProp extends YActiveRecord
     public function attributeLabels()
     {
         return array(
-            'item_prop_id' => '属性编号',
+            'item_prop_id' =>Yii::t('backend','属性编号'),
             'category_id' => 'Category',
             'parent_prop_id' => 'Parent Prop',
             'parent_value_id' => 'Prop value',
-            'prop_name' => '属性名字',
+            'prop_name' => Yii::t('backend','属性名字'),
             'prop_alias' => 'Prop Alias',
-            'type' => '类型',
+            'type' => Yii::t('backend','类型'),
             'is_key_prop' => 'Is Key Prop',
             'is_sale_prop' => 'Is Sale Prop',
             'is_color_prop' => 'Is Color Prop',
             'must' => 'Must',
             'multi' => 'Multi',
             'status' => 'Status',
-            'sort_order' => '排序',
+            'sort_order' =>Yii::t('backend','排序') ,
             'item_propcol' => 'Item Propcol',
         );
     }

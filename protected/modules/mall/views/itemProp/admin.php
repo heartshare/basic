@@ -1,15 +1,16 @@
 <?php
 $this->breadcrumbs = array(
-    '商品属性' => array('admin'),
-    '管理',
+    Yii::t('backend', '商品属性') => array('admin'),
+    Yii::t('backend', '管理'),
 );
 
 $this->menu = array(
-    array('label' => '创建商品属性', 'icon' => 'plus', 'url' => array('create')),
+    array('label' => Yii::t('backend','创建商品属性'), 'icon' => 'plus', 'url' => array('create')),
 );
 ?>
 
-<h3>管理商品属性</h3>
+
+<h1><?php echo Yii::t('backend','管理商品属性');?></h1>
 
 <?php
 $this->widget('bootstrap.widgets.TbGridView', array(
@@ -27,7 +28,7 @@ $this->widget('bootstrap.widgets.TbGridView', array(
         ),
         array(
             'name' => 'prop.prop_values',
-            'header' => '属性值',
+            'header' =>Yii::t('backend','属性值'),
             'value' => '$data->getPropValues()',
             'htmlOptions' => array('width'=>'600'),
         ),
