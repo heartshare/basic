@@ -15,7 +15,7 @@ $this->menu=array(
 
 <div class="box">
     <div class="box-title">更新收货地址#<?php echo $model->contact_id; ?></div>
-    <div class="box-content">
+    <div class="form-horizontal">
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
     </div>
 </div>
