@@ -5,12 +5,14 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'配送方式清单', 'icon'=>'list', 'url'=>array('index')),
-	array('label'=>'选择配送方式', 'icon'=>'plus','url'=>array('create')),
+	array('label'=>Yii::t('backend','配送方式清单'), 'icon'=>'list', 'url'=>array('index')),
+	array('label'=>Yii::t('backend','选择配送方式'), 'icon'=>'plus','url'=>array('create')),
 );
 ?>
 
-<h3>配送方式</h3>
+
+
+<h1><?php echo Yii::t('backend','配送方式');?></h1>
 
 <p>
 You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
