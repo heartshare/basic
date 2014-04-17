@@ -1,4 +1,4 @@
-0<?php Yii::app()->clientScript->registerScriptFile(Yii::app()->theme->baseUrl . '/js/pptBox.js'); ?>
+<?php Yii::app()->clientScript->registerScriptFile(Yii::app()->theme->baseUrl . '/js/pptBox.js'); ?>
 <div class="warp_contant">
     <div class="float">
         <div class="float_button">
