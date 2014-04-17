@@ -56,9 +56,9 @@ class Tbfunction {
         return array('0' => '未提交', '1' => '已提交');
     }
 
-//    public function ReturnPayStatus(){
-//        return array('0' => '待支付', '1' => '已支付');
-//    }
+    public function ReturnPayStatus(){
+        return array('0' => '待支付', '1' => '已支付');
+    }
 
     public function ReturnShipStatus(){
         return array('0' => '未发货', '1' => '已发货');
