@@ -1,11 +1,11 @@
 <?php
 $this->breadcrumbs = array(
-    '商品属性' => array('admin'),
-    '管理',
+    Yii::t('backend', '商品属性') => array('admin'),
+    Yii::t('backend', '管理'),
 );
 
 $this->menu = array(
-    array('label' => '创建商品属性', 'icon' => 'plus', 'url' => array('create')),
+    array('label' => Yii::t('backend','创建商品属性'), 'icon' => 'plus', 'url' => array('create')),
 );
 ?>
 
