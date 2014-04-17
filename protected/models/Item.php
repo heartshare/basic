@@ -241,6 +241,7 @@ class Item extends YActiveRecord
             }
         }
 
+
         return parent::__call($name, $parameters);
     }
 
@@ -255,7 +256,26 @@ class Item extends YActiveRecord
         }
         return $areasData;
     }
-
+    public function showIsShow($is_show){
+        $isShow=array('0'=>'待展示','1'=>'已展示');
+        return $isShow[$is_show];
+        }
+    public function showIsPromote($is_promote){
+        $ispromote=array('0'=>'不促销','1'=>'促销');
+        return $ispromote[$is_promote];
+    }
+    public function showIsNew($is_new){
+        $isnew=array('0'=>'不是新品','1'=>'新品');
+        return $isnew[$is_new];
+    }
+    public function showIsHot($is_hot){
+        $ishot=array('0'=>'不是热卖','1'=>'热卖中');
+        return $ishot[$is_hot];
+    }
+    public function showIsBest($is_best){
+        $isbest=array('0'=>'不是最好','1'=>'最好的');
+        return $isbest[$is_best];
+    }
     /**
      * get items by category, include children category items
      * @param $category
@@ -516,13 +536,6 @@ class Item extends YActiveRecord
         Yii::app()->db->createCommand($sql)->execute();
 
 
-    }
-//    public function ReturnIsShow(){
-//        return array('0' => 'NO', '1' => 'Yes');
-//    }
-    public function showIsShow($is_show){
-        $isShow=array('0'=>'待展示','1'=>'已展示');
-        return $isShow[$is_show];
     }
 
     /**
