@@ -140,10 +140,10 @@ Yii::app()->clientScript->registerCoreScript('jquery');
         });
         $(".quantity").keyup(function() {
             var tmptxt = $(this).val();
-            $(this).val(tmptxt.replace(/\D|/g, ''));
+            $(this).val(tmptxt.replace(/\D|^0/g, ''));
         }).bind("paste", function() {
                 var tmptxt = $(this).val();
-                $(this).val(tmptxt.replace(/\D|/g, ''));
+                $(this).val(tmptxt.replace(/\D|^0/g, ''));
             }).css("ime-mode", "disabled");
     });//输入验证，保证只有数字。
 
