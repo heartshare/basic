@@ -9,8 +9,8 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List CustomerService', 'icon'=>'list', 'url'=>array('index')),
-	array('label'=>'创建客服', 'icon'=>'plus', 'url'=>array('create')),
+	array('label'=>Yii::t('backend','客服列表'), 'icon'=>'list', 'url'=>array('index')),
+	array('label'=>Yii::t('backend','创建客服'), 'icon'=>'plus', 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -27,7 +27,8 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>客服管理</h1>
+    <h1><?php echo Yii::t('backend','客服管理');?></h1>
+
 
 <p>
     You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>
